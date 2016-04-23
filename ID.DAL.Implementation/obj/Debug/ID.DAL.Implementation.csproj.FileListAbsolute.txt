@@ -1,0 +1,14 @@
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\ID.DAL.Implementation.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\ID.DAL.Implementation.pdb
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\Core.Common.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\ID.DAL.Contract.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\ID.Model.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\System.Web.Mvc.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\AutoMapper.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\Core.Common.pdb
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\ID.DAL.Contract.pdb
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\ID.Model.pdb
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\bin\Debug\AutoMapper.xml
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\obj\Debug\ID.DAL.Implementation.csprojResolveAssemblyReference.cache
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\obj\Debug\ID.DAL.Implementation.dll
+E:\Personal Project\indiandecisions\ID.DAL.Implementation\obj\Debug\ID.DAL.Implementation.pdb

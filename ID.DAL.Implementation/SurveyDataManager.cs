@@ -1,0 +1,92 @@
+﻿using ID.DAL.Contract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ID.Model;
+using System.Data.SqlClient;
+using ID.DAL.Implementation.Shared;
+using System.Data;
+using Core.Common;
+
+namespace ID.DAL.Implementation
+{
+    public class SurveyDataManager : ISurveyDataManager
+    {
+        public Boolean CreateUpdateSurvey(Survey Survey)
+        {
+            SqlConnection con = new IDDbContext().GetConnection();
+            Boolean IsCreated = false;
+            int RowAffected = 0;
+            List<Survey> objSurveyList = new List<Survey>();
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@surveyId",Survey.SurveyId),
+                   new SqlParameter("@categoryId",Survey.CategoryId),
+                   new SqlParameter("@surveyQuestion",Survey.SurveyQuestion),
+                   new SqlParameter("@picturePath",Survey.PicturePath!=null ? Survey.PicturePath :""),
+                   new SqlParameter("@surveyStartDate",Survey.StartDate),
+                   new SqlParameter("@surveyCloseDate",Survey.CloseDate),
+                   new SqlParameter("@surveyExpireDate",Survey.ExpireDate),
+                   new SqlParameter("@surveyIsDeleted",Survey.IsDeleted),
+                   new SqlParameter("@surveyIsActive",Survey.IsActive),
+                    new SqlParameter("@createdBy","Qayyum")
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            using (SqlCommand objSqlCommand = new SqlCommand())
+            {
+                RowAffected = SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "USP_InsertUpdateSurvey", Params);
+                // detach the SqlParameters from the command object, so they can be used again.
+                objSqlCommand.Parameters.Clear();
+            }
+            con.Close();
+            if (RowAffected > 0)
+            {
+                IsCreated = true;
+            }
+            return IsCreated;
+        }
+
+
+        public bool DeleteSurvey(int SurveyId, bool IsSoftDelete)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Survey> GetAllSurvey(int? SurveyId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public long GetLastGeneratedSurveyId()
+        {
+            SqlConnection con = new IDDbContext().GetConnection();
+            long SurveyId = 0;
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            SqlDataReader rdCategories = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetSurveyCategory", Params);
+
+            while (rdCategories.Read())
+            {
+
+                SurveyId = Convert.ToInt64(rdCategories["LastSurveyId"].ToString());
+            }
+            rdCategories.Close();
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return -1;
+            }
+
+            return SurveyId;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+E:\Personal Project\indiandecisions\ID.Biz.Contract\bin\Debug\ID.Biz.Contract.dll
+E:\Personal Project\indiandecisions\ID.Biz.Contract\bin\Debug\ID.Biz.Contract.pdb
+E:\Personal Project\indiandecisions\ID.Biz.Contract\bin\Debug\ID.ValueObjects.dll
+E:\Personal Project\indiandecisions\ID.Biz.Contract\bin\Debug\ID.ValueObjects.pdb
+E:\Personal Project\indiandecisions\ID.Biz.Contract\obj\Debug\ID.Biz.Contract.csprojResolveAssemblyReference.cache
+E:\Personal Project\indiandecisions\ID.Biz.Contract\obj\Debug\ID.Biz.Contract.dll
+E:\Personal Project\indiandecisions\ID.Biz.Contract\obj\Debug\ID.Biz.Contract.pdb

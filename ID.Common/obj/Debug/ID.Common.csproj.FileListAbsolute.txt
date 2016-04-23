@@ -1,0 +1,5 @@
+E:\Personal Project\indiandecisions\ID.Common\bin\Debug\ID.Common.dll
+E:\Personal Project\indiandecisions\ID.Common\bin\Debug\ID.Common.pdb
+E:\Personal Project\indiandecisions\ID.Common\obj\Debug\ID.Common.csprojResolveAssemblyReference.cache
+E:\Personal Project\indiandecisions\ID.Common\obj\Debug\ID.Common.dll
+E:\Personal Project\indiandecisions\ID.Common\obj\Debug\ID.Common.pdb

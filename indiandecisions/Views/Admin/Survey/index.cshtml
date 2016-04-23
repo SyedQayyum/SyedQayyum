@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ID.ValueObjects.SurveyVO>
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h2>Survey</h2>
+<hr />
+
+@Html.ActionLink("Add Survey","create","survey", new { @class="btn btn-info"})
+<br />
+<br />
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr class="warning">
+            <th>Id</th>
+            <th>Survey Question</th>
+            <th>Category</th>
+            <th>Survey Image</th>
+            <th>Start Date</th>
+            <th>Close Date</th>
+            <th>Expire Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in Model)
+        {
+            <tr class="info">
+                <td>@Html.DisplayFor(modelItem => model.SurveyId)</td>
+                <td>@Html.DisplayFor(modelItem => model.SurveyQuestion)</td>
+                <td>@Html.DisplayFor(modelItem => model.PicturePath)</td>
+                <td>@Html.DisplayFor(modelItem => model.StartDate)</td>
+                <td>@Html.DisplayFor(modelItem => model.CloseDate)</td>
+                <td>@Html.DisplayFor(modelItem => model.ExpireDate)</td>
+                <td>
+                    <a href="javascript:void(0);" class="EditCategory">Edit</a> | <a href="javascript:void(0);" class="DeleteCategory">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+

@@ -1,0 +1,7 @@
+E:\Personal Project\indiandecisions\ID.DAL.Contract\bin\Debug\ID.DAL.Contract.dll
+E:\Personal Project\indiandecisions\ID.DAL.Contract\bin\Debug\ID.DAL.Contract.pdb
+E:\Personal Project\indiandecisions\ID.DAL.Contract\bin\Debug\ID.Model.dll
+E:\Personal Project\indiandecisions\ID.DAL.Contract\bin\Debug\ID.Model.pdb
+E:\Personal Project\indiandecisions\ID.DAL.Contract\obj\Debug\ID.DAL.Contract.csprojResolveAssemblyReference.cache
+E:\Personal Project\indiandecisions\ID.DAL.Contract\obj\Debug\ID.DAL.Contract.dll
+E:\Personal Project\indiandecisions\ID.DAL.Contract\obj\Debug\ID.DAL.Contract.pdb

@@ -1,0 +1,79 @@
+﻿@model  IEnumerable<ID.ValueObjects.CategoryVO>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Category</h2>
+<hr />
+
+@using (Html.BeginForm("create", "category", FormMethod.Post, new { @class = "form-horizontal well" }))
+{
+    @Html.Hidden("CategoryId")
+
+    <fieldset>
+        <div class="form-group">
+            <div class="col-lg-4">
+                @Html.TextBox("CategoryName", "", new { @class = "form-control", @placeholder = "Category Name" })
+            </div>
+            <div class="col-lg-4">
+                @Html.DropDownList("ParentCategory", (IEnumerable<SelectListItem>)ViewBag.CategoryDll, "-- Select Parent Category --", new { @class = "form-control" })
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" class="btn btn-info" id="AddCategory" value="Add Category">
+            </div>
+        </div>
+    </fieldset>
+}
+<br />
+<br />
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr class="warning">
+            <th>Id</th>
+            <th>Category</th>
+            <th>Parent Category</th>
+            <th>Action</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in Model)
+        {
+            <tr class="info">
+                <td>@Html.DisplayFor(modelItem => model.CategoryId)</td>
+                <td>@Html.DisplayFor(modelItem => model.CategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => model.ParentCategoryName)</td>
+                <td>
+                    <a href="javascript:void(0);" class="EditCategory">Edit</a> | <a href="javascript:void(0);" class="DeleteCategory">Delete</a>
+                </td>
+                <td>
+                    <input type="checkbox" class="checkbox" />
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<ul class="pagination">
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul>
+
+@{
+    Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Category");
+}
+
+@section Scripts{
+
+    <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
+}

@@ -1,0 +1,8 @@
+E:\Personal Project\indiandecisions\Core.Common\bin\Debug\Core.Common.dll
+E:\Personal Project\indiandecisions\Core.Common\bin\Debug\Core.Common.pdb
+E:\Personal Project\indiandecisions\Core.Common\bin\Debug\AutoMapper.dll
+E:\Personal Project\indiandecisions\Core.Common\bin\Debug\System.Web.Mvc.dll
+E:\Personal Project\indiandecisions\Core.Common\bin\Debug\AutoMapper.xml
+E:\Personal Project\indiandecisions\Core.Common\obj\Debug\Core.Common.csprojResolveAssemblyReference.cache
+E:\Personal Project\indiandecisions\Core.Common\obj\Debug\Core.Common.dll
+E:\Personal Project\indiandecisions\Core.Common\obj\Debug\Core.Common.pdb
