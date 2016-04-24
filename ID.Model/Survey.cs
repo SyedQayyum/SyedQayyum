@@ -9,6 +9,7 @@ namespace ID.Model
     {
         public Int64 SurveyId { get; set; }
         public Int16 CategoryId { get; set; }
+        public String CategoryName { get; set; }
         public String SurveyQuestion { get; set; }
         public String PicturePath { get; set; }
         public DateTime? StartDate { get; set; }

@@ -83,6 +83,7 @@ namespace ID.DAL.Implementation
 
                         SurveyId = Convert.ToInt16(rdCategories["SurveyId"].ToString()),
                         CategoryId = Convert.ToInt16(rdCategories["CategoryId"].ToString()),
+                        CategoryName = rdCategories["CategoryName"].ToString(),
                         SurveyQuestion = rdCategories["SurveyQuestion"].ToString(),
                         PicturePath = rdCategories["PicturePath"].ToString(),
                         Rating = Convert.ToByte(rdCategories["SurveyRating"].ToString()),

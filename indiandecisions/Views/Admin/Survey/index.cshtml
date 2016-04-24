@@ -32,9 +32,9 @@
         {
             <tr class="info">
                 <td>@Html.DisplayFor(modelItem => model.SurveyId)</td>
-                <td>@Html.DisplayFor(modelItem => model.SurveyQuestion)</td>
-                <td>@Html.DisplayFor(modelItem => model.CategoryId)</td>
-                <td>@Html.DisplayFor(modelItem => model.PicturePath)</td>
+                <td >@Html.DisplayFor(modelItem => model.ShortSurveyQuestion, new { @title= @model.SurveyQuestion })</td>
+                <td>@Html.DisplayFor(modelItem => model.CategoryName)</td>
+                <td><input type="image" src = '@Url.Content(model.PicturePath)' height="50" width="50"/></td>
                 <td>@Html.DisplayFor(modelItem => model.StartDate)</td>
                 <td>@Html.DisplayFor(modelItem => model.CloseDate)</td>
                 <td>@Html.DisplayFor(modelItem => model.ExpireDate)</td>
