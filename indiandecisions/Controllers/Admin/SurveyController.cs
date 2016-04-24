@@ -51,7 +51,7 @@ namespace indiandecisions.Controllers
                 file.SaveAs(path);
             }
 
-            Survey.PicturePath = path;
+            Survey.PicturePath = "~/SurveyImages/Survey_" + (SurveyId + 1);
             _surveyBizManager.CreateUpdateSurvey(Survey);
             ViewBag.Message = "Data Save Successfully.";
             return View("../Admin/survey/create", Survey);

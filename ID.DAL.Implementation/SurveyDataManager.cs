@@ -118,7 +118,7 @@ namespace ID.DAL.Implementation
             };
 
             Params[0].Direction = ParameterDirection.Output;
-            SqlDataReader rdCategories = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetSurveySurvey", Params);
+            SqlDataReader rdCategories = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetLastGeneratedSurveyId", Params);
 
             while (rdCategories.Read())
             {
