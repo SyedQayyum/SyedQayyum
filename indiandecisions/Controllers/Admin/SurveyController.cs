@@ -24,7 +24,7 @@ namespace indiandecisions.Controllers
         // GET: Survey
         public ActionResult index()
         {
-            List<SurveyVO> objSurveyList = new List<SurveyVO>();//_surveyBizManager.GetAllSurvey(null);
+            List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, null);
             return View("../Admin/survey/index", objSurveyList);
         }
 
@@ -47,7 +47,7 @@ namespace indiandecisions.Controllers
             String path = string.Empty;
             if (file != null && file.ContentLength > 0)
             {
-                path = Path.Combine(Server.MapPath("~/SurveyImages"), "Survey_" + (SurveyId+1));
+                path = Path.Combine(Server.MapPath("~/SurveyImages"), "Survey_" + (SurveyId + 1));
                 file.SaveAs(path);
             }
 

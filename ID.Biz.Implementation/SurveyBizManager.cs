@@ -29,16 +29,16 @@ namespace ID.Biz.Implementation
         }
 
         public bool DeleteSurvey(int SurveyId, bool IsSoftDelete)
-        {            
+        {
             return _surveyDataManager.DeleteSurvey(SurveyId, IsSoftDelete);
         }
 
-        public List<SurveyVO> GetAllSurvey(int? SurveyId)
+        public List<SurveyVO> GetAllSurvey(long? SurveyId, int? CategoryId, Boolean? IsDeleted, Boolean? IsActive)
         {
-            List<SurveyVO> objServeyList = Mapper.Map<List<Survey>, List<SurveyVO>>(_surveyDataManager.GetAllSurvey(SurveyId));
+            List<SurveyVO> objServeyList = Mapper.Map<List<Survey>, List<SurveyVO>>(_surveyDataManager.GetAllSurvey(SurveyId, CategoryId, IsDeleted, IsActive));
             foreach (SurveyVO Category in objServeyList)
             {
-              
+
             }
             return objServeyList;
         }

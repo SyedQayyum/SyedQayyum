@@ -10,7 +10,7 @@ namespace ID.Biz.Contract
   public  interface ISurveyBizManager
     {
 
-        List<SurveyVO> GetAllSurvey(int? SurveyId);
+        List<SurveyVO> GetAllSurvey(long? SurveyId, int? CategoryId, Boolean? IsDeleted, Boolean? IsActive);
         Boolean CreateUpdateSurvey(SurveyVO Survey);
         bool DeleteSurvey(int SurveyId, bool IsSoftDelete);
         long GetLastGeneratedSurveyId();

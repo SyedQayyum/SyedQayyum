@@ -9,7 +9,7 @@ namespace ID.DAL.Contract
 {
    public interface ISurveyDataManager
     {
-        List<Survey> GetAllSurvey(int? SurveyId);
+        List<Survey> GetAllSurvey(long? SurveyId, int? CategoryId, Boolean? IsDeleted, Boolean? IsActive);
         Boolean CreateUpdateSurvey(Survey Survey);
         bool DeleteSurvey(int SurveyId, bool IsSoftDelete);
         long GetLastGeneratedSurveyId();
