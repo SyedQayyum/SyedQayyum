@@ -43,6 +43,15 @@ namespace indiandecisions.Controllers
             return Json(objCategoryList.FirstOrDefault(), JsonRequestBehavior.AllowGet);
 
         }
+
+
+        public ActionResult GetAllCategories()
+        {
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null);
+            return Json(objCategoryList, JsonRequestBehavior.AllowGet);
+
+        }
+
         [HttpPost]
         public ActionResult DeleteCategory(int CategoryId, bool? IsSoftDelete)
         {

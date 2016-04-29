@@ -1,0 +1,138 @@
+﻿@model ID.ValueObjects.SurveyVO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+@section styles{
+    <style>
+        .search-result-college {
+            float: left;
+            width: 125% !important;
+            border: 1px solid #ECECEC;
+            /*text-align: center;*/
+            margin: 1.5%;
+        }
+
+        .College-logo-desc h3, p {
+            font-size: 21px !important;
+            font-weight: 600;
+            line-height: 1.6em;
+            padding: 5px;
+            margin: 0px 26px -20px;
+        }
+
+        .voting {
+            padding: 25px;
+            display: inline-block;
+            margin-top: -29px;
+        }
+    </style>
+}
+
+<div class="content-desc">
+    <div class="search-engineering-colleges">
+        <div class="search-colleges">
+
+            <div class="search-result-college" id="surveyInfo">
+
+                <div class="College-logo-desc">
+                    <h3>@Html.ActionLink(Model.SurveyQuestion + " ?", "", "")</h3>
+                </div>
+
+                <div class="search-college-logo">
+                    <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
+                </div>
+
+                @Html.HiddenFor(model => model.PositiveCount)
+                @Html.HiddenFor(model => model.NegativeCount)
+                @Html.HiddenFor(model => model.NeutralCount)
+
+                <div class="College-logo-desc" style="float:right">
+                    <div id="piechart_3d" style="width: 500px; height: 300px;margin-top:-22px;margin-right:20px"></div>
+                </div>
+
+                <div class="voting">
+                    <label>What do you think ?</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Not Sure
+                    </label>
+                    <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@Model.SurveyId,'@Model.SurveyQuestion')" />
+                </div>
+                <div id="ErrorMessage" class="voting"></div>
+                <br />
+
+                <div class="fb-comments" id="FBComment" data-numposts="5" width="100%"></div>
+            </div>
+
+
+            <div class="clear"></div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@section scripts{
+
+
+    <div id="fb-root"></div>
+    <script>
+
+        $(function () {
+
+            $('#FBComment').attr("data-href", window.location.href);
+        })
+    </script>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=1067471396645815";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+    <script type="text/javascript" src="~/Scripts/loader.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var PositiveCount = parseInt($('#PositiveCount').val());
+                var NegativeCount = parseInt($('#NegativeCount').val());
+                var NeutralCount = parseInt($('#NeutralCount').val());
+
+                var data = google.visualization.arrayToDataTable([
+                  ['Vote', 'Count Percentage'],
+                  ['Yes', PositiveCount],
+                  ['No', NegativeCount],
+                  ['Not Sure', NeutralCount]
+                ]);
+
+                var options = {
+                    //title: 'My Daily Activities',
+                    //is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+            }
+        });
+    </script>
+
+    <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+
+}

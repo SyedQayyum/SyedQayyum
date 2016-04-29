@@ -6,7 +6,7 @@
 }
 
 
-@using (Html.BeginForm("create", "survey", FormMethod.Post, new { enctype = "multipart/form-data" , @class = "form-horizontal well" }))
+@using (Html.BeginForm("create", "survey", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal well" }))
 {
     @Html.Hidden("SurveyId")
 
@@ -14,6 +14,9 @@
         <div class="form-group">
             <div class="col-lg-4">
                 @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.CategoryDll, "-- Select Parent Category --", new { @class = "form-control" })
+            </div>
+            <div class="col-lg-4">
+                @Html.Raw(ViewBag.Message)
             </div>
         </div>
         <div class="form-group">
@@ -23,6 +26,7 @@
         </div>
         <div class="form-group">
             <div class="col-lg-4">
+                @Html.HiddenFor(model => model.PicturePath)
                 <input type="file" class="form-control" name="SurveyImage" />
             </div>
         </div>
@@ -39,7 +43,13 @@
         </div>
         <div class="form-group">
             <div class="col-lg-offset-5">
-                <input type="submit" value="Save" class="btn btn-info" />
+                @if (Model.SurveyId != 0)
+                {
+                    <input type="submit" value="Update" class="btn btn-info" />
+                }
+                else{
+                       <input type="submit" value="Save" class="btn btn-info" />
+                }
             </div>
         </div>
 

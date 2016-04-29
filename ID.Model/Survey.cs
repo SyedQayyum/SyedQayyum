@@ -15,6 +15,10 @@ namespace ID.Model
         public DateTime? StartDate { get; set; }
         public DateTime? CloseDate { get; set; }
         public DateTime? ExpireDate { get; set; }
-        public Byte Rating { get; set; }
+        public Decimal Rating { get; set; }
+
+        public long PositiveCount { get; set; }
+        public long NegativeCount { get; set; }
+        public long NeutralCount { get; set; }
     }
 }

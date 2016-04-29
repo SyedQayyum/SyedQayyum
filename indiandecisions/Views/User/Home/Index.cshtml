@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ID.ValueObjects.SurveyVO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<div class="results-page">
+    <h1>@ViewBag.Heading</h1>
+</div>
+<div class="content-desc" id="surveyDetails">
+    <div class="search-engineering-colleges" data-bind="foreach:surveyArray">
+        <div class="search-colleges">
+            @foreach (var item in Model)
+            {
+                <div class="search-result-college">
+                    <div class="search-college-logo">
+                        <a href="#"><img src="../../@Url.Content(item.PicturePath)" class="img-responsive" title="@item.SurveyQuestion" alt="@item.SurveyQuestion" /></a>
+                    </div>
+                    <div class="College-logo-desc">
+                        <h3>@Html.ActionLink(item.SurveyQuestion + " ?", "", "")</h3>
+                        <p>Number of Poeple Responded : <span>@(item.PositiveCount + item.NegativeCount + item.NeutralCount)</span></p>
+                        <p>YES: <span>@item.PositiveCount</span> NO: <span>@item.NegativeCount</span></p>
+                        <p>Not Sure: <span>@item.NeutralCount</span></p>
+
+                        <p>What do you think ?</p>
+                        <div Id="VoteSection">
+                            <label class="radio-inline">
+                                <input type="radio" name="UserVote" id="YesId" value="yes"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="UserVote" id="NoId" value="no"> No
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="UserVote" id="NotSureId" value="notsure"> Not Sure
+                            </label>
+                            <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@item.SurveyId,'@item.SurveyQuestion')"/>
+                        </div>
+                        <div id="ErrorMessage"></div>
+                        <ul>
+                            <li>
+                                <div class="rating rating2">
+                                    <span class="star_rating_small">
+                                        <span class="star star-red star-xl">
+                                            @Html.Raw("<span style=\"width:" + item.Rating / 5 * 100 + "%\"</span>")
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>@Html.Raw("<a href=\"javascript:void(0)\" onclick=\"viewSurveyDetials(" + item.SurveyId + ",\'"+item.SurveyQuestion + "\')\">View Details and Comments</a>")</li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            <div class="clear"></div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+}

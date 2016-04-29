@@ -10,7 +10,7 @@ namespace ID.ValueObjects
         public Int64 SurveyId { get; set; }
         public Int16 CategoryId { get; set; }
         public String CategoryName { get; set; }
-        public String SurveyQuestion { get; set; }
+        public String SurveyQuestion { get; set; }        
         public String ShortSurveyQuestion
         {
             get
@@ -25,6 +25,10 @@ namespace ID.ValueObjects
         public DateTime? StartDate { get; set; }
         public DateTime? CloseDate { get; set; }
         public DateTime? ExpireDate { get; set; }
-        public Byte Rating { get; set; }
+        public Decimal Rating { get; set; }
+
+        public long PositiveCount { get; set; }
+        public long NegativeCount { get; set; }
+        public long NeutralCount { get; set; }
     }
 }

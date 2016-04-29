@@ -138,14 +138,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\blog-icon.png" />
+    <Content Include="Images\facebook.png" />
+    <Content Include="Images\IndiaTvb02a88_sultan_raees.jpg" />
+    <Content Include="Images\linkedin-icon.png" />
+    <Content Include="Images\Logo2.jpg" />
+    <Content Include="Images\Logo3.png" />
+    <Content Include="Images\Logo4.png" />
+    <Content Include="Images\reviews.png" />
+    <Content Include="Images\twitter.png" />
     <Content Include="Scripts\Application Script\CategoryScripts.js" />
     <Content Include="Scripts\Application Script\Common.js" />
+    <Content Include="Scripts\Application Script\SurveyScripts.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\ie10-viewport-bug-workaround.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\loader.js" />
+    <Content Include="Scripts\move-top.js" />
     <Content Include="Styles\admin-section.css" />
     <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\custom-style.css" />
     <Content Include="Styles\datepicker.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -155,6 +170,7 @@
     <Compile Include="Controllers\Admin\CategoryController.cs" />
     <Compile Include="Controllers\Admin\DashboardController.cs" />
     <Compile Include="Controllers\Admin\SurveyController.cs" />
+    <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +185,12 @@
     <Content Include="Views\Shared\_DeletePartial.cshtml" />
     <Content Include="Views\Admin\Survey\create.cshtml" />
     <Content Include="Views\Admin\Survey\index.cshtml" />
+    <Content Include="Views\User\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_SiteLayout.cshtml" />
+    <Content Include="Views\User\Home\PageNotFound.cshtml" />
+    <Content Include="Views\User\Home\ContactUs.cshtml" />
+    <Content Include="Views\Shared\_BlankLayout.cshtml" />
+    <Content Include="Views\User\Survey\SurveyDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

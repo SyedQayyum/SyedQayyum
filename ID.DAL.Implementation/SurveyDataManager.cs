@@ -53,7 +53,32 @@ namespace ID.DAL.Implementation
 
         public bool DeleteSurvey(int SurveyId, bool IsSoftDelete)
         {
-            throw new NotImplementedException();
+            bool IsDeleted = false;
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Category> objCategoryList = new List<Category>();
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@SurveyId",SurveyId),
+                   new SqlParameter("@IsSoftDelete",IsSoftDelete)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            int RowAffected = SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "USP_DeleteSurvey", Params);
+
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return false;
+            }
+            if (RowAffected > 0)
+            {
+                IsDeleted = true;
+            }
+
+            return IsDeleted;
         }
 
         public List<Survey> GetAllSurvey(long? SurveyId, int? CategoryId, Boolean? IsDeleted, Boolean? IsActive)
@@ -86,14 +111,17 @@ namespace ID.DAL.Implementation
                         CategoryName = rdCategories["CategoryName"].ToString(),
                         SurveyQuestion = rdCategories["SurveyQuestion"].ToString(),
                         PicturePath = rdCategories["PicturePath"].ToString(),
-                        Rating = Convert.ToByte(rdCategories["SurveyRating"].ToString()),
+                        Rating = Convert.ToDecimal(rdCategories["SurveyRating"].ToString()),
                         CreatedDate =  Convert.ToDateTime(rdCategories["SurveyCreatedDate"].ToString()) ,
-                        //CloseDate = rdCategories["SurveyCloseDate"] != null ? Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
-                        //ExpireDate = rdCategories["SurveyExpireDate"] != null ?  Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,
+                        CloseDate = rdCategories["SurveyCloseDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
+                        ExpireDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,
                         IsActive = Convert.ToBoolean(rdCategories["SurveyIsActive"].ToString()),
                         IsDeleted = Convert.ToBoolean(rdCategories["SurveyIsDeleted"].ToString()),
-                        //StartDate = rdCategories["SurveyExpireDate"] != null ? Convert.ToDateTime(rdCategories["SurveyStartDate"].ToString()) : null,
-                        CreatedBy = rdCategories["SurveyCreatedBy"].ToString()
+                        StartDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyStartDate"].ToString()) : null,
+                        CreatedBy = rdCategories["SurveyCreatedBy"].ToString(),
+                        NegativeCount = Convert.ToInt16(rdCategories["NegativeCount"].ToString()),
+                        PositiveCount = Convert.ToInt16(rdCategories["PositiveCount"].ToString()),
+                        NeutralCount = Convert.ToInt16(rdCategories["NeutralCount"].ToString())
                     });
             }
             rdCategories.Close();
@@ -133,6 +161,36 @@ namespace ID.DAL.Implementation
             }
 
             return SurveyId;
+        }
+
+        public bool VoteOnSurvey(long SurveyId, string UserVote)
+        {
+            bool IsVoted = false;
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Category> objCategoryList = new List<Category>();
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@SurveyId",SurveyId),
+                   new SqlParameter("@UserVote",UserVote)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            int RowAffected = SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "USP_VoteOnSurvey", Params);
+
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return false;
+            }
+            if (RowAffected > 0)
+            {
+                IsVoted = true;
+            }
+
+            return IsVoted;
         }
     }
 }

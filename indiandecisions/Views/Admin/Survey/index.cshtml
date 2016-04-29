@@ -39,7 +39,7 @@
                 <td>@Html.DisplayFor(modelItem => model.CloseDate)</td>
                 <td>@Html.DisplayFor(modelItem => model.ExpireDate)</td>
                 <td>
-                    <a href="javascript:void(0);" class="EditCategory">Edit</a> | <a href="javascript:void(0);" class="DeleteCategory">Delete</a>
+                    <a href="javascript:void(0);" class="EditSurvey">Edit</a> | <a href="javascript:void(0);" class="DeleteSurvey">Delete</a>
                 </td>
             </tr>
         }
@@ -48,3 +48,12 @@
 </table>
 
 
+@{
+    Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Survey");
+}
+
+
+@section Scripts{
+   <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+
+}

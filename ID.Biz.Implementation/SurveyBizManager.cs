@@ -47,5 +47,10 @@ namespace ID.Biz.Implementation
         {
             return _surveyDataManager.GetLastGeneratedSurveyId();
         }
+
+        public bool VoteOnSurvey(long surveyId, string userVote)
+        {
+            return _surveyDataManager.VoteOnSurvey(surveyId,userVote);
+        }
     }
 }
