@@ -22,25 +22,6 @@
 
 
 
-    <!-- On Scorll Fixed Header -->
-    <script src="~/Scripts/classie.js"></script>
-    <script>
-        function init() {
-            window.addEventListener('scroll', function (e) {
-                var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-                    shrinkOn = 100,
-                    header = document.querySelector("header");
-                if (distanceY > shrinkOn) {
-                    classie.add(header, "smaller");
-                } else {
-                    if (classie.has(header, "smaller")) {
-                        classie.remove(header, "smaller");
-                    }
-                }
-            });
-        }
-        window.onload = init();
-    </script>
     <!-- Top Scrolling -->
     <script type="text/javascript" src="~/Scripts/move-top.js"></script>
     <script type="text/javascript" src="~/Scripts/easing.js"></script>
@@ -71,7 +52,7 @@
         <div class="header-bottom">
             <div class="wrap">
                 <div class="logo">
-                    <a href="../Home/index"><img src="~/Images/logo.png" title="Engineering Students" alt="" /></a>
+                    <a href="../Home/index"><img src="~/Images/logo.jpg" title="Engineering Students" alt="" /></a>
                 </div>
                 <div class="clear"></div>
             </div>

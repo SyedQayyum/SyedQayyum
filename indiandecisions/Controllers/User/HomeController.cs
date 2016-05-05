@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace indiandecisions.Controllers.User
 {
@@ -38,6 +39,39 @@ namespace indiandecisions.Controllers.User
         public ActionResult ContactUs()
         {
             return View("../user/home/ContactUs");
+        }
+
+
+        [ActionName("login")]
+        public ActionResult Login()
+        {
+            return View("../admin/home/Login");
+        }
+
+        [HttpPost]
+        public ActionResult Login(String UserName, String Password)
+        { 
+            if (ModelState.IsValid)
+            {
+                if (_surveyBizManager.IsValidUser(UserName, Password))
+                {
+
+                    FormsAuthentication.SetAuthCookie(UserName, false);
+                    return RedirectToAction("index", "dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                }
+            }
+
+            return View("../admin/home/Login");
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("index", "home");
         }
     }
 }

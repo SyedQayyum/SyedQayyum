@@ -13,6 +13,7 @@
         <div class="search-colleges">
             @foreach (var item in Model)
             {
+                @Html.Hidden("SurveyId",item.SurveyId, new { @class = "VotesResult" })
                 <div class="search-result-college">
                     <div class="search-college-logo">
                         <a href="#"><img src="../../@Url.Content(item.PicturePath)" class="img-responsive" title="@item.SurveyQuestion" alt="@item.SurveyQuestion" /></a>
@@ -24,7 +25,7 @@
                         <p>Not Sure: <span>@item.NeutralCount</span></p>
 
                         <p>What do you think ?</p>
-                        <div Id="VoteSection">
+                        <div Id="VoteSection_@item.SurveyId">
                             <label class="radio-inline">
                                 <input type="radio" name="UserVote" id="YesId" value="yes"> Yes
                             </label>
@@ -34,7 +35,7 @@
                             <label class="radio-inline">
                                 <input type="radio" name="UserVote" id="NotSureId" value="notsure"> Not Sure
                             </label>
-                            <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@item.SurveyId,'@item.SurveyQuestion')"/>
+                            <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@item.SurveyId,'@item.SurveyQuestion')" />
                         </div>
                         <div id="ErrorMessage"></div>
                         <ul>
@@ -47,7 +48,7 @@
                                     </span>
                                 </div>
                             </li>
-                            <li>@Html.Raw("<a href=\"javascript:void(0)\" onclick=\"viewSurveyDetials(" + item.SurveyId + ",\'"+item.SurveyQuestion + "\')\">View Details and Comments</a>")</li>
+                            <li>@Html.Raw("<a href=\"javascript:void(0)\" onclick=\"viewSurveyDetials(" + item.SurveyId + ",\'" + item.SurveyQuestion + "\')\">View Details and Comments</a>")</li>
                         </ul>
                     </div>
                 </div>
@@ -62,4 +63,5 @@
 @section Scripts{
 
     <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+    
 }

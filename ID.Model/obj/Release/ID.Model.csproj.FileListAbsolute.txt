@@ -1,0 +1,5 @@
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\bin\Release\ID.Model.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\bin\Release\ID.Model.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\obj\Release\ID.Model.csprojResolveAssemblyReference.cache
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\obj\Release\ID.Model.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\obj\Release\ID.Model.pdb

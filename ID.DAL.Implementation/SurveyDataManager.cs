@@ -163,6 +163,42 @@ namespace ID.DAL.Implementation
             return SurveyId;
         }
 
+        public bool IsValidUser(string UserName, string Password)
+        {
+            bool IsValidUser = false;
+            int NumberOfUser = 0;
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Category> objCategoryList = new List<Category>();
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@UserName",UserName),
+                   new SqlParameter("@Password",Password)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            SqlDataReader rdCategories = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_IsValidUser", Params);
+
+            while (rdCategories.Read())
+            {
+
+                NumberOfUser = Convert.ToInt32(rdCategories["NumOfUser"].ToString());
+            }
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return false;
+            }
+            if (NumberOfUser > 0)
+            {
+                IsValidUser = true;
+            }
+
+            return IsValidUser;
+        }
+
         public bool VoteOnSurvey(long SurveyId, string UserVote)
         {
             bool IsVoted = false;

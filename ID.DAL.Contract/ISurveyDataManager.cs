@@ -14,5 +14,6 @@ namespace ID.DAL.Contract
         bool DeleteSurvey(int SurveyId, bool IsSoftDelete);
         long GetLastGeneratedSurveyId();
         bool VoteOnSurvey(long surveyId, string userVote);
+        bool IsValidUser(string userName, string password);
     }
 }

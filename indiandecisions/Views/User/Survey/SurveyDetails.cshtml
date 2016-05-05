@@ -44,7 +44,7 @@
                 <div class="search-college-logo">
                     <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
                 </div>
-
+                @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })
                 @Html.HiddenFor(model => model.PositiveCount)
                 @Html.HiddenFor(model => model.NegativeCount)
                 @Html.HiddenFor(model => model.NeutralCount)
@@ -52,8 +52,7 @@
                 <div class="College-logo-desc" style="float:right">
                     <div id="piechart_3d" style="width: 500px; height: 300px;margin-top:-22px;margin-right:20px"></div>
                 </div>
-
-                <div class="voting">
+                <div class="voting" id="VoteSection_@Model.SurveyId">
                     <label>What do you think ?</label>
                     <label class="radio-inline">
                         <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Yes

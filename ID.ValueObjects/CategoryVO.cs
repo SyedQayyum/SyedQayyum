@@ -13,5 +13,13 @@ namespace ID.ValueObjects
         public String CategoryName { get; set; }
         public Int16 ParentCategory { get; set; }
         public String ParentCategoryName { get; set; }
+       
+    }
+
+    public class CategoryList
+    {
+        public List<CategoryVO> Categories { get; set; }
+        public Pager Pager { get; set; }
+
     }
 }

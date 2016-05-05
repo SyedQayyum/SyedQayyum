@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<ID.ValueObjects.CategoryVO>
+﻿@model  ID.ValueObjects.CategoryList
 
 
 @{
@@ -41,7 +41,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var model in Model)
+        @foreach (var model in Model.Categories)
         {
             <tr class="info">
                 <td>@Html.DisplayFor(modelItem => model.CategoryId)</td>
@@ -59,21 +59,56 @@
     </tbody>
 </table>
 
-<ul class="pagination">
-    <li class="disabled"><a href="#">&laquo;</a></li>
-    <li class="active"><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">&raquo;</a></li>
-</ul>
 
-@{
-    Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Category");
+<!-- pager -->
+@if (Model.Pager.EndPage > 1)
+{
+    <ul class="pagination">
+        @if (Model.Pager.CurrentPage > 1)
+        {
+            <li>
+                <a href="~/category/index">First</a>
+            </li>
+            <li>
+                <a href="~/category/index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+            </li>
+        }
+
+        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+        {
+            <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                <a href="~/category/index?page=@page">@page</a>
+            </li>    }
+
+        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+        {
+            <li>
+                <a href="~/category/index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+            </li>
+            <li>
+                <a href="~/category/index?page=@(Model.Pager.TotalPages)">Last</a>
+            </li>
+        }
+    </ul>
 }
 
-@section Scripts{
+    @*<ul class="pagination">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>*@
 
-    <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
-}
+    @{
+        Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Category");
+    }
+
+    @section Scripts{
+
+        <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
+    }
+
+

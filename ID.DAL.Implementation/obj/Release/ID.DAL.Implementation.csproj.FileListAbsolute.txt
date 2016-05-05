@@ -1,0 +1,14 @@
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\ID.DAL.Implementation.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\ID.DAL.Implementation.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\Core.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\ID.DAL.Contract.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\ID.Model.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\System.Web.Mvc.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\AutoMapper.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\Core.Common.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\ID.DAL.Contract.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\ID.Model.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\bin\Release\AutoMapper.xml
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\obj\Release\ID.DAL.Implementation.csprojResolveAssemblyReference.cache
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\obj\Release\ID.DAL.Implementation.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.DAL.Implementation\obj\Release\ID.DAL.Implementation.pdb

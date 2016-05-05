@@ -1,0 +1,7 @@
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.Biz.Contract.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.Biz.Contract.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.ValueObjects.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.ValueObjects.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\obj\Release\ID.Biz.Contract.csprojResolveAssemblyReference.cache
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\obj\Release\ID.Biz.Contract.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\obj\Release\ID.Biz.Contract.pdb

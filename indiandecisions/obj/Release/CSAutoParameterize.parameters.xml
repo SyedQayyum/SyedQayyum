@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IDDataBase-Web.config Connection String" description="IDDataBase Connection String used in web.config by the application to access the database." defaultValue="Data Source=SQL5019.Smarterasp.net;Initial Catalog=DB_9FCEEB_sqmsyed096;User Id=DB_9FCEEB_sqmsyed096_admin;Password=SQMrnq_1432;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\Personal\ Project\\Syed\ Qayyum\\SyedQayyum\\indiandecisions\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='IDDataBase']/@connectionString" />
+  </parameter>
+</parameters>

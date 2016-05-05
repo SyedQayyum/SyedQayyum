@@ -22,6 +22,7 @@ namespace indiandecisions
 
             container.RegisterType<ICategoryBizManager, CategoryBizManager>();
             container.RegisterType<ISurveyBizManager, SurveyBizManager>();
+            container.RegisterType<IUserBizManager, UserBizManager>();
 
             #endregion
 
@@ -29,6 +30,7 @@ namespace indiandecisions
 
             container.RegisterType<ICategoryDataManager, CategoryDataManager>();
             container.RegisterType<ISurveyDataManager, SurveyDataManager>();
+            container.RegisterType<IUserDataManager, UserDataManager>();
 
             #endregion
 

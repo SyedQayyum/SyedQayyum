@@ -20,15 +20,24 @@ namespace indiandecisions.Controllers
             _CategoryBizManager = CategoryBizManager;
         }
 
-        // GET: Category
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Index(int? page)
         {
             List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null);
+
+            var pager = new Pager(objCategoryList.Count(), page);
+
+            var viewModel = new CategoryList
+            {
+                Categories = objCategoryList.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList(),
+                Pager = pager
+            };
+
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
-            return View("../Admin/Category/Index", objCategoryList);
+            return View("../Admin/Category/Index", viewModel);
         }
 
-        // GET: Category
+        [Authorize]
         public ActionResult create(CategoryVO Category)
         {
             Boolean IsSaved = _CategoryBizManager.CreateUpdateCategory(Category);
@@ -52,6 +61,7 @@ namespace indiandecisions.Controllers
 
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteCategory(int CategoryId, bool? IsSoftDelete)
         {

@@ -21,7 +21,7 @@ namespace indiandecisions.Controllers
         }
 
 
-        // GET: Survey
+        [Authorize]
         public ActionResult index()
         {
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, null);
@@ -37,7 +37,7 @@ namespace indiandecisions.Controllers
         }
 
 
-        // GET: Survey
+        [Authorize]
         public ActionResult create(long? id)
         {
             SetCategoryDropDown();
@@ -53,7 +53,7 @@ namespace indiandecisions.Controllers
             return View("../Admin/survey/create", objSurvey);
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult create(SurveyVO Survey)
         {
@@ -86,6 +86,7 @@ namespace indiandecisions.Controllers
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult DeleteSurvey(int SurveyId, bool? IsSoftDelete)
         {

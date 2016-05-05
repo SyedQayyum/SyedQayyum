@@ -2,10 +2,17 @@
 
 $(document).ready(function () {
 
-    debugger;
     $('.datepicker').datepicker({
         format: 'mm/dd/yyyy',
     });
 
+
+    function setCookie(name, value, expireAfterDays) {
+        localStorage.setCacheItem(name, value, { days: expireAfterDays });
+    }
+
+    function getCookieValue(name) {
+        localStorage.getCacheItem("usersFavoriteColor");
+    }
 });
 

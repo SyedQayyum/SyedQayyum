@@ -150,6 +150,7 @@
     <Content Include="Scripts\Application Script\CategoryScripts.js" />
     <Content Include="Scripts\Application Script\Common.js" />
     <Content Include="Scripts\Application Script\SurveyScripts.js" />
+    <Content Include="Scripts\Application Script\UserScripts.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easing.js" />
@@ -157,6 +158,7 @@
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Scripts\loader.js" />
+    <Content Include="Scripts\local-cache.js" />
     <Content Include="Scripts\move-top.js" />
     <Content Include="Styles\admin-section.css" />
     <Content Include="Styles\bootstrap.css" />
@@ -170,6 +172,8 @@
     <Compile Include="Controllers\Admin\CategoryController.cs" />
     <Compile Include="Controllers\Admin\DashboardController.cs" />
     <Compile Include="Controllers\Admin\SurveyController.cs" />
+    <Compile Include="Controllers\Admin\UserController.cs" />
+    <Compile Include="Controllers\Shared\EmailController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +195,8 @@
     <Content Include="Views\User\Home\ContactUs.cshtml" />
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\User\Survey\SurveyDetails.cshtml" />
+    <Content Include="Views\Admin\Home\Login.cshtml" />
+    <Content Include="Views\Admin\User\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -201,6 +207,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SurveyImages\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Common\Core.Common.csproj">
