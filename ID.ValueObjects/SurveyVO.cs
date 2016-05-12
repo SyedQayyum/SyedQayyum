@@ -26,9 +26,14 @@ namespace ID.ValueObjects
         public DateTime? CloseDate { get; set; }
         public DateTime? ExpireDate { get; set; }
         public Decimal Rating { get; set; }
+        public List<OptionVO> Options { get; set; }
 
-        public long PositiveCount { get; set; }
-        public long NegativeCount { get; set; }
-        public long NeutralCount { get; set; }
+    }
+
+
+    public class SurveyList
+    {
+        public List<SurveyVO> ListSurvey { get; set; }
+        public Pager Pager { get; set; }
     }
 }

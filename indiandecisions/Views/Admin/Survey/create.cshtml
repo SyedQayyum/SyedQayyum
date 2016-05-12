@@ -41,14 +41,31 @@
                 @Html.TextBoxFor(model => model.ExpireDate, new { @class = "form-control datepicker", @placeholder = "Expire Date" })
             </div>
         </div>
+        @foreach (var option in Model.Options)
+        {
+
+            <div class="form-group">
+                <div class="col-lg-4">
+                    @Html.HiddenFor(x => option.OptionId)
+                    @Html.TextBoxFor(x => option.OptionName, new { @class = "form-control", @placeholder = "Option" })
+                </div>
+                <div class="col-lg-4">
+                    @Html.CheckBoxFor(x => option.IsActive, new { @class = "active-toggle" })
+                </div>
+                <div class="col-lg-4">
+                    <input type="button" value="+" class="btn btn-default" />
+                </div>
+            </div>
+        }
+
         <div class="form-group">
             <div class="col-lg-offset-5">
                 @if (Model.SurveyId != 0)
                 {
                     <input type="submit" value="Update" class="btn btn-info" />
                 }
-                else{
-                       <input type="submit" value="Save" class="btn btn-info" />
+                else {
+                    <input type="submit" value="Save" class="btn btn-info" />
                 }
             </div>
         </div>

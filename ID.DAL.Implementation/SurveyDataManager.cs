@@ -30,9 +30,8 @@ namespace ID.DAL.Implementation
                    new SqlParameter("@surveyStartDate",Survey.StartDate),
                    new SqlParameter("@surveyCloseDate",Survey.CloseDate),
                    new SqlParameter("@surveyExpireDate",Survey.ExpireDate),
-                   new SqlParameter("@surveyIsDeleted",Survey.IsDeleted),
                    new SqlParameter("@surveyIsActive",Survey.IsActive),
-                    new SqlParameter("@createdBy","Qayyum")
+                   new SqlParameter("@createdBy",Survey.CreatedBy)
             };
 
             Params[0].Direction = ParameterDirection.Output;
@@ -91,8 +90,7 @@ namespace ID.DAL.Implementation
             {
                    new SqlParameter("@opReturnValue", SqlDbType.Int),
                    new SqlParameter("@SurveyId",SurveyId) ,
-                   new SqlParameter("@surveyCategoryId",CategoryId) ,
-                   new SqlParameter("@isDeleted",IsDeleted),
+                   new SqlParameter("@surveyCategoryId",CategoryId),
                    new SqlParameter("@isActive",IsActive)
             };
 
@@ -116,12 +114,8 @@ namespace ID.DAL.Implementation
                         CloseDate = rdCategories["SurveyCloseDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
                         ExpireDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,
                         IsActive = Convert.ToBoolean(rdCategories["SurveyIsActive"].ToString()),
-                        IsDeleted = Convert.ToBoolean(rdCategories["SurveyIsDeleted"].ToString()),
                         StartDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyStartDate"].ToString()) : null,
                         CreatedBy = rdCategories["SurveyCreatedBy"].ToString(),
-                        NegativeCount = Convert.ToInt16(rdCategories["NegativeCount"].ToString()),
-                        PositiveCount = Convert.ToInt16(rdCategories["PositiveCount"].ToString()),
-                        NeutralCount = Convert.ToInt16(rdCategories["NeutralCount"].ToString())
                     });
             }
             rdCategories.Close();

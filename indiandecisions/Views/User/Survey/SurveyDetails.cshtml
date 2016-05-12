@@ -6,81 +6,59 @@
 }
 
 @section styles{
-    <style>
-        .search-result-college {
-            float: left;
-            width: 125% !important;
-            border: 1px solid #ECECEC;
-            /*text-align: center;*/
-            margin: 1.5%;
-        }
-
-        .College-logo-desc h3, p {
-            font-size: 21px !important;
-            font-weight: 600;
-            line-height: 1.6em;
-            padding: 5px;
-            margin: 0px 26px -20px;
-        }
-
+    @*<style>
         .voting {
             padding: 25px;
             display: inline-block;
             margin-top: -29px;
         }
-    </style>
+    </style>*@
 }
 
-<div class="content-desc">
-    <div class="search-engineering-colleges">
-        <div class="search-colleges">
+            <div  id="surveyInfo">
 
-            <div class="search-result-college" id="surveyInfo">
-
-                <div class="College-logo-desc">
+                <div class="College-logo-desc serveyDetails">
                     <h3>@Html.ActionLink(Model.SurveyQuestion + " ?", "", "")</h3>
                 </div>
 
-                <div class="search-college-logo">
-                    <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
-                </div>
-                @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })
-                @Html.HiddenFor(model => model.PositiveCount)
-                @Html.HiddenFor(model => model.NegativeCount)
-                @Html.HiddenFor(model => model.NeutralCount)
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })
+                        @Html.HiddenFor(model => model.PositiveCount)
+                        @Html.HiddenFor(model => model.NegativeCount)
+                        @Html.HiddenFor(model => model.NeutralCount)
 
-                <div class="College-logo-desc" style="float:right">
-                    <div id="piechart_3d" style="width: 500px; height: 300px;margin-top:-22px;margin-right:20px"></div>
-                </div>
-                <div class="voting" id="VoteSection_@Model.SurveyId">
-                    <label>What do you think ?</label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Yes
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Not Sure
-                    </label>
-                    <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@Model.SurveyId,'@Model.SurveyQuestion')" />
-                </div>
-                <div id="ErrorMessage" class="voting"></div>
-                <br />
+                        <div class="voting" id="VoteSection_@Model.SurveyId">
+                            <p>What do you think ?</p>
+                            <label class="radio-inline Custom_Radio_Btn">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"><i></i>
+                                <span>Yes</span>
+                            </label>
+                            <label class="radio-inline Custom_Radio_Btn">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"><i></i>
+                                <span>No</span>
+                            </label>
+                            <label class="radio-inline Custom_Radio_Btn">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"><i></i>
+                                <span>Not Sure</span>
+                            </label>
+                            <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@Model.SurveyId,'@Model.SurveyQuestion')" />
+                        </div>
+                        <div id="ErrorMessage" class="voting"></div>
 
-                <div class="fb-comments" id="FBComment" data-numposts="5" width="100%"></div>
+                        <div class="College-logo-desc">
+                            <div id="piechart_3d" style="width:100%; height: 200px;"></div>
+                        </div>
+                     
+                    </div>
+
+                    <div class="fb-comments" id="FBComment" data-numposts="5" width="100%"></div>
+                </div>
+
             </div>
-
-
-            <div class="clear"></div>
-
-        </div>
-    </div>
-
-</div>
-
-
-
 
 @section scripts{
 

@@ -137,6 +137,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\blog-icon.png" />
     <Content Include="Images\facebook.png" />
@@ -146,12 +148,15 @@
     <Content Include="Images\Logo3.png" />
     <Content Include="Images\Logo4.png" />
     <Content Include="Images\reviews.png" />
+    <Content Include="Images\scroll-top-hover.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Scripts\Application Script\CategoryScripts.js" />
     <Content Include="Scripts\Application Script\Common.js" />
+    <Content Include="Scripts\Application Script\OptionScripts.js" />
     <Content Include="Scripts\Application Script\SurveyScripts.js" />
     <Content Include="Scripts\Application Script\UserScripts.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\ie10-viewport-bug-workaround.js" />
@@ -161,9 +166,11 @@
     <Content Include="Scripts\local-cache.js" />
     <Content Include="Scripts\move-top.js" />
     <Content Include="Styles\admin-section.css" />
+    <Content Include="Styles\bootstrap-toggle.min.css" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\custom-style.css" />
     <Content Include="Styles\datepicker.css" />
+    <Content Include="Styles\font-awesome.min.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +178,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\Admin\CategoryController.cs" />
     <Compile Include="Controllers\Admin\DashboardController.cs" />
+    <Compile Include="Controllers\Admin\OptionController.cs" />
     <Compile Include="Controllers\Admin\SurveyController.cs" />
     <Compile Include="Controllers\Admin\UserController.cs" />
     <Compile Include="Controllers\Shared\EmailController.cs" />
@@ -197,6 +205,16 @@
     <Content Include="Views\User\Survey\SurveyDetails.cshtml" />
     <Content Include="Views\Admin\Home\Login.cshtml" />
     <Content Include="Views\Admin\User\Index.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Admin\Option\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -207,7 +225,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SurveyImages\" />
-    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Common\Core.Common.csproj">

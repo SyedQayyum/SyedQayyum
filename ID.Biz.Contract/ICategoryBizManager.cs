@@ -9,8 +9,9 @@ namespace ID.Biz.Contract
 {
     public interface ICategoryBizManager
     {
-        List<CategoryVO> GetAllCategory(int? CategoryId);
+        List<CategoryVO> GetAllCategory(int? CategoryId,bool? IsActive);
         bool CreateUpdateCategory(CategoryVO category);
         bool DeleteCategory(int CategoryId, bool IsSoftDelete);
+        bool SetCategoryActiveStatus(long CategoryId, bool ActiveStatus);
     }
 }

@@ -22,9 +22,9 @@ namespace ID.Biz.Implementation
             AppHelper.CreateMap<CategoryVO, Category>();
         }
 
-        public List<CategoryVO> GetAllCategory(int? CategoryId)
+        public List<CategoryVO> GetAllCategory(int? CategoryId, bool? IsActive)
         {
-            List<CategoryVO> objCategoryList = Mapper.Map<List<Category>, List<CategoryVO>>(_categoryDataManager.GetAllCategory(CategoryId));
+            List<CategoryVO> objCategoryList = Mapper.Map<List<Category>, List<CategoryVO>>(_categoryDataManager.GetAllCategory(CategoryId, IsActive));
             foreach(CategoryVO Category in objCategoryList)
             {
                 string ParentName = objCategoryList.Where(x => x.CategoryId == Category.ParentCategory).Select(x => x.CategoryName).FirstOrDefault();
@@ -41,6 +41,11 @@ namespace ID.Biz.Implementation
          public bool DeleteCategory(int CategoryId, bool IsSoftDelete)
         {
             return _categoryDataManager.DeleteCategory(CategoryId, IsSoftDelete);
+        }
+
+        public bool SetCategoryActiveStatus(long CategoryId, bool ActiveStatus)
+        {
+            return _categoryDataManager.SetCategoryActiveStatus(CategoryId, ActiveStatus);
         }
     }
 }

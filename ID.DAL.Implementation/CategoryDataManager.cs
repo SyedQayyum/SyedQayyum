@@ -15,7 +15,7 @@ namespace ID.DAL.Implementation
 {
     public class CategoryDataManager : ICategoryDataManager
     {
-        public List<Category> GetAllCategory(int? CategoryId)
+        public List<Category> GetAllCategory(int? CategoryId, bool? IsActive)
         {
 
             SqlConnection con = new IDDbContext().GetConnection();
@@ -24,7 +24,8 @@ namespace ID.DAL.Implementation
             SqlParameter[] Params =
             {
                    new SqlParameter("@opReturnValue", SqlDbType.Int),
-                  CategoryId!=null? new SqlParameter("@categoryId",CategoryId) : new SqlParameter("@categoryId",DBNull.Value)
+                  CategoryId!=null? new SqlParameter("@categoryId",CategoryId) : new SqlParameter("@categoryId",DBNull.Value),
+                  IsActive!=null? new SqlParameter("@isActive",IsActive) : new SqlParameter("@isActive",DBNull.Value)
             };
 
             Params[0].Direction = ParameterDirection.Output;
@@ -38,7 +39,9 @@ namespace ID.DAL.Implementation
                     {
                         CategoryId = Convert.ToInt16(rdCategories["categoryId"].ToString()),
                         CategoryName = rdCategories["categoryName"].ToString(),
-                        ParentCategory = rdCategories["parentCategory"] != DBNull.Value ? Convert.ToInt16(rdCategories["parentCategory"].ToString()) : (short)0
+                        ParentCategory = rdCategories["parentCategory"] != DBNull.Value ? Convert.ToInt16(rdCategories["parentCategory"].ToString()) : (short)0,
+                        IsActive = Convert.ToBoolean(rdCategories["isActive"].ToString())
+
                     });
             }
             rdCategories.Close();
@@ -64,7 +67,8 @@ namespace ID.DAL.Implementation
                    new SqlParameter("@categoryId",category.CategoryId),
                    new SqlParameter("@categoryName",category.CategoryName),
                    new SqlParameter("@parentCategory",category.ParentCategory),
-                   new SqlParameter("@createdBy","Qayyum")
+                   new SqlParameter("@createdBy",category.CreatedBy),
+                   new SqlParameter("@isActive",category.IsActive)
             };
 
             Params[0].Direction = ParameterDirection.Output;
@@ -94,7 +98,7 @@ namespace ID.DAL.Implementation
             {
                    new SqlParameter("@opReturnValue", SqlDbType.Int),
                    new SqlParameter("@categoryId",CategoryId),
-                   new SqlParameter("@IsSoftDelete",IsSoftDelete)                  
+                   new SqlParameter("@IsSoftDelete",IsSoftDelete)
             };
 
             Params[0].Direction = ParameterDirection.Output;
@@ -114,5 +118,34 @@ namespace ID.DAL.Implementation
             return IsDeleted;
         }
 
+        public bool SetCategoryActiveStatus(long CategoryId, bool ActiveStatus)
+        {
+            bool IsUpdated = false;
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Category> objCategoryList = new List<Category>();
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@categoryId",CategoryId),
+                   new SqlParameter("@activeStatus",ActiveStatus)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            int RowAffected = SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "USP_SetCategoryActiveStatus", Params);
+
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return false;
+            }
+            if (RowAffected > 0)
+            {
+                IsUpdated = true;
+            }
+
+            return IsUpdated;
+        }
     }
 }

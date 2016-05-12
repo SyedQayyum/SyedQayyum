@@ -9,8 +9,9 @@ namespace ID.DAL.Contract
 {
    public interface ICategoryDataManager
     {
-        List<Category> GetAllCategory(int? CategoryId);
+        List<Category> GetAllCategory(int? CategoryId, bool? IsActive);
         bool CreateUpdateCategory(Category category);
         bool DeleteCategory(int CategoryId, bool IsSoftDelete);
+        bool SetCategoryActiveStatus(long CategoryId, bool ActiveStatus);
     }
 }

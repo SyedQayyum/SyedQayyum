@@ -23,6 +23,7 @@ namespace indiandecisions
             container.RegisterType<ICategoryBizManager, CategoryBizManager>();
             container.RegisterType<ISurveyBizManager, SurveyBizManager>();
             container.RegisterType<IUserBizManager, UserBizManager>();
+            container.RegisterType<IOptionBizManager, OptionBizManager>();
 
             #endregion
 
@@ -31,7 +32,11 @@ namespace indiandecisions
             container.RegisterType<ICategoryDataManager, CategoryDataManager>();
             container.RegisterType<ISurveyDataManager, SurveyDataManager>();
             container.RegisterType<IUserDataManager, UserDataManager>();
+            container.RegisterType<IOptionDataManager, OptionDataManager>();
+            container.RegisterType<ISurevyOptionsDataManager, SurevyOptionsDataManager>();
 
+
+            
             #endregion
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

@@ -10,7 +10,6 @@ namespace ID.Model
     {
         public String CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
-        public Boolean IsDeleted { get; set; }
         public Boolean IsActive { get; set; }
     }
 }

@@ -16,10 +16,12 @@ namespace ID.Biz.Implementation
     {
 
         protected readonly ISurveyDataManager _surveyDataManager;
+        protected readonly IOptionDataManager _optionDataManager;
 
-        public SurveyBizManager(ISurveyDataManager surveyDataManager)
-        {
+        public SurveyBizManager(ISurveyDataManager surveyDataManager,IOptionDataManager optionDataManager)
+        { 
             _surveyDataManager = surveyDataManager;
+            _optionDataManager = optionDataManager;
             AppHelper.CreateMap<SurveyVO, Survey>();
         }
 

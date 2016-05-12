@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryDataManager.cs" />
+    <Compile Include="OptionDataManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\IDDbContext.cs" />
+    <Compile Include="SurevyOptionsDataManager.cs" />
     <Compile Include="SurveyDataManager.cs" />
     <Compile Include="UserDataManager.cs" />
   </ItemGroup>

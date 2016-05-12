@@ -23,7 +23,7 @@ namespace indiandecisions.Controllers
         [Authorize]
         public ActionResult Index(int? page)
         {
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,null);
 
             var pager = new Pager(objCategoryList.Count(), page);
 
@@ -40,15 +40,16 @@ namespace indiandecisions.Controllers
         [Authorize]
         public ActionResult create(CategoryVO Category)
         {
+            Category.CreatedBy = HttpContext.User.Identity.Name;
             Boolean IsSaved = _CategoryBizManager.CreateUpdateCategory(Category);
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,true);
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
             return RedirectToAction("Index", "Category", objCategoryList);
         }
 
         public JsonResult GetCategory(int? CategoryId)
         {
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(CategoryId);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(CategoryId,true);
             return Json(objCategoryList.FirstOrDefault(), JsonRequestBehavior.AllowGet);
 
         }
@@ -56,17 +57,25 @@ namespace indiandecisions.Controllers
 
         public ActionResult GetAllCategories()
         {
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,true);
             return Json(objCategoryList, JsonRequestBehavior.AllowGet);
 
         }
+
+        public ActionResult SetCategoryActiveStatus(long CategoryId, bool ActiveStatus)
+        {
+            bool IsDone = _CategoryBizManager.SetCategoryActiveStatus(CategoryId, ActiveStatus);
+            return Json(IsDone, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         [Authorize]
         [HttpPost]
         public ActionResult DeleteCategory(int CategoryId, bool? IsSoftDelete)
         {
             bool IsDeleted = _CategoryBizManager.DeleteCategory(CategoryId, false);
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,true);
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
             return RedirectToAction("Index", "Category", objCategoryList);
 

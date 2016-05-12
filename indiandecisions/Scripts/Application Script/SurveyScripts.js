@@ -27,7 +27,7 @@ function CheckCookieAndPerformAction(surveyId) {
     var vote = localStorage.getCacheItem("Voted_" + surveyId);
     if (vote != null && vote != undefined) {
         $("#VoteSection_" + surveyId).empty();
-        $("#VoteSection_" + surveyId).append('<br/><label style="color:green;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
+        $("#VoteSection_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
     }
 }
 

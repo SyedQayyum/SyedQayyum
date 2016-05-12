@@ -21,11 +21,20 @@ namespace indiandecisions.Controllers.User
 
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, null);
+
+            var pager = new Pager(objSurveyList.Count(), page);
+
+            var viewModel = new SurveyList
+            {
+                ListSurvey = objSurveyList.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList(),
+                Pager = pager
+            };
+
             ViewBag.Heading = "Latest Survey";
-            return View("../user/home/index", objSurveyList);
+            return View("../user/home/index", viewModel);
         }
 
 
@@ -50,7 +59,7 @@ namespace indiandecisions.Controllers.User
 
         [HttpPost]
         public ActionResult Login(String UserName, String Password)
-        { 
+        {
             if (ModelState.IsValid)
             {
                 if (_surveyBizManager.IsValidUser(UserName, Password))

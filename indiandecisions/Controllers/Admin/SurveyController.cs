@@ -29,11 +29,19 @@ namespace indiandecisions.Controllers
         }
 
         [Route("survey/{CategoryId}/get-survey/{categoryName}")]
-        public ActionResult SurveyByCategory(int CategoryId,String CategoryName)
+        public ActionResult SurveyByCategory(int? page, int CategoryId,String CategoryName)
         {
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, CategoryId, null, null);
+
+            var pager = new Pager(objSurveyList.Count(), page);
+
+            var viewModel = new SurveyList
+            {
+                ListSurvey = objSurveyList.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList(),
+                Pager = pager
+            };
             ViewBag.Heading = CategoryName;
-            return View("../User/home/index", objSurveyList);
+            return View("../User/home/index", viewModel);
         }
 
 
@@ -48,7 +56,11 @@ namespace indiandecisions.Controllers
                 objSurvey = objTempSurvey != null ? objTempSurvey : new SurveyVO();
             }
             else
+            {
                 objSurvey = new SurveyVO();
+                objSurvey.Options = new List<OptionVO>();
+                objSurvey.Options.Add(new OptionVO());
+            }
 
             return View("../Admin/survey/create", objSurvey);
         }
@@ -70,6 +82,7 @@ namespace indiandecisions.Controllers
                 Survey.PicturePath = "../SurveyImages/Survey_" + (SurveyId + 1) + extension;
             }
 
+            Survey.CreatedBy = HttpContext.User.Identity.Name;
             bool IsCreated = _surveyBizManager.CreateUpdateSurvey(Survey);
             if (IsCreated)
             {
@@ -82,7 +95,7 @@ namespace indiandecisions.Controllers
 
         private void SetCategoryDropDown()
         {
-            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null);
+            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null,true);
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
         }
 
