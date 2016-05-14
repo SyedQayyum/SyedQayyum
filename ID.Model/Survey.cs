@@ -21,4 +21,13 @@ namespace ID.Model
         public long NegativeCount { get; set; }
         public long NeutralCount { get; set; }
     }
+
+    public class SurveyOption
+    {
+        public long Id { get; set; }
+        public long SurveyId { get; set; }
+        public long OptionId { get; set; }
+        public string OptionName { get; set; }
+        public long SurveyOptionCount { get; set; }
+    }
 }

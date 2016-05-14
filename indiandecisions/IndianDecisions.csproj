@@ -159,6 +159,8 @@
     <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\easing.js" />
+    <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\ie10-viewport-bug-workaround.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />

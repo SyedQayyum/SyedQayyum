@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ID.DAL.Contract
 {
-    public interface ISurevyOptionsDataManager
+    public interface ISurveyOptionsDataManager
     {
-        List<Option> GetAllSurveyOption(long SurveyId);
+        List<SurveyOption> GetAllSurveyOption(long SurveyId);
         bool CreateUpdateSurveyOption(long Id, long OptionId, long SurveyId);
         bool DeleteOption(long? Id, long SurveyId);
     }

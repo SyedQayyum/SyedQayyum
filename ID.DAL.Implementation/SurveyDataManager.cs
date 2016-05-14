@@ -193,7 +193,7 @@ namespace ID.DAL.Implementation
             return IsValidUser;
         }
 
-        public bool VoteOnSurvey(long SurveyId, string UserVote)
+        public bool VoteOnSurvey(long SurveyId, long SurveyOptionId)
         {
             bool IsVoted = false;
             SqlConnection con = new IDDbContext().GetConnection();
@@ -203,7 +203,7 @@ namespace ID.DAL.Implementation
             {
                    new SqlParameter("@opReturnValue", SqlDbType.Int),
                    new SqlParameter("@SurveyId",SurveyId),
-                   new SqlParameter("@UserVote",UserVote)
+                   new SqlParameter("@OptionId",SurveyOptionId)
             };
 
             Params[0].Direction = ParameterDirection.Output;

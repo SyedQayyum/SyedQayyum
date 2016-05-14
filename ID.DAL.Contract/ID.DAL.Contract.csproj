@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="ICategoryDataManager.cs" />
     <Compile Include="IOptionDataManager.cs" />
-    <Compile Include="ISurevyOptionsDataManager.cs" />
+    <Compile Include="ISurveyOptionsDataManager.cs" />
     <Compile Include="IUserDataManager.cs" />
     <Compile Include="ISurveyDataManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

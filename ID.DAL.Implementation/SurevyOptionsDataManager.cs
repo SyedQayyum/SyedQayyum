@@ -12,7 +12,7 @@ using Core.Common;
 
 namespace ID.DAL.Implementation
 {
-    public class SurevyOptionsDataManager : ISurevyOptionsDataManager
+    public class SurevyOptionsDataManager : ISurveyOptionsDataManager
     {
         public bool CreateUpdateSurveyOption(long Id, long OptionId, long SurveyId)
         {
@@ -75,10 +75,10 @@ namespace ID.DAL.Implementation
             return IsDeleted;
         }
 
-        public List<Option> GetAllSurveyOption(long SurveyId)
+        public List<SurveyOption> GetAllSurveyOption(long SurveyId)
         {
             SqlConnection con = new IDDbContext().GetConnection();
-            List<Option> objOptionList = new List<Option>();
+            List<SurveyOption> objOptionList = new List<SurveyOption>();
             int ReturnValue = 1;
             SqlParameter[] Params =
             {
@@ -93,10 +93,13 @@ namespace ID.DAL.Implementation
             {
                 objOptionList.Add(
 
-                    new Option()
+                    new SurveyOption()
                     {
+                        Id = Convert.ToInt64(rdCategories["Id"].ToString()),
                         OptionId = Convert.ToInt64(rdCategories["OptionId"].ToString()),
                         OptionName = rdCategories["OptionName"].ToString(),
+                        SurveyOptionCount = rdCategories["SurveyOptionCount"] != DBNull.Value ? Convert.ToInt64(rdCategories["SurveyOptionCount"].ToString()) :0
+                        
 
                     });
             }

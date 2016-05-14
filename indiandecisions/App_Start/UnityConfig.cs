@@ -33,7 +33,7 @@ namespace indiandecisions
             container.RegisterType<ISurveyDataManager, SurveyDataManager>();
             container.RegisterType<IUserDataManager, UserDataManager>();
             container.RegisterType<IOptionDataManager, OptionDataManager>();
-            container.RegisterType<ISurevyOptionsDataManager, SurevyOptionsDataManager>();
+            container.RegisterType<ISurveyOptionsDataManager, SurevyOptionsDataManager>();
 
 
             

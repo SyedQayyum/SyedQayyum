@@ -16,18 +16,29 @@ namespace ID.Biz.Implementation
     {
 
         protected readonly ISurveyDataManager _surveyDataManager;
-        protected readonly IOptionDataManager _optionDataManager;
+        protected readonly ISurveyOptionsDataManager _surveyOptionDataManager;
 
-        public SurveyBizManager(ISurveyDataManager surveyDataManager,IOptionDataManager optionDataManager)
-        { 
+        public SurveyBizManager(ISurveyDataManager surveyDataManager, ISurveyOptionsDataManager surveyOptionDataManager)
+        {
             _surveyDataManager = surveyDataManager;
-            _optionDataManager = optionDataManager;
+            _surveyOptionDataManager = surveyOptionDataManager;
             AppHelper.CreateMap<SurveyVO, Survey>();
+            AppHelper.CreateMap<SurveyOptionVO, SurveyOption>();
         }
 
         public Boolean CreateUpdateSurvey(SurveyVO Survey)
         {
-            return _surveyDataManager.CreateUpdateSurvey(Mapper.Map<SurveyVO, Survey>(Survey));
+
+           Boolean IsDone =  _surveyDataManager.CreateUpdateSurvey(Mapper.Map<SurveyVO, Survey>(Survey));
+
+            long SurveyId = Survey.SurveyId != 0 ? Survey.SurveyId  : GetLastGeneratedSurveyId();
+
+            foreach (SurveyOptionVO SurveyOption in Survey.SurveyOptions)
+            {
+                if (SurveyOption.OptionId != 0)
+                    _surveyOptionDataManager.CreateUpdateSurveyOption(SurveyOption.Id, SurveyOption.OptionId, SurveyId);
+            }
+            return IsDone;
         }
 
         public bool DeleteSurvey(int SurveyId, bool IsSoftDelete)
@@ -38,9 +49,9 @@ namespace ID.Biz.Implementation
         public List<SurveyVO> GetAllSurvey(long? SurveyId, int? CategoryId, Boolean? IsDeleted, Boolean? IsActive)
         {
             List<SurveyVO> objServeyList = Mapper.Map<List<Survey>, List<SurveyVO>>(_surveyDataManager.GetAllSurvey(SurveyId, CategoryId, IsDeleted, IsActive));
-            foreach (SurveyVO Category in objServeyList)
+            foreach (SurveyVO ObjSurvey in objServeyList)
             {
-
+                ObjSurvey.SurveyOptions= Mapper.Map<List<SurveyOption>, List<SurveyOptionVO>>(_surveyOptionDataManager.GetAllSurveyOption(ObjSurvey.SurveyId));
             }
             return objServeyList;
         }
@@ -55,9 +66,9 @@ namespace ID.Biz.Implementation
             return _surveyDataManager.IsValidUser(userName, password);
         }
 
-        public bool VoteOnSurvey(long surveyId, string userVote)
+        public bool VoteOnSurvey(long surveyId, long SurveyOptionId)
         {
-            return _surveyDataManager.VoteOnSurvey(surveyId,userVote);
+            return _surveyDataManager.VoteOnSurvey(surveyId, SurveyOptionId);
         }
     }
 }

@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Script.Serialization;
 
 namespace indiandecisions.Controllers
 {
@@ -13,11 +15,13 @@ namespace indiandecisions.Controllers
     {
         protected readonly ICategoryBizManager _categoryBizManager;
         protected readonly ISurveyBizManager _surveyBizManager;
+        protected readonly IOptionBizManager _optionBizManager;
 
-        public SurveyController(ISurveyBizManager surveyBizManager, ICategoryBizManager categoryBizManager)
+        public SurveyController(ISurveyBizManager surveyBizManager, ICategoryBizManager categoryBizManager, IOptionBizManager optionBizManager)
         {
             _surveyBizManager = surveyBizManager;
             _categoryBizManager = categoryBizManager;
+            _optionBizManager = optionBizManager;
         }
 
 
@@ -29,7 +33,7 @@ namespace indiandecisions.Controllers
         }
 
         [Route("survey/{CategoryId}/get-survey/{categoryName}")]
-        public ActionResult SurveyByCategory(int? page, int CategoryId,String CategoryName)
+        public ActionResult SurveyByCategory(int? page, int CategoryId, String CategoryName)
         {
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, CategoryId, null, null);
 
@@ -58,45 +62,71 @@ namespace indiandecisions.Controllers
             else
             {
                 objSurvey = new SurveyVO();
-                objSurvey.Options = new List<OptionVO>();
-                objSurvey.Options.Add(new OptionVO());
+                objSurvey.SurveyOptions = new List<SurveyOptionVO>();
+                AddOptionToSurveyList(objSurvey);
+
             }
 
             return View("../Admin/survey/create", objSurvey);
         }
 
+        private void AddOptionToSurveyList(SurveyVO Survey)
+        {
+            Survey.SurveyOptions.Add(new SurveyOptionVO
+            {
+                Id = 0,
+                OptionId = 0
+            });
+        }
+
         [Authorize]
         [HttpPost]
-        public ActionResult create(SurveyVO Survey)
+        public ActionResult create(SurveyVO Survey, String AddOption)
         {
-            SetCategoryDropDown();
-            Int64 SurveyId = Survey.SurveyId != 0 ? Survey.SurveyId - 1 : _surveyBizManager.GetLastGeneratedSurveyId();
-            HttpPostedFileBase file = Request.Files["SurveyImage"];
-            String path = string.Empty;
-            string extension = "";
-            if (file != null && file.ContentLength > 0)
-            {
-                extension = Path.GetExtension(file.FileName);
-                path = Path.Combine(Server.MapPath("~/SurveyImages"), "Survey_" + (SurveyId + 1) + extension);
-                file.SaveAs(path);
-                Survey.PicturePath = "../SurveyImages/Survey_" + (SurveyId + 1) + extension;
-            }
 
-            Survey.CreatedBy = HttpContext.User.Identity.Name;
-            bool IsCreated = _surveyBizManager.CreateUpdateSurvey(Survey);
-            if (IsCreated)
+            SetCategoryDropDown();
+            if (string.IsNullOrEmpty(AddOption))
             {
-                ViewBag.Message = "Data Save Successfully.";
-                return View("../Admin/survey/create", new SurveyVO());
+
+                Int64 SurveyId = Survey.SurveyId != 0 ? Survey.SurveyId - 1 : _surveyBizManager.GetLastGeneratedSurveyId();
+                HttpPostedFileBase file = Request.Files["SurveyImage"];
+                String path = string.Empty;
+                string extension = "";
+                if (file != null && file.ContentLength > 0)
+                {
+                    extension = Path.GetExtension(file.FileName);
+                    path = Path.Combine(Server.MapPath("~/SurveyImages"), "Survey_" + (SurveyId + 1) + extension);
+                    file.SaveAs(path);
+                    Survey.PicturePath = "../SurveyImages/Survey_" + (SurveyId + 1) + extension;
+                }
+
+                Survey.CreatedBy = HttpContext.User.Identity.Name;
+                bool IsCreated = _surveyBizManager.CreateUpdateSurvey(Survey);
+                if (IsCreated)
+                {
+                    ViewBag.Message = "Data Save Successfully.";
+                    SurveyVO objSurvey = new SurveyVO();
+                    objSurvey.SurveyOptions = new List<SurveyOptionVO>();
+                    AddOptionToSurveyList(objSurvey);
+                    return View("../Admin/survey/create", objSurvey);
+                }
+                return View("../Admin/survey/create", Survey);
             }
-            return View("../Admin/survey/create", Survey);
+            else
+            {
+                AddOptionToSurveyList(Survey);
+                return View("../Admin/survey/create", Survey);
+            }
         }
 
 
         private void SetCategoryDropDown()
         {
-            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null,true);
+            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null, true);
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
+
+            List<OptionVO> objOptionList = _optionBizManager.GetAllOption(null, true);
+            ViewBag.OptionDll = objOptionList.Select(x => new SelectListItem { Text = x.OptionName, Value = x.OptionId.ToString() }).ToList();
         }
 
         [Authorize]
@@ -125,14 +155,40 @@ namespace indiandecisions.Controllers
         public ActionResult SurveyDetails(long surveyId)
         {
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(surveyId, null, null, null);
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            ViewBag.JsonResult = jss.Serialize(GetResultJson(objSurveyList.SingleOrDefault()));
             return View("../user/survey/Surveydetails", objSurveyList.SingleOrDefault());
         }
 
 
-        public ActionResult VoteOnSurvey(long SurveyId, String UserVote)
+        public ActionResult VoteOnSurvey(long SurveyId, long OptionId)
         {
-            Boolean IsVoted = _surveyBizManager.VoteOnSurvey(SurveyId, UserVote.ToLower());
+            Boolean IsVoted = _surveyBizManager.VoteOnSurvey(SurveyId, OptionId);
             return Json(IsVoted, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<SurveyResult> GetResultJson(SurveyVO Survey)
+        {
+            long Sum = 0;
+            List<SurveyResult> objSurveyResult = new List<SurveyResult>();
+            foreach (SurveyOptionVO SO in Survey.SurveyOptions)
+            {
+                Sum += SO.SurveyOptionCount;
+            }
+            Sum = Sum != 0 ? Sum : 1;
+
+            foreach (SurveyOptionVO SO in Survey.SurveyOptions)
+            {
+                objSurveyResult.Add(new SurveyResult()
+                {
+
+                    name = SO.OptionName,
+                    y = ((double)SO.SurveyOptionCount / Sum) * 100
+
+                });
+            }
+
+            return objSurveyResult;
         }
 
     }

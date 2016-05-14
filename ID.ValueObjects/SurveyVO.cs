@@ -15,7 +15,7 @@ namespace ID.ValueObjects
         {
             get
             {
-                if (SurveyQuestion.Length > 20)
+                if (SurveyQuestion!=null && SurveyQuestion.Length > 20)
                     return SurveyQuestion.Substring(1, 20) + "...";
                 else
                     return SurveyQuestion;
@@ -26,7 +26,7 @@ namespace ID.ValueObjects
         public DateTime? CloseDate { get; set; }
         public DateTime? ExpireDate { get; set; }
         public Decimal Rating { get; set; }
-        public List<OptionVO> Options { get; set; }
+        public List<SurveyOptionVO> SurveyOptions { get; set; }
 
     }
 
@@ -35,5 +35,20 @@ namespace ID.ValueObjects
     {
         public List<SurveyVO> ListSurvey { get; set; }
         public Pager Pager { get; set; }
+    }
+
+    public class SurveyOptionVO
+    {
+        public long Id { get; set; }
+        public long SurveyId{ get; set; }
+        public long OptionId { get; set; }
+        public string OptionName { get; set; }
+        public long SurveyOptionCount { get; set; }
+    }
+
+    public class SurveyResult
+    {
+        public string name { get; set; }
+        public double y { get; set; }
     }
 }

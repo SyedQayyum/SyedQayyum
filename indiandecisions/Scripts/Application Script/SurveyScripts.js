@@ -25,10 +25,20 @@ $(document).ready(function () {
 
 function CheckCookieAndPerformAction(surveyId) {
     var vote = localStorage.getCacheItem("Voted_" + surveyId);
+    var rating = localStorage.getCacheItem("Rated" + surveyId);
     if (vote != null && vote != undefined) {
-        $("#VoteSection_" + surveyId).empty();
-        $("#VoteSection_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
+        $("#VoteSection1_" + surveyId).empty();
+        $("#UserVote_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
     }
+    else {
+        $("#VoteSection2_" + surveyId).empty();
+    }
+
+    if (rating != null && rating != undefined) {
+        $("#UserRating_" + surveyId).empty();
+        $("#UserRating_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Rated : ' + rating.toUpperCase() + '</label>');
+    }
+
 }
 
 
@@ -46,12 +56,13 @@ function viewSurveyDetials(surveyId, surveyQs) {
 
 function voteOnSurvey(button, surveyId, surveyQs) {
 
-    var UserVote = $(button).parent("div").find("input[type='radio']:checked").val();
+    var OptionId = $(button).parent("div").find("input[type='radio']:checked").val();
+    var OptionName = $(button).parent("div").find("input[type='radio']:checked").attr("id");
 
-    if (UserVote != undefined) {
-        $.getJSON('../../../survey/VoteOnSurvey?SurveyId=' + surveyId + '&UserVote=' + UserVote, function (isvoted) {
+    if (OptionId != undefined) {
+        $.getJSON('../../../survey/VoteOnSurvey?SurveyId=' + surveyId + '&OptionId=' + OptionId, function (isvoted) {
             if (isvoted == true) {
-                setCookie(surveyId, UserVote);
+                setCookie(surveyId, OptionName);
                 var surveyQsString = surveyQs.split(' ').join('-');
                 window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQsString;
             }

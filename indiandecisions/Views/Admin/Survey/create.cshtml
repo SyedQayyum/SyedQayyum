@@ -41,22 +41,26 @@
                 @Html.TextBoxFor(model => model.ExpireDate, new { @class = "form-control datepicker", @placeholder = "Expire Date" })
             </div>
         </div>
-        @foreach (var option in Model.Options)
-        {
 
+        @for (int i = 0; i < Model.SurveyOptions.Count; i++)
+        {
             <div class="form-group">
                 <div class="col-lg-4">
-                    @Html.HiddenFor(x => option.OptionId)
-                    @Html.TextBoxFor(x => option.OptionName, new { @class = "form-control", @placeholder = "Option" })
-                </div>
-                <div class="col-lg-4">
-                    @Html.CheckBoxFor(x => option.IsActive, new { @class = "active-toggle" })
-                </div>
-                <div class="col-lg-4">
-                    <input type="button" value="+" class="btn btn-default" />
+                    @Html.HiddenFor(model => model.SurveyOptions[i].Id)
+                    @*@Html.DropDownListFor(model => model.SurveyOptions[i].OptionId, (IEnumerable<SelectListItem>)ViewBag.OptionDll, "-- Select Option --", new { @class = "form-control" })*@
+
+                    @Html.DropDownListFor(model => model.SurveyOptions[i].OptionId, new SelectList(ViewBag.OptionDll,"Value", "Text", Model.SurveyOptions[i].OptionId), "-- Select Option --", new { @class = "form-control" })
+
                 </div>
             </div>
         }
+        <div class="form-group">
+            <div class="col-lg-4">
+                <input type="submit" value="Add Option" class="btn btn-block" name="AddOption" />
+            </div>
+        </div>
+
+
 
         <div class="form-group">
             <div class="col-lg-offset-5">
@@ -75,7 +79,12 @@
 
 @section Scripts{
     <script src="~/Scripts/Application Script/Common.js"></script>
+    <script>
 
+        function AddOptions() {
+
+        }
+
+
+    </script>
 }
-
-
