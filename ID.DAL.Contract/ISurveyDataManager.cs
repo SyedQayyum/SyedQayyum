@@ -13,7 +13,8 @@ namespace ID.DAL.Contract
         Boolean CreateUpdateSurvey(Survey Survey);
         bool DeleteSurvey(int SurveyId, bool IsSoftDelete);
         long GetLastGeneratedSurveyId();
-        bool VoteOnSurvey(long surveyId, long SurveyOptionId);
+        bool VoteOnSurvey(long surveyId, long OptionId);
         bool IsValidUser(string userName, string password);
+        bool RatingOnSurvey(long surveyId, short rating);
     }
 }

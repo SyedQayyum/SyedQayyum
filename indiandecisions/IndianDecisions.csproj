@@ -140,13 +140,14 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ad1.gif" />
+    <Content Include="Images\ad2.gif" />
+    <Content Include="Images\ad3.gif" />
     <Content Include="Images\blog-icon.png" />
     <Content Include="Images\facebook.png" />
     <Content Include="Images\IndiaTvb02a88_sultan_raees.jpg" />
     <Content Include="Images\linkedin-icon.png" />
-    <Content Include="Images\Logo2.jpg" />
-    <Content Include="Images\Logo3.png" />
-    <Content Include="Images\Logo4.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\reviews.png" />
     <Content Include="Images\scroll-top-hover.png" />
     <Content Include="Images\twitter.png" />
@@ -217,6 +218,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Admin\Option\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\IndianDecision.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,5 +14,12 @@ $(document).ready(function () {
     function getCookieValue(name) {
         localStorage.getCacheItem("usersFavoriteColor");
     }
+
+
+    $('.active-toggle').bootstrapToggle({
+            on: 'Active',
+            off: 'In-Active'
+        });
+    
 });
 

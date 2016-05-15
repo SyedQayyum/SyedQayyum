@@ -98,7 +98,7 @@ body {
     /** font: 400 14px/18px 'Open Sans',Arial,Helvetica,sans-serif; **/
     font: 400 14px/18px "Century Gothic",Arial,Helvetica,sans-serif;
     color: #444;
-    /*background:#F4F4F4;*/
+    background:#F4F4F4;
 }
 
 a:hover {
@@ -115,7 +115,7 @@ a:focus {
 }
 
 .wrap {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -127,7 +127,6 @@ a:focus {
     float: left;
     width: 300px;
     position: relative;
-    top: 12px;
 }
 
     .logo a {
@@ -147,7 +146,8 @@ a:focus {
         }
 /** Social Media Icons **/
 .social-media {
-    text-align: right;
+   float: right;
+   margin-top:14px;
 }
 
 .subscribe {
@@ -296,7 +296,7 @@ header {
         }
 /** Main Section **/
 .main {
-    padding-top: 115px;
+    padding-top: 75px;
     min-height: 600px;
 }
 
@@ -458,13 +458,28 @@ header {
 /** Details Page **/
 .sidebar-left {
     float: left;
-    width: 22%;
+    width: 20%;
+    position:relative;
+    min-height:1px;
 }
+.affix-top,.affix{
+ position: static;
+}
+
+@media (min-width: 979px) {
+  #sidebar.affix {
+    position: fixed;
+    top:75px;
+    width:19%;
+  }
+}
+
 
 .content {
     float: left;
-    width: 65%;
+    width: 56%;
     margin: 0 1%;
+   
 }
 
 .sidebar-right {
@@ -486,7 +501,7 @@ header {
     }
 
     .sidebar-heading h3 {
-        font-size: 13px;
+        font-size: 15px;
         color: #FFF;
         font-weight: 600;
         text-transform: uppercase;
@@ -511,14 +526,16 @@ header {
 }
 
 .u-vmenu > ul > li > a {
-    padding: 10px;
+    padding: 8px;
     padding-left: 25px;
     font-size: 14px;
     background: #517BA1;
     color: #FFF;
     margin-top: 5px;
 }
-
+.u-vmenu > ul > li > a:hover {
+    background:#4B769C;
+}
 .u-vmenu > ul > li > ul > li > a {
     font-size: 13px;
     border-top: 1px dashed #EAEAEA;
@@ -582,7 +599,7 @@ header {
 /** Content-desc **/
 
 .content-desc {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     background: #FFF;
     padding: 2.5%;
     /*border: 1px solid #E0E0E0;*/
@@ -776,9 +793,10 @@ header {
 
 .copy-right {
     background: #FFF;
-    padding: 20px 0;
-    /*border-top: 4px solid #E2E2E2;*/
+    padding:15px 0;
+    border-top: 4px solid #E2E2E2;
     margin-top: 2.5%;
+    position:relative;
 }
 
     .copy-right p {
@@ -1318,19 +1336,19 @@ header {
 .search-btn {
     border: none;
     outline: none;
-    padding: 8px 15px;
-    margin-top: 10px;
-    background: #A4B33D;
+    padding: 5px 15px;
+    background:#27ae60;
     color: #FFF;
+    border-radius:2px;
     transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 
     .search-btn:hover {
-        background: #92A12A;
+        background:#1A924D;
     }
 
 /** College Details  **/
@@ -1641,11 +1659,12 @@ header {
     }
 /** Search Colleges **/
 .search-result-college {
-    float: left;
+    /*float: left;
     width: 97%;
+    text-align: center;*/
     border: 1px solid #ECECEC;
-    /*text-align: center;*/
-    margin: 1.5%;
+    margin: 1.5% 0;
+    padding:1.5%;
 }
 
 .search-college-logo {
@@ -1667,10 +1686,12 @@ header {
 .College-logo-desc h3,p {
     font-size: 14px;
     font-weight: 600;
-    /*line-height: 1.6em;*/
-    padding: 5px;
+    line-height: 1.6em;
+    padding-bottom:3px;
 }
-
+.College-logo-desc h3 a{
+    font-size:15px;
+}
 .College-logo-desc p span {
     font-size: 14px;
     font-weight: 200 !important;
@@ -1794,10 +1815,11 @@ header {
 /**  Results Page **/
 .results-page h1 {
     color: #2B8096;
-    font-size: 24px;
+    font-size: 25px;
     line-height: 1.6em;
     font-weight: 100;
     border-bottom: 2px solid #C5C5C5;
+   margin-bottom:10px;
 }
 
 .results-page .result-date {
@@ -1852,9 +1874,9 @@ header {
 }
 
 .rating2 {
-    display: inline-block;
+    display:block;
     vertical-align: baseline;
-    margin-bottom: 1px;
+    margin-top:10px;
 }
 
 .modal-content {
@@ -1937,7 +1959,7 @@ input.star {
 label.star {
     float: right;
     padding: 0 3px;
-    font-size: 17px;
+    font-size: 15px;
     color: #444;
     cursor: pointer;
     transition: all .2s;
@@ -1965,25 +1987,155 @@ label.star:before {
     content: '\f006';
     font-family: FontAwesome;
 }
+#Categories{
+    overflow-y: auto;
+    height: 100vh;
+}
+.DetailsBtn span{
+    display:block;
+    padding-top:10px;
+}
+.DetailsBtn span a{
+    display:inline-block;
+    background: #e74c3c;
+    color: #FFF;
+    font-size: 14px;
+    padding: 8px 15px;
+    box-shadow:0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18);
+     -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.DetailsBtn span a:hover {
+    background:#F96758;
+}
+.Bottom_Pagination{
+    text-align:center;
+}
+.pagination,.pagination > li:first-child > a, .pagination > li:first-child > span,.pagination > li:last-child > a, .pagination > li:last-child > span{
+    border-radius:0;
+}
+.voting > br:first-child{
+    display:none;
+}
+.serveyDetails h3{
+    margin-bottom:15px;
+}
+.serveyDetails h3 a{
+    font-size: 21px;
+}
+ .Custom_Radio_Btn {
+    cursor: pointer;
+    position:relative;
+    display:block !important;
+    margin-left:0 !important;
+    margin-bottom:5px;
+}
+ .Custom_Radio_Btn i {
+        position: absolute;
+        bottom:0px;
+        left: 0;
+        display: block;
+        width: 18px;
+        height: 18px;
+        border:1px solid #CCC;
+        background: #FFF;
+        outline: none;
+        border-radius: 2em;
+         transition: border-color 0.1s ease-in;
+        -o-transition: border-color 0.1s ease-in;
+        -ms-transition: border-color 0.1s ease-in;
+        -moz-transition: border-color 0.1s ease-in;
+        -webkit-transition: border-color 0.1s ease-in;
+}
+ .Custom_Radio_Btn input + i:after {
+        content: '';
+        top: 3px;
+        left: 3px;
+        background:#ffa00b;
+        width: 10px;
+        height: 10px;
+        text-align: center;
+        font-size: 12px;
+        color: #FFF;
+        font-weight: 100;
+        border-radius: 2em;
+        line-height: 15px;
+    }
+.Custom_Radio_Btn input + i:after {
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.1s;
+        -o-transition: opacity 0.1s;
+        -ms-transition: opacity 0.1s;
+        -moz-transition: opacity 0.1s;
+        -webkit-transition: opacity 0.1s;
+}
+ .Custom_Radio_Btn input {
+ position: absolute;
+ left: -9999px;
+}
+ .Custom_Radio_Btn input:checked + i:after {
+   opacity: 1;
+}
+.Custom_Radio_Btn input:hover + i,.Custom_Radio_Btn input:checked + i {
+    border-color: #FFA00B;
+}
+.Custom_Radio_Btn span {
+    font-size: 14px;
+    padding-left:5px;
+}
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline{
+    margin-left:15px;
+}
+.UserRatingInput{
+    margin-top:10px;
+}
+.UserRatingInput .span-txt{
+    display:inline-block;
+    padding-bottom:5px;
+}
+.votingBlock > br:first-child{
+    display:none;
+}
 
 
 /** Responsive Design  **/
+@media only screen and (max-width:1087px) {
+ .DetailsBtn span a{
+     font-size:13px;
+ }
+}
 @media only screen and (max-width:1024px) {
     .wrap {
         width: 95%;
     }
 }
+@media only screen and (max-width:990px) {
+       .College-logo-desc{
+        margin-top:20px;
+    }
+       .copy-right-links li a{
+           font-size:13px;
+           margin:0 5px;
+       }
+ 
+}
 
+@media only screen and (min-width:800px) {
+    .ResponsiveHeading{
+        display:none;
+    }
+    .u-vmenu.collapse{
+        display:block;
+        visibility:initial; 
+    }
+}
 @media only screen and (max-width:800px) {
     header {
         position: initial;
         padding: 5px 0;
-    }
-
-    .logo {
-        width: 40%;
-        top: 18px;
-        z-index: 99;
     }
 
     .megamenu {
@@ -2030,14 +2182,49 @@ label.star:before {
 
     .copy-right-links {
         text-align: center;
-        margin-top: 30px;
         font-size: 13px;
+    }
+    .College-logo-desc{
+        margin-top:20px;
+    }
+    .sidebar-heading{
+        padding:0px;
+    }
+    .sidebar-heading h3:first-child{
+        display:none;
+    }
+    .sidebar-heading h3.ResponsiveHeading{
+        display:block;
+    }
+    .sidebar-heading h3.ResponsiveHeading a{
+      color:#FFF;
+      display:block;
+      padding:15px;
+    }
+  .sidebar-heading h3.ResponsiveHeading a:after {
+    font-family: FontAwesome;
+    content:"\f056";
+    padding-left:10px;
+    }
+   .sidebar-heading h3.ResponsiveHeading a.collapsed::after {
+        content:"\f055";
+    }
+    .u-vmenu.collapse{
+        display:none;
+        visibility:hidden;
+    }
+    .u-vmenu.collapse.in{
+       display:block;
+       visibility:visible;
     }
 }
 
 @media only screen and (max-width:767px) {
     .post_data h1 {
         font-size: 22px;
+    }
+    .copy-right p{
+      text-align:center;
     }
 }
 
@@ -2077,8 +2264,15 @@ label.star:before {
     }
 
     .logo {
-        width: 50%;
-        top: 24px;
+       float:none;
+       margin:0 auto;
+       text-align:center;
+       width:250px;
+    }
+    .social-media{
+        float:none;
+        text-align:center;
+        margin-top:0;
     }
 
     .copy-right .row {
@@ -2161,11 +2355,7 @@ label.star:before {
 }
 
 @media only screen and (max-width:320px) {
-    .logo {
-        width: 70%;
-        top: 48px;
-    }
-
+    
     .megamenu > li.showhide {
         margin-top: 1px !important;
     }

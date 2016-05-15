@@ -2,7 +2,6 @@
 $(document).ready(function () {
 
 
-    debugger;
     $('.VotesResult').each(function (voteResult) {
 
         CheckCookieAndPerformAction($(this).val())
@@ -21,37 +20,70 @@ $(document).ready(function () {
         $('#DeleteModal').modal('show');
     });
 
+
+    $('.star').click(function () {
+
+        var Rating = $(this).attr("id");
+        var surveyId = $(this).closest('div .UserRatingInput').attr("id").split('_')[1];
+        $.getJSON('../../../survey/RatingOnSurvey?SurveyId=' + surveyId + '&Rating=' + Rating, function (isRated) {
+            if (isRated == true) {
+                setCookieForRating(surveyId, Rating);
+                $("#UserRating_" + surveyId).empty();
+                $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">You have Rated : ' + Rating.toUpperCase() + ' star</label>');
+                
+            }
+        })
+    })
+
+
 });
 
 function CheckCookieAndPerformAction(surveyId) {
     var vote = localStorage.getCacheItem("Voted_" + surveyId);
+    var rating = localStorage.getCacheItem("Rated_" + surveyId);
     if (vote != null && vote != undefined) {
-        $("#VoteSection_" + surveyId).empty();
-        $("#VoteSection_" + surveyId).append('<br/><label style="color:green;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
+        $("#VoteSection1_" + surveyId).empty();
+        $("#UserVote_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
     }
+    else {
+        $("#VoteSection2_" + surveyId).empty();
+    }
+
+    if (rating != null && rating != undefined) {
+        $("#UserRating_" + surveyId).empty();
+        $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">You have Rated : ' + rating.toUpperCase() + ' star</label>');
+    }
+
 }
 
 
-function setCookie(surveyId,vote) {
+function setCookie(surveyId, vote) {
     localStorage.setCacheItem("Voted_" + surveyId, vote, { days: 8 });
+}
+
+function setCookieForRating(surveyId, Rating) {
+    localStorage.setCacheItem("Rated_" + surveyId, Rating, { days: 8 });
 }
 
 
 function viewSurveyDetials(surveyId, surveyQs) {
-    window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQs;
+    var surveyQsString = surveyQs.split(' ').join('-');
+    window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQsString;
     return false;
 }
 
 
 function voteOnSurvey(button, surveyId, surveyQs) {
 
-    var UserVote = $(button).parent("div").find("input[type='radio']:checked").val();
+    var OptionId = $(button).parent("div").find("input[type='radio']:checked").val();
+    var OptionName = $(button).parent("div").find("input[type='radio']:checked").attr("id");
 
-    if (UserVote != undefined) {
-        $.getJSON('../../../survey/VoteOnSurvey?SurveyId=' + surveyId + '&UserVote=' + UserVote, function (isvoted) {
+    if (OptionId != undefined) {
+        $.getJSON('../../../survey/VoteOnSurvey?SurveyId=' + surveyId + '&OptionId=' + OptionId, function (isvoted) {
             if (isvoted == true) {
-                setCookie(surveyId, UserVote);
-                window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQs;
+                setCookie(surveyId, OptionName);
+                var surveyQsString = surveyQs.split(' ').join('-');
+                window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQsString;
             }
         })
     } else {
@@ -62,52 +94,6 @@ function voteOnSurvey(button, surveyId, surveyQs) {
     }
 }
 
-//function SurveyVM() {
-
-//    survey = this
-//    survey.SurveyId = ko.observable();
-//    survey.CategoryId = ko.observable();
-//    survey.CategoryName = ko.observable();
-//    survey.SurveyQuestion = ko.observable();
-//    survey.PicturePath = ko.observable();
-//    survey.StartDate = ko.observable();
-//    survey.CloseDate = ko.observable();
-//    survey.ExpireDate = ko.observable();
-//    survey.Rating = ko.observable();
-//    survey.PositiveCount = ko.observable();
-//    survey.NegativeCount = ko.observable();
-//    survey.NeutralCount = ko.observable();
-//    survey.surveyArray = ko.observableArray();
-
-//    $.ajaxSetup({ async: false });
-
-
-
-
-//    survey.GetSurveyDetails = function () {
-//        $.getJSON("../Survey/GetSurveyInformation", function (SurveyList) {
-//            ko.utils.arrayMap(SurveyList, function (objSurvey) {
-//                debugger;
-//                objSurvey.Rating = parseInt(objSurvey.Rating) / 5 * 100 + '%';
-//                survey.surveyArray.push(objSurvey);
-//            })
-//        })
-//    }
-
-
-//    survey.GetSurvey = function (surveyId) {
-//        $.getJSON("../Survey/GetSurveyInformation?surveyId=" + surveyId, function (SurveyList) {
-//            ko.utils.arrayMap(SurveyList, function (objSurvey) {
-
-//                survey.SurveyQuestion(objSurvey.SurveyQuestion);
-//                survey.PicturePath(objSurvey.PicturePath);
-//                survey.PositiveCount(objSurvey.PositiveCount);
-//                survey.NegativeCount(objSurvey.NegativeCount);
-//                survey.NeutralCount(objSurvey.NeutralCount);
-//            })
-//        })
-//    }
-//}
 
 
 

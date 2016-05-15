@@ -66,9 +66,14 @@ namespace ID.Biz.Implementation
             return _surveyDataManager.IsValidUser(userName, password);
         }
 
-        public bool VoteOnSurvey(long surveyId, long SurveyOptionId)
+        public bool RatingOnSurvey(long surveyId, short Rating)
         {
-            return _surveyDataManager.VoteOnSurvey(surveyId, SurveyOptionId);
+            return _surveyDataManager.RatingOnSurvey(surveyId, Rating);
+        }
+
+        public bool VoteOnSurvey(long surveyId, long OptionId)
+        {
+            return _surveyDataManager.VoteOnSurvey(surveyId, OptionId);
         }
     }
 }

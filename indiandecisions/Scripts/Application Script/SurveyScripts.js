@@ -2,7 +2,6 @@
 $(document).ready(function () {
 
 
-    debugger;
     $('.VotesResult').each(function (voteResult) {
 
         CheckCookieAndPerformAction($(this).val())
@@ -21,11 +20,27 @@ $(document).ready(function () {
         $('#DeleteModal').modal('show');
     });
 
+
+    $('.star').click(function () {
+
+        var Rating = $(this).attr("id");
+        var surveyId = $(this).closest('div .UserRatingInput').attr("id").split('_')[1];
+        $.getJSON('../../../survey/RatingOnSurvey?SurveyId=' + surveyId + '&Rating=' + Rating, function (isRated) {
+            if (isRated == true) {
+                setCookieForRating(surveyId, Rating);
+                $("#UserRating_" + surveyId).empty();
+                $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">You have Rated : ' + Rating.toUpperCase() + ' star</label>');
+                
+            }
+        })
+    })
+
+
 });
 
 function CheckCookieAndPerformAction(surveyId) {
     var vote = localStorage.getCacheItem("Voted_" + surveyId);
-    var rating = localStorage.getCacheItem("Rated" + surveyId);
+    var rating = localStorage.getCacheItem("Rated_" + surveyId);
     if (vote != null && vote != undefined) {
         $("#VoteSection1_" + surveyId).empty();
         $("#UserVote_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
@@ -36,14 +51,18 @@ function CheckCookieAndPerformAction(surveyId) {
 
     if (rating != null && rating != undefined) {
         $("#UserRating_" + surveyId).empty();
-        $("#UserRating_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Rated : ' + rating.toUpperCase() + '</label>');
+        $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">You have Rated : ' + rating.toUpperCase() + ' star</label>');
     }
 
 }
 
 
-function setCookie(surveyId,vote) {
+function setCookie(surveyId, vote) {
     localStorage.setCacheItem("Voted_" + surveyId, vote, { days: 8 });
+}
+
+function setCookieForRating(surveyId, Rating) {
+    localStorage.setCacheItem("Rated_" + surveyId, Rating, { days: 8 });
 }
 
 
@@ -74,6 +93,7 @@ function voteOnSurvey(button, surveyId, surveyQs) {
         errorDiv.append('<label style="color:red">Please select your vote !</label>');
     }
 }
+
 
 
 

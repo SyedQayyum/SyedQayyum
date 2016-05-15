@@ -12,6 +12,7 @@
 @using (Html.BeginForm("create", "category", FormMethod.Post, new { @class = "form-horizontal well" }))
 {
     @Html.Hidden("CategoryId")
+    @Html.Hidden("IsActive")
 
     <fieldset>
         <div class="form-group">
@@ -37,7 +38,7 @@
             <th>Category</th>
             <th>Parent Category</th>
             <th>Action</th>
-            <th>Delete</th>
+            <th>Active</th>
         </tr>
     </thead>
     <tbody>
@@ -51,7 +52,7 @@
                     <a href="javascript:void(0);" class="EditCategory">Edit</a> | <a href="javascript:void(0);" class="DeleteCategory">Delete</a>
                 </td>
                 <td>
-                    <input type="checkbox" class="checkbox" />
+                    @Html.CheckBoxFor(modelItem => model.IsActive, new { @class = "active-toggle CategoryActive" })
                 </td>
             </tr>
         }
@@ -92,22 +93,12 @@
     </ul>
 }
 
-    @*<ul class="pagination">
-            <li class="disabled"><a href="#">&laquo;</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>*@
 
     @{
         Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Category");
     }
 
     @section Scripts{
-
         <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
     }
 

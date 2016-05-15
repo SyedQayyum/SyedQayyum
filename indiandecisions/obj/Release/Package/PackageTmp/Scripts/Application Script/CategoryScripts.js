@@ -24,13 +24,21 @@ $(document).ready(function () {
     });
 
 
-
-
     $('.DeleteCategory').click(function () {
 
         var categoryId = $($(this).parents('tr').find('td')[0]).text();
         $('#CategoryIdDelete').val(categoryId);
         $('#DeleteModal').modal('show');
+
+    });
+
+    $('.CategoryActive').change(function () {
+
+        var categoryId = $($(this).parents('tr').find('td')[0]).text();
+        var activeStatus = $(this).prop('checked');
+        $.getJSON("../../../Category/SetCategoryActiveStatus?CategoryId=" + categoryId + "&ActiveStatus=" + activeStatus, function (isDone) {
+            
+        });
     });
 
 });

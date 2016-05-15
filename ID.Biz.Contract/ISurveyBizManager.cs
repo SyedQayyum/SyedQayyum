@@ -14,7 +14,8 @@ namespace ID.Biz.Contract
         Boolean CreateUpdateSurvey(SurveyVO Survey);
         bool DeleteSurvey(int SurveyId, bool IsSoftDelete);
         long GetLastGeneratedSurveyId();
-        Boolean VoteOnSurvey(long surveyId, long SurveyOptionId);
+        Boolean VoteOnSurvey(long surveyId, long OptionId);
+        Boolean RatingOnSurvey(long surveyId, Int16 Rating);
         bool IsValidUser(string userName, string password);
     }
 }

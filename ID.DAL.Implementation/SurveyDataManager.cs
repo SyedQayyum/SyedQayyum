@@ -193,6 +193,36 @@ namespace ID.DAL.Implementation
             return IsValidUser;
         }
 
+        public bool RatingOnSurvey(long surveyId, short rating)
+        {
+            bool IsRated = false;
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Category> objCategoryList = new List<Category>();
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@surveyId",surveyId),
+                   new SqlParameter("@surveyRating",rating)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            int RowAffected = SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "USP_InsertSurveyRating", Params);
+
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return false;
+            }
+            if (RowAffected > 0)
+            {
+                IsRated = true;
+            }
+
+            return IsRated;
+        }
+
         public bool VoteOnSurvey(long SurveyId, long SurveyOptionId)
         {
             bool IsVoted = false;

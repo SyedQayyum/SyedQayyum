@@ -191,5 +191,11 @@ namespace indiandecisions.Controllers
             return objSurveyResult;
         }
 
+        public ActionResult RatingOnSurvey(long SurveyId, Int16 Rating)
+        {
+            Boolean IsRated = _surveyBizManager.RatingOnSurvey(SurveyId, Rating);
+            return Json(IsRated, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
