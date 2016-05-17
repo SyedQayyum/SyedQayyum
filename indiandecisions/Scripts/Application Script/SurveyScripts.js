@@ -29,8 +29,8 @@ $(document).ready(function () {
             if (isRated == true) {
                 setCookieForRating(surveyId, Rating);
                 $("#UserRating_" + surveyId).empty();
-                $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">You have Rated : ' + Rating.toUpperCase() + ' star</label>');
-                
+                $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">Your Rating : ' + Rating.toUpperCase() + ' star</label>');
+
             }
         })
     })
@@ -43,15 +43,25 @@ function CheckCookieAndPerformAction(surveyId) {
     var rating = localStorage.getCacheItem("Rated_" + surveyId);
     if (vote != null && vote != undefined) {
         $("#VoteSection1_" + surveyId).empty();
-        $("#UserVote_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">You have Voted : ' + vote.toUpperCase() + '</label>');
+        $("#UserVote_" + surveyId).append('<br/><label style="color:#1AB91A;font-weight:bold">Your Vote : ' + vote.toUpperCase() + '</label>');
     }
     else {
-        $("#VoteSection2_" + surveyId).empty();
+        if ($('#VoteSection1_' + surveyId).length != 0)
+            $("#VoteSection2_" + surveyId).empty();
+        else {
+            $("#VoteSection2_" + surveyId).append('<br/><label style="color:red;font-weight:bold">Sorry, You can not vote. This survey is expired</label>');
+            $("#VoteSection2_" + surveyId).append('<br/><label style="color:red;font-weight:bold">You can have look on another survey !</label>');
+        }
     }
 
     if (rating != null && rating != undefined) {
-        $("#UserRating_" + surveyId).empty();
-        $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">You have Rated : ' + rating.toUpperCase() + ' star</label>');
+        if ($('#VoteSection1_' + surveyId).length != 0) {
+            $("#UserRating_" + surveyId).empty();
+            $("#UserRating_" + surveyId).append('<br/><label style="color:orange;font-weight:bold">Your Rating : ' + rating.toUpperCase() + ' star</label>');
+        }
+        else {
+            $("#UserVote_" + surveyId).append('<br/><br/><label style="color:orange;font-weight:bold">Your Rating : ' + rating.toUpperCase() + ' star</label>');
+        }
     }
 
 }
@@ -87,8 +97,7 @@ function voteOnSurvey(button, surveyId, surveyQs) {
             }
         })
     } else {
-
-        var errorDiv = $(button).parent('div').nextAll('#ErrorMessage');
+        var errorDiv = $(button).parent('div').find('#ErrorMessage');
         errorDiv.empty();
         errorDiv.append('<label style="color:red">Please select your vote !</label>');
     }

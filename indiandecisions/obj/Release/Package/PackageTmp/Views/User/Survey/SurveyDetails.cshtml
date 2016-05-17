@@ -16,6 +16,14 @@
     <div class="row">
         <div class="col-xs-12 col-md-5">
             <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
+             <div class="rating rating2">
+                                <span>Avg. Rating :</span>
+                                <span class="star_rating_small">
+                                    <span class="star star-red star-xl">
+                                        @Html.Raw("<span style=\"width:" + Model.Rating / 5 * 100 + "%\"</span>")
+                                    </span>
+                                </span>
+                            </div>
         </div>
         <div class="col-xs-12 col-md-7">
             @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })
@@ -24,17 +32,21 @@
                 @Html.Hidden(option.OptionId.ToString())
             }
 
-            <div class="voting" id="VoteSection1_@Model.SurveyId">
-                @foreach (var itemOption in Model.SurveyOptions)
+            @if (Model.StartDate <= DateTime.Now && Model.CloseDate >= DateTime.Now)
+            {
+                <div class="voting" id="VoteSection1_@Model.SurveyId">
+                    @foreach (var itemOption in Model.SurveyOptions)
                 {
-                    <label class="radio-inline Custom_Radio_Btn">
-                        <input type="radio" name="UserVote" id="@itemOption.OptionName" value="@itemOption.Id"><i></i>
-                        <span>@itemOption.OptionName</span>
-                    </label>
-                }
-                <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@Model.SurveyId,'@Model.SurveyQuestion')" />
-            </div>
-            <div id="ErrorMessage" class="voting"></div>
+                        <label class="radio-inline Custom_Radio_Btn">
+                            <input type="radio" name="UserVote" id="@itemOption.OptionName" value="@itemOption.Id"><i></i>
+                            <span>@itemOption.OptionName</span>
+                        </label>
+                    }
+                    <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@Model.SurveyId,'@Model.SurveyQuestion')" />
+                    <div id="ErrorMessage" class="voting"></div>
+                </div>
+            }
+
             <div Id="VoteSection2_@Model.SurveyId">
                 <div class="College-logo-desc">
                     <div id="container" style="height: 200px; max-width: 350px; margin: 0 auto"></div>
@@ -70,8 +82,8 @@
 
 
     <script type="text/javascript" src="~/Scripts/loader.js"></script>
-<script src="~/Scripts/highcharts.js" type="text/javascript"></script>
-@*<script src="~/Scripts/exporting.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/highcharts.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/exporting.js" type="text/javascript"></script>*@
     <script type="text/javascript">
         $(function () {
             $('#container').highcharts({
@@ -104,12 +116,12 @@
                     name: 'Vote',
                     colorByPoint: true,
                     data: @Html.Raw(ViewBag.JsonResult)
-                }]
+                    }]
             });
         });
 
     </script>
-  
+
     <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
 
 }

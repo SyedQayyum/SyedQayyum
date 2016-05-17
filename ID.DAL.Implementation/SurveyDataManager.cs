@@ -114,7 +114,7 @@ namespace ID.DAL.Implementation
                         CloseDate = rdCategories["SurveyCloseDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
                         ExpireDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,
                         IsActive = Convert.ToBoolean(rdCategories["SurveyIsActive"].ToString()),
-                        StartDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyStartDate"].ToString()) : null,
+                        StartDate = rdCategories["SurveyStartDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyStartDate"].ToString()) : null,
                         CreatedBy = rdCategories["SurveyCreatedBy"].ToString(),
                     });
             }

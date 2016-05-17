@@ -2030,7 +2030,7 @@ label.star:before {
     position:relative;
     display:block !important;
     margin-left:0 !important;
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
  .Custom_Radio_Btn i {
         position: absolute;
@@ -2099,7 +2099,23 @@ label.star:before {
 .votingBlock > br:first-child{
     display:none;
 }
-
+.Vote_timeperiod{
+    position: absolute;
+    bottom: 5px;
+    right: 25px;
+    border: 1px dashed #CCC;
+    padding: 5px;
+    background: #F0F0F0;
+    margin-top: 10px;
+    font-size: 13px;
+}
+.Vote_section{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    display: -ms-flex;
+    position: relative;
+}
 
 /** Responsive Design  **/
 @media only screen and (max-width:1087px) {
@@ -2120,7 +2136,13 @@ label.star:before {
            font-size:13px;
            margin:0 5px;
        }
- 
+ .Vote_section{
+     display:block;
+ }
+    .Vote_timeperiod {
+      position:inherit;
+      position:initial;
+    }
 }
 
 @media only screen and (min-width:800px) {
@@ -2351,6 +2373,9 @@ label.star:before {
 
     .review-desc p {
         font-size: 13px;
+    }
+    .col-xs-12{
+        padding:0;
     }
 }
 
