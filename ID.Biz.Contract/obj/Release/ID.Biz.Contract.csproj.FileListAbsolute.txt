@@ -5,3 +5,5 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.ValueO
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\obj\Release\ID.Biz.Contract.csprojResolveAssemblyReference.cache
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\obj\Release\ID.Biz.Contract.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\obj\Release\ID.Biz.Contract.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Contract\bin\Release\ID.Common.pdb

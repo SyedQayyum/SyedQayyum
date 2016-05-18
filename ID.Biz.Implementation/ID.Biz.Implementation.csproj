@@ -34,7 +34,12 @@
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryBizManager.cs" />
+    <Compile Include="EmailBizManager.cs" />
     <Compile Include="OptionBizManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurveyBizManager.cs" />
@@ -58,6 +64,10 @@
     <ProjectReference Include="..\ID.Biz.Contract\ID.Biz.Contract.csproj">
       <Project>{86b65ef0-7989-4811-9e27-623edbf806e9}</Project>
       <Name>ID.Biz.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ID.Common\ID.Common.csproj">
+      <Project>{ca285716-e2e7-4d87-af40-581224704faa}</Project>
+      <Name>ID.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\ID.DAL.Contract\ID.DAL.Contract.csproj">
       <Project>{a267eac8-d7ec-4deb-aac5-539145134f85}</Project>

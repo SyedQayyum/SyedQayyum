@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICategoryBizManager.cs" />
+    <Compile Include="IEmailBizManager.cs" />
     <Compile Include="IOptionBizManager.cs" />
     <Compile Include="ISurveyBizManager.cs" />
     <Compile Include="IUserBizManager.cs" />

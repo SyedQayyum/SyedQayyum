@@ -47,9 +47,36 @@ namespace indiandecisions.Controllers.User
         [ActionName("contact-us")]
         public ActionResult ContactUs()
         {
-            return View("../user/home/ContactUs");
+            EmailVO ContactUs = new EmailVO();
+            ContactUs.ContactFor = ID.Common.ContactForEnum.General;
+            ViewBag.PageHeading = "Contact Us";
+            return View("../user/home/ContactUs", ContactUs);
         }
 
+        [ActionName("suggest-survey-to-us")]
+        public ActionResult SuggestSurvey()
+        {
+            EmailVO SurveyReq = new EmailVO();
+            SurveyReq.ContactFor = ID.Common.ContactForEnum.SurveyRequest;
+            ViewBag.PageHeading = "Suggest Survey To Us";
+            return View("../user/home/ContactUs", SurveyReq);
+        }
+
+        [ActionName("advertise-with-us")]
+        public ActionResult AdvertiseWithUs()
+        {
+
+            EmailVO AdvertiseReq = new EmailVO();
+            AdvertiseReq.ContactFor = ID.Common.ContactForEnum.Adverstisement;
+            ViewBag.PageHeading = "Advertise With Us";
+            return View("../user/home/ContactUs", AdvertiseReq);
+        }
+
+        [ActionName("send-successfully")]
+        public ActionResult SendSuccess()
+        {
+            return View("../user/home/SendSuccess");
+        }
 
         [ActionName("login")]
         public ActionResult Login()

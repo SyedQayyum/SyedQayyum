@@ -43,12 +43,19 @@
   <ItemGroup>
     <Compile Include="BaseVO.cs" />
     <Compile Include="CategoryVO.cs" />
+    <Compile Include="EmailVO.cs" />
     <Compile Include="OptionVO.cs" />
     <Compile Include="Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultVO.cs" />
     <Compile Include="SurveyVO.cs" />
     <Compile Include="UserVO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ID.Common\ID.Common.csproj">
+      <Project>{ca285716-e2e7-4d87-af40-581224704faa}</Project>
+      <Name>ID.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

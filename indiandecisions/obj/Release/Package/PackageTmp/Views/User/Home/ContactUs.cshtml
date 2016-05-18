@@ -1,4 +1,4 @@
-﻿
+﻿@model ID.ValueObjects.EmailVO
 @{
     ViewBag.Title = "ContactUs";
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
@@ -13,24 +13,32 @@
             </div>
             <div id="success"><span>Your message was sent successfully! I will be in touch as soon as I can.</span></div>
             <div id="error"><span>Something went wrong, try refreshing and submitting the form again.</span></div>
-            <form id="contact" name="contact" method="post">
+
+            @using (Html.BeginForm("SendEmail", "Email", FormMethod.Post, new { @id = "contact" }))
+            {
 
                 <div class="row row2">
                     <div class="col-md-6">
-                        <span><input type="text" name="txtName" id="txtName" class="textbox" placeholder="Name" required=""></span>
+                        <span>
+                            <input type="text" name="UserName" id="UserName" class="textbox" placeholder="Name" required="">
+                        </span>
                     </div>
                     <div class="col-md-6">
-                        <span><input type="text" name="txtEmail" id="txtEmail" class="textbox" placeholder="Email" required=""></span>
+                        <span>
+                            <input type="text" name="UserEmail" id="UserEmail" class="textbox" placeholder="Email" required="">
+                        </span>
                     </div>
                 </div>
 
                 <div>
-                    <span><textarea name="txtMessage" id="txtMessage" placeholder="Message" required=""></textarea></span>
+                    <span>
+                        <textarea name="Body" id="Body" placeholder="Message" required=""></textarea>
+                    </span>
                 </div>
-                <div style="text-align:right;">
-                    <span><input type="submit" name="submit" id="submit" value="Send"></span>
-                </div>
-            </form>
+                    <div style="text-align:right;">
+                        <span><input type="submit" name="submit" id="submit" value="Send"></span>
+                    </div>
+            }
         </div>
     </div>
     <div class="col-md-6">
@@ -41,12 +49,12 @@
             <div class="social_media">
                 <ul>
                     <li>
-                        <a href="#" class="btn btn-block btn-social btn-lg btn-facebook">
+                        <a href="https://www.facebook.com/IndianDecision.in" class="btn btn-block btn-social btn-lg btn-facebook">
                             <i class="fa fa-facebook"></i> Like us in Facebook
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-block btn-social btn-lg btn-twitter">
+                        <a href="https://twitter.com/IndianDecision" class="btn btn-block btn-social btn-lg btn-twitter">
                             <i class="fa fa-twitter"></i> Follow us in Twitter
                         </a>
                     </li>

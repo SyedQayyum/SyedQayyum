@@ -221,6 +221,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Admin\Option\Index.cshtml" />
     <None Include="Properties\PublishProfiles\IndianDecision.pubxml" />
+    <Content Include="Views\User\Home\SendSuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -244,6 +245,10 @@
     <ProjectReference Include="..\ID.Biz.Implementation\ID.Biz.Implementation.csproj">
       <Project>{445be818-41aa-451f-893b-abf738cf4fd9}</Project>
       <Name>ID.Biz.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ID.Common\ID.Common.csproj">
+      <Project>{ca285716-e2e7-4d87-af40-581224704faa}</Project>
+      <Name>ID.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\ID.DAL.Contract\ID.DAL.Contract.csproj">
       <Project>{a267eac8-d7ec-4deb-aac5-539145134f85}</Project>

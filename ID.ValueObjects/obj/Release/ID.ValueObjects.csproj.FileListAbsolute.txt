@@ -3,3 +3,5 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\ID.ValueObjects\bin\Release\ID.ValueO
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.ValueObjects\obj\Release\ID.ValueObjects.csprojResolveAssemblyReference.cache
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.ValueObjects\obj\Release\ID.ValueObjects.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.ValueObjects\obj\Release\ID.ValueObjects.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.ValueObjects\bin\Release\ID.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.ValueObjects\bin\Release\ID.Common.pdb

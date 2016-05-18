@@ -69,3 +69,7 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Model.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\obj\Release\IndianDecisions.csprojResolveAssemblyReference.cache
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\obj\Release\indiandecisions.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\obj\Release\indiandecisions.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\RestSharp.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Common.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\RestSharp.xml

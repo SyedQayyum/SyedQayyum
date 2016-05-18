@@ -16,3 +16,7 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\bin\Release\Aut
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\obj\Release\ID.Biz.Implementation.csprojResolveAssemblyReference.cache
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\obj\Release\ID.Biz.Implementation.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\obj\Release\ID.Biz.Implementation.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\bin\Release\ID.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\bin\Release\RestSharp.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\bin\Release\ID.Common.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Biz.Implementation\bin\Release\RestSharp.xml

@@ -1,0 +1,4 @@
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Common\bin\Release\ID.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Common\bin\Release\ID.Common.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Common\obj\Release\ID.Common.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Common\obj\Release\ID.Common.pdb

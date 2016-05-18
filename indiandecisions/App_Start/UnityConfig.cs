@@ -24,6 +24,8 @@ namespace indiandecisions
             container.RegisterType<ISurveyBizManager, SurveyBizManager>();
             container.RegisterType<IUserBizManager, UserBizManager>();
             container.RegisterType<IOptionBizManager, OptionBizManager>();
+            container.RegisterType<IEmailBizManager, EmailBizManager>();
+            
 
             #endregion
 

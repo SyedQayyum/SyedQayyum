@@ -87,6 +87,7 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\indiandecisions.p
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\Core.Common.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Biz.Contract.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Biz.Implementation.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Common.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.DAL.Contract.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.DAL.Implementation.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.ValueObjects.dll
@@ -111,10 +112,12 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\System.Web.Webpag
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\System.Web.Webpages.Razor.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\Unity.Mvc5.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\AutoMapper.dll
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\RestSharp.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Model.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\Core.Common.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Biz.Contract.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Biz.Implementation.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Common.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.DAL.Contract.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.DAL.Implementation.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.ValueObjects.pdb
@@ -136,6 +139,7 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\System.Web.Webpag
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\System.Web.Helpers.xml
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\System.Web.Mvc.xml
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\AutoMapper.xml
+E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\RestSharp.xml
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\bin\ID.Model.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\obj\Debug\IndianDecisions.csprojResolveAssemblyReference.cache
 E:\Personal Project\Syed Qayyum\SyedQayyum\indiandecisions\obj\Debug\indiandecisions.dll
