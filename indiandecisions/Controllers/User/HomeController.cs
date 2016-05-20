@@ -72,6 +72,26 @@ namespace indiandecisions.Controllers.User
             return View("../user/home/ContactUs", AdvertiseReq);
         }
 
+
+        [ActionName("about-us")]
+        public ActionResult AboutUs()
+        {
+            return View("../user/home/AboutUs");
+        }
+
+        [ActionName("privacy-policy")]
+        public ActionResult PrivacyPolicy()
+        {
+            return View("../user/home/PrivacyPolicy");
+        }
+
+        [ActionName("terms-of-use")]
+        public ActionResult TermsOfUse()
+        {
+            return View("../user/home/TermsOfUse");
+        }
+
+
         [ActionName("send-successfully")]
         public ActionResult SendSuccess()
         {

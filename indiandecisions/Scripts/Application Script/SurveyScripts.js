@@ -63,7 +63,6 @@ function CheckCookieAndPerformAction(surveyId) {
             $("#UserVote_" + surveyId).append('<br/><br/><label style="color:orange;font-weight:bold">Your Rating : ' + rating.toUpperCase() + ' star</label>');
         }
     }
-
 }
 
 

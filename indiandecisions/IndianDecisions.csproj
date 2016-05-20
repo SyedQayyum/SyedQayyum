@@ -222,6 +222,9 @@
     <Content Include="Views\Admin\Option\Index.cshtml" />
     <None Include="Properties\PublishProfiles\IndianDecision.pubxml" />
     <Content Include="Views\User\Home\SendSuccess.cshtml" />
+    <Content Include="Views\User\Home\AboutUs.cshtml" />
+    <Content Include="Views\User\Home\PrivacyPolicy.cshtml" />
+    <Content Include="Views\User\Home\TermsOfUse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

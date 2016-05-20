@@ -6,17 +6,17 @@
 
 <div class="row row2">
     <div class="col-md-6">
-
+       
         <div class="contact-form">
             <div class="contact-top-header">
-                <h3>Contact Us</h3>
+                <h3>@ViewBag.PageHeading</h3>
             </div>
             <div id="success"><span>Your message was sent successfully! I will be in touch as soon as I can.</span></div>
             <div id="error"><span>Something went wrong, try refreshing and submitting the form again.</span></div>
 
             @using (Html.BeginForm("SendEmail", "Email", FormMethod.Post, new { @id = "contact" }))
             {
-
+                @Html.HiddenFor(model => model.ContactFor)
                 <div class="row row2">
                     <div class="col-md-6">
                         <span>
@@ -49,17 +49,17 @@
             <div class="social_media">
                 <ul>
                     <li>
-                        <a href="https://www.facebook.com/IndianDecision.in" class="btn btn-block btn-social btn-lg btn-facebook">
+                        <a href="https://www.facebook.com/IndianDecision.in" class="btn btn-block btn-social btn-lg btn-facebook" target="_blank">
                             <i class="fa fa-facebook"></i> Like us in Facebook
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/IndianDecision" class="btn btn-block btn-social btn-lg btn-twitter">
+                        <a href="https://twitter.com/IndianDecision" class="btn btn-block btn-social btn-lg btn-twitter" target="_blank">
                             <i class="fa fa-twitter"></i> Follow us in Twitter
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-block btn-social btn-lg btn-google">
+                        <a href="#" class="btn btn-block btn-social btn-lg btn-google" target="_blank">
                             <i class="fa fa-google-plus"></i> Share in Google
                         </a>
                     </li>

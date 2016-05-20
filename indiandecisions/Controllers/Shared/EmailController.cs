@@ -25,7 +25,7 @@ namespace indiandecisions.Controllers
 
         public ActionResult SendEmail(EmailVO objEmail)
         {
-            //_emailBizManager.SendEmailToAdmin(objEmail);
+            _emailBizManager.SendEmailToAdmin(objEmail);
             return RedirectToAction("send-successfully", "home");
         }
     }
