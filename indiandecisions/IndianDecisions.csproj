@@ -186,7 +186,6 @@
     <Compile Include="Controllers\Admin\OptionController.cs" />
     <Compile Include="Controllers\Admin\SurveyController.cs" />
     <Compile Include="Controllers\Admin\UserController.cs" />
-    <Compile Include="Controllers\Shared\EmailController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -234,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Shared\" />
     <Folder Include="SurveyImages\" />
   </ItemGroup>
   <ItemGroup>

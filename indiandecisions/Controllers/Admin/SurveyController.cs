@@ -45,6 +45,7 @@ namespace indiandecisions.Controllers
                 Pager = pager
             };
             ViewBag.Heading = CategoryName;
+            ViewBag.PageTitle = CategoryName;
             return View("../User/home/index", viewModel);
         }
 
@@ -152,8 +153,9 @@ namespace indiandecisions.Controllers
 
 
         [Route("survey/{surveyId}/survey-details/{suveryQs}")]
-        public ActionResult SurveyDetails(long surveyId)
+        public ActionResult SurveyDetails(long surveyId,string suveryQs)
         {
+            ViewBag.PageTitle = suveryQs.Replace('-',' ');
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(surveyId, null, null, null);
             JavaScriptSerializer jss = new JavaScriptSerializer();
             ViewBag.JsonResult = jss.Serialize(GetResultJson(objSurveyList.SingleOrDefault()));

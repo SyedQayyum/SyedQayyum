@@ -4,9 +4,15 @@
     Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
 
+<style>
+    .field-validation-error {
+        color:red !important;
+    }
+</style>
+
 <div class="row row2">
     <div class="col-md-6">
-       
+
         <div class="contact-form">
             <div class="contact-top-header">
                 <h3>@ViewBag.PageHeading</h3>
@@ -14,30 +20,49 @@
             <div id="success"><span>Your message was sent successfully! I will be in touch as soon as I can.</span></div>
             <div id="error"><span>Something went wrong, try refreshing and submitting the form again.</span></div>
 
-            @using (Html.BeginForm("SendEmail", "Email", FormMethod.Post, new { @id = "contact" }))
+            @using (Html.BeginForm("ContactUs", "home", FormMethod.Post, new { @id = "contact" }))
             {
                 @Html.HiddenFor(model => model.ContactFor)
                 <div class="row row2">
                     <div class="col-md-6">
                         <span>
-                            <input type="text" name="UserName" id="UserName" class="textbox" placeholder="Name" required="">
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "textbox", @placeholder = "Name" })
                         </span>
+                        @Html.ValidationMessageFor(model => model.UserName)
                     </div>
                     <div class="col-md-6">
                         <span>
-                            <input type="text" name="UserEmail" id="UserEmail" class="textbox" placeholder="Email" required="">
+                            @Html.TextBoxFor(model => model.UserEmail, new { @class = "textbox", @placeholder = "Email" })
                         </span>
+                        @Html.ValidationMessageFor(model => model.UserEmail)
                     </div>
                 </div>
 
                 <div>
                     <span>
-                        <textarea name="Body" id="Body" placeholder="Message" required=""></textarea>
+                        @Html.TextAreaFor(model => model.Body, new { @placeholder = "Message" })
                     </span>
+                    @Html.ValidationMessageFor(model => model.Body)
                 </div>
-                    <div style="text-align:right;">
-                        <span><input type="submit" name="submit" id="submit" value="Send"></span>
+                <div class="row row2">
+                    <div class="col-md-3">
+                        <span>
+                            <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="height:40px" />
+                        </span>
                     </div>
+                    <div class="col-md-6">
+                        <span>
+                            @Html.EditorFor(model => model.Captcha)
+                        </span>
+                        @Html.ValidationMessageFor(model => model.Captcha)
+                    </div>
+                    <div class="col-md-3">
+                        <div style="text-align:right;">
+                            <span><input type="submit" name="submit" id="submit" value="Send"></span>
+                        </div>
+                    </div>
+                </div>
+
             }
         </div>
     </div>
@@ -68,4 +93,3 @@
         </div>
     </div>
 </div>
-
