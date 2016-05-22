@@ -1,0 +1,116 @@
+﻿@model ID.ValueObjects.SurveyList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PreviewLayout.cshtml";
+}
+
+<div class="results-page">
+    <h1>@ViewBag.Heading</h1>
+</div>
+<div id="surveyDetails">
+    <div class="search-engineering-colleges">
+        <div class="search-colleges">
+            @foreach (var item in Model.ListSurvey)
+            {
+                @Html.Hidden("SurveyId", item.SurveyId, new { @class = "VotesResult" })
+                <div class="search-result-college">
+                    <div class="row Vote_section">
+                        <div class="col-xs-12 col-md-6">
+                            <a href="#" onclick='viewSurveyDetials("@item.SurveyId","@item.SurveyQuestion")'><img src="../../@Url.Content(item.PicturePath)" class="img-responsive" title="@item.SurveyQuestion" alt="@item.SurveyQuestion" /></a>
+                            <div class="rating rating2">
+                                <span>Avg. Rating :</span>
+                                <span class="star_rating_small">
+                                    <span class="star star-red star-xl">
+                                        @Html.Raw("<span style=\"width:" + item.Rating / 5 * 100 + "%\"</span>")
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="DetailsBtn">
+                                <span>@Html.Raw("<a href=\"javascript:void(0)\" onclick=\"viewSurveyDetials(" + item.SurveyId + ",\'" + item.SurveyQuestion + "\')\">View Details and Comments</a>")</span>
+
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 College-logo-desc">
+
+                            <h3>@Html.Raw("<a href=\"javascript:void(0)\" onclick=\"viewSurveyDetials(" + item.SurveyId + ",\'" + item.SurveyQuestion + "\')\">" + item.SurveyQuestion + "</a>")</h3>
+
+
+                            @if (item.StartDate <= DateTime.Now && item.CloseDate >= DateTime.Now)
+                            {
+                                <div class="votingBlock" Id="VoteSection1_@item.SurveyId">
+                                    @foreach (var itemOption in item.SurveyOptions)
+                                    {
+                                        <label class="radio-inline Custom_Radio_Btn">
+                                            <input type="radio" name="UserVote" id="@itemOption.OptionName" value="@itemOption.OptionId"><i></i>
+                                            <span>@itemOption.OptionName</span>
+                                        </label>
+                                    }
+
+                                    <input type="button" value="Vote" class="search-btn" onclick="voteOnSurvey(this,@item.SurveyId,'@item.SurveyQuestion')" />
+                                    <div id="ErrorMessage"></div>
+
+                                </div>
+                            }
+
+                            <div class="votingBlock" Id="VoteSection2_@item.SurveyId">
+                                @{
+                                    long Sum = 0;
+                                    foreach (var itemOption in item.SurveyOptions)
+                                    {
+                                        Sum += itemOption.SurveyOptionCount;
+                                    }
+                                    <p>Number of people responded : <span>@Sum</span></p>
+                                }
+
+                                @foreach (var itemOption in item.SurveyOptions)
+                                {
+                                    <p>@itemOption.OptionName:  <span>@itemOption.SurveyOptionCount.ToString()</span></p>
+                                }
+
+                                <span id="UserVote_@item.SurveyId"></span>
+                            </div>
+
+                            @if (item.StartDate <= DateTime.Now && item.CloseDate >= DateTime.Now)
+                            {
+                                <div class="UserRatingInput" id="UserRating_@item.SurveyId">
+                                    <span class="span-txt">Your Rating</span>
+                                    <div class="rating rating3">
+                                        <div class="stars">
+                                            <form>
+                                                <input class="star star-5" id="UserRating-5" type="radio" name="star" />
+                                                <label class="star star-5" for="UserRating-5" id="5"></label>
+                                                <input class="star star-4" id="UserRating-4" type="radio" name="star" />
+                                                <label class="star star-4" for="UserRating-4" id="4"></label>
+                                                <input class="star star-3" id="UserRating-3" type="radio" name="star" />
+                                                <label class="star star-3" for="UserRating-3" id="3"></label>
+                                                <input class="star star-2" id="UserRating-2" type="radio" name="star" />
+                                                <label class="star star-2" for="UserRating-2" id="2"></label>
+                                                <input class="star star-1" id="UserRating-1" type="radio" name="star" />
+                                                <label class="star star-1" for="UserRating-1" id="1"></label>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <label class="Vote_timeperiod">Survey: From <span>@item.StartDate.Value.ToString("dd-MMM-yyyy")</span> To <span>@item.CloseDate.Value.ToString("dd-MMM-yyyy")</span></label>
+
+                        </div>
+                    </div>
+                </div>
+                                    }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts{
+
+    <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+
+}

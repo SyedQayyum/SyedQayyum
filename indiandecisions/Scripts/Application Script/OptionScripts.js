@@ -10,11 +10,9 @@ $(document).ready(function () {
 
 
     $('.EditOption').click(function () {
-        debugger;
         $('#AddOption').val("Update Option");
         var optionId = $($(this).parents('tr').find('td')[0]).text();
         $.getJSON("../Option/GetOption?OptionId=" + optionId, function (option) {
-            debugger;
             $('#OptionName').val(option.OptionName);
             $('#OptionId').val(option.OptionId);
 

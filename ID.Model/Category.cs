@@ -10,5 +10,6 @@ namespace ID.Model
         public Int16 CategoryId { get; set; }
         public string CategoryName { get; set; }
         public Int16 ParentCategory { get; set; }
+        public int CategoryOrder { get; set; }
     }
 }

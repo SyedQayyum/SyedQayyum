@@ -71,6 +71,11 @@ namespace ID.Biz.Implementation
             return _surveyDataManager.RatingOnSurvey(surveyId, Rating);
         }
 
+        public bool SetSurveyActiveStatus(long SurveyId, bool ActiveAtatus)
+        {
+            return _surveyDataManager.SetSurveyActiveStatus(SurveyId, ActiveAtatus);
+        }
+
         public bool VoteOnSurvey(long surveyId, long OptionId)
         {
             return _surveyDataManager.VoteOnSurvey(surveyId, OptionId);

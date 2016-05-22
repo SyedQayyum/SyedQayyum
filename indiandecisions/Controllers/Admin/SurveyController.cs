@@ -2,6 +2,9 @@
 using ID.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -35,7 +38,7 @@ namespace indiandecisions.Controllers
         [Route("survey/{CategoryId}/get-survey/{categoryName}")]
         public ActionResult SurveyByCategory(int? page, int CategoryId, String CategoryName)
         {
-            List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, CategoryId, null, null);
+            List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, CategoryId, null, true);
 
             var pager = new Pager(objSurveyList.Count(), page);
 
@@ -46,6 +49,7 @@ namespace indiandecisions.Controllers
             };
             ViewBag.Heading = CategoryName;
             ViewBag.PageTitle = CategoryName;
+            ViewBag.Link = "survey/" + CategoryId + "/get-survey/" + CategoryName + "?page=";
             return View("../User/home/index", viewModel);
         }
 
@@ -98,6 +102,15 @@ namespace indiandecisions.Controllers
                     extension = Path.GetExtension(file.FileName);
                     path = Path.Combine(Server.MapPath("~/SurveyImages"), "Survey_" + (SurveyId + 1) + extension);
                     file.SaveAs(path);
+
+                    Image imgOriginal = Image.FromFile(path);
+
+                    //pass in whatever value you want
+                    Image imgActual = Scale(imgOriginal);
+                    imgOriginal.Dispose();
+                    imgActual.Save(path);
+                    imgActual.Dispose();
+
                     Survey.PicturePath = "../SurveyImages/Survey_" + (SurveyId + 1) + extension;
                 }
 
@@ -123,10 +136,10 @@ namespace indiandecisions.Controllers
 
         private void SetCategoryDropDown()
         {
-            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null, true);
+            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null, null).OrderBy(x=>x.CategoryOrder).ToList();
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
 
-            List<OptionVO> objOptionList = _optionBizManager.GetAllOption(null, true);
+            List<OptionVO> objOptionList = _optionBizManager.GetAllOption(null, null);
             ViewBag.OptionDll = objOptionList.Select(x => new SelectListItem { Text = x.OptionName, Value = x.OptionId.ToString() }).ToList();
         }
 
@@ -153,9 +166,9 @@ namespace indiandecisions.Controllers
 
 
         [Route("survey/{surveyId}/survey-details/{suveryQs}")]
-        public ActionResult SurveyDetails(long surveyId,string suveryQs)
+        public ActionResult SurveyDetails(long surveyId, string suveryQs)
         {
-            ViewBag.PageTitle = suveryQs.Replace('-',' ');
+            ViewBag.PageTitle = suveryQs.Replace('-', ' ');
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(surveyId, null, null, null);
             JavaScriptSerializer jss = new JavaScriptSerializer();
             ViewBag.JsonResult = jss.Serialize(GetResultJson(objSurveyList.SingleOrDefault()));
@@ -198,6 +211,63 @@ namespace indiandecisions.Controllers
             Boolean IsRated = _surveyBizManager.RatingOnSurvey(SurveyId, Rating);
             return Json(IsRated, JsonRequestBehavior.AllowGet);
         }
+
+        private Image Scale(Image imgPhoto)
+        {
+            float Width = 325;
+            float Height = 240;
+            float sourceWidth = imgPhoto.Width;
+            float sourceHeight = imgPhoto.Height;
+            float destHeight = 0;
+            float destWidth = 0;
+            int sourceX = 0;
+            int sourceY = 0;
+            int destX = 0;
+            int destY = 0;
+
+            // force resize, might distort image
+            if (Width != 0 && Height != 0)
+            {
+                destWidth = Width;
+                destHeight = Height;
+            }
+            // change size proportially depending on width or height
+            else if (Height != 0)
+            {
+                destWidth = (float)(Height * sourceWidth) / sourceHeight;
+                destHeight = Height;
+            }
+            else
+            {
+                destWidth = Width;
+                destHeight = (float)(sourceHeight * Width / sourceWidth);
+            }
+
+            Bitmap bmPhoto = new Bitmap((int)destWidth, (int)destHeight,
+                                        PixelFormat.Format32bppPArgb);
+            bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
+
+            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            grPhoto.DrawImage(imgPhoto,
+                new Rectangle(destX, destY, (int)destWidth, (int)destHeight),
+                new Rectangle(sourceX, sourceY, (int)sourceWidth, (int)sourceHeight),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+
+            return bmPhoto;
+        }
+
+
+        public ActionResult SetSurveyActiveStatus(long SurveyId, bool ActiveStatus)
+        {
+            bool IsDone = _surveyBizManager.SetSurveyActiveStatus(SurveyId, ActiveStatus);
+            return Json(IsDone, JsonRequestBehavior.AllowGet);
+        }
+
+
 
     }
 }

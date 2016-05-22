@@ -23,7 +23,7 @@ namespace indiandecisions.Controllers
         [Authorize]
         public ActionResult Index(int? page)
         {
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,null);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,null).OrderBy(x=>x.CategoryOrder).ToList();
 
             var pager = new Pager(objCategoryList.Count(), page);
 
@@ -49,7 +49,7 @@ namespace indiandecisions.Controllers
 
         public JsonResult GetCategory(int? CategoryId)
         {
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(CategoryId,true);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(CategoryId,null);
             return Json(objCategoryList.FirstOrDefault(), JsonRequestBehavior.AllowGet);
 
         }
@@ -57,7 +57,7 @@ namespace indiandecisions.Controllers
 
         public ActionResult GetAllCategories()
         {
-            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,true);
+            List<CategoryVO> objCategoryList = _CategoryBizManager.GetAllCategory(null,true).OrderBy(x => x.CategoryOrder).ToList();
             return Json(objCategoryList, JsonRequestBehavior.AllowGet);
 
         }

@@ -22,6 +22,12 @@
             <div class="col-lg-4">
                 @Html.DropDownList("ParentCategory", (IEnumerable<SelectListItem>)ViewBag.CategoryDll, "-- Select Parent Category --", new { @class = "form-control" })
             </div>
+            <div class="col-lg-4">
+                @Html.TextBox("CategoryOrder", "", new { @class = "form-control", @placeholder = "Category Order" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-lg-2">
                 <input type="submit" class="btn btn-info" id="AddCategory" value="Add Category">
             </div>
@@ -37,6 +43,7 @@
             <th>Id</th>
             <th>Category</th>
             <th>Parent Category</th>
+            <th>Order</th>
             <th>Action</th>
             <th>Active</th>
         </tr>
@@ -48,6 +55,7 @@
                 <td>@Html.DisplayFor(modelItem => model.CategoryId)</td>
                 <td>@Html.DisplayFor(modelItem => model.CategoryName)</td>
                 <td>@Html.DisplayFor(modelItem => model.ParentCategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => model.CategoryOrder)</td>
                 <td>
                     <a href="javascript:void(0);" class="EditCategory">Edit</a> | <a href="javascript:void(0);" class="DeleteCategory">Delete</a>
                 </td>
@@ -94,12 +102,12 @@
 }
 
 
-    @{
-        Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Category");
-    }
+@{
+    Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Category");
+}
 
-    @section Scripts{
-        <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
-    }
+@section Scripts{
+    <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
+}
 
 

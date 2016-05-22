@@ -1,0 +1,127 @@
+﻿<!Doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@ViewBag.PageTitle</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/IndianDecision.ico">
+    <meta name="keywords" content="Indian Decisions" />
+    <meta name="description" content="Engineering solutions" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/custom-style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/font-awesome.min.css" />
+    @RenderSection("styles", false)
+    <script src="~/Scripts/jquery-1.11.3.js" type="text/javascript"></script>
+    <script src="~/Scripts/knockout-3.3.0.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/local-cache.js" type="text/javascript"></script>
+
+    @RenderSection("scripts", false)
+
+    <script src="~/Scripts/Application Script/CategoryScripts.js"></script>
+    <!-- Top Scrolling -->
+    <script type="text/javascript" src="~/Scripts/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/easing.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#sidebar').affix({
+                offset: {
+                    top: 75
+                }
+            });
+
+            /* activate scrollspy menu */
+            var $body = $(document.body);
+            var navHeight = $('header').outerHeight(true) + 10;
+
+            $body.scrollspy({
+                target: '#leftCol',
+                offset: navHeight
+            });
+
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="wrap">
+                <div class="logo">
+                    <a href="~/preview/index"><img src="~/Images/logo.png" title="Indian Decisions" alt="" /></a>
+                </div>
+                <div class="social-media">
+                    <ul class="subscribe">
+                        <li><a href="https://www.facebook.com/IndianDecision.in" target="_blank" title="Facebook" class="facebook"> </a></li>
+                        <li><a href="https://twitter.com/IndianDecision" target="_blank" title="Twitter" class="twitter"> </a></li>
+                        <li><a href="#" target="_blank" title="Linkedin" class="linkedIN"> </a></li>
+                        <li><a href="#" target="_blank" title="Blogs" class="Blogs"> </a></li>
+                    </ul>
+                </div>
+                @*<input type="button" value="Suggest Survey to Us" class="search-btn" onclick="window.location.href = '../home/suggest-survey-to-us';" />*@
+                <div class="clear"></div>
+            </div>
+        </div>
+    </header><!-- /header -->
+    <div class="main">
+        <div class="wrap">
+            <div class="main-top">
+                <div class="sidebar-left" id="leftCol">
+                    <div id="sidebar">
+                        <div class="sidebar-heading">
+                            <h3>Categories</h3>
+                            <h3 class="ResponsiveHeading"><a class="collapsed" data-toggle="collapse" href="#Categories_List">Categories</a></h3>
+                        </div>
+
+                        <div class="u-vmenu collapse" id="Categories_List">
+                            <ul id="Categories"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="content-desc">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="sidebar-right">
+                    <div class="ad-placeholder">
+                    </div>
+                    <div class="ad-placeholder" style="margin-top:10px;">
+                    </div>
+                    <div class="ad-placeholder" style="margin-top:10px;">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div> <!-- End Main -->
+    <div class="copy-right">
+        <div class="wrap">
+            <div class="row">
+                <div class="col-sm-5">
+                    <p>© Copyright 2016. All Rights Reserved.</p>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="copy-right-links">
+                        <ul>
+                            <li><a href="~/home/about-us">About us</a></li>
+                            <li><a href="~/home/contact-us">Contact us</a></li>
+                            <li><a href="~/home/advertise-with-us">Advertise with Us</a></li>
+                            <li><a href="~/home/privacy-policy">Privacy Policies</a></li>
+                            <li><a href="~/home/terms-of-use">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Copy Right -->
+    <a href="#" id="toTop"> </a>
+    <!-- Scripts -->
+
+</body>
+</html>

@@ -32,7 +32,7 @@ namespace indiandecisions.Controllers.User
         {
             ViewBag.PageTitle = "Indian Decision | Home";
 
-            List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, null);
+            List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, true);
 
             var pager = new Pager(objSurveyList.Count(), page);
 
@@ -43,6 +43,7 @@ namespace indiandecisions.Controllers.User
             };
 
             ViewBag.Heading = "Latest Survey";
+            ViewBag.Link = "home/index?page=";
             return View("../user/home/index", viewModel);
         }
 
@@ -233,5 +234,6 @@ namespace indiandecisions.Controllers.User
 
             return img;
         }
+
     }
 }

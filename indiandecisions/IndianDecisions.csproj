@@ -184,6 +184,7 @@
     <Compile Include="Controllers\Admin\CategoryController.cs" />
     <Compile Include="Controllers\Admin\DashboardController.cs" />
     <Compile Include="Controllers\Admin\OptionController.cs" />
+    <Compile Include="Controllers\Admin\PreviewController.cs" />
     <Compile Include="Controllers\Admin\SurveyController.cs" />
     <Compile Include="Controllers\Admin\UserController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
@@ -224,6 +225,8 @@
     <Content Include="Views\User\Home\AboutUs.cshtml" />
     <Content Include="Views\User\Home\PrivacyPolicy.cshtml" />
     <Content Include="Views\User\Home\TermsOfUse.cshtml" />
+    <Content Include="Views\Shared\_PreviewLayout.cshtml" />
+    <Content Include="Views\Admin\Preview\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

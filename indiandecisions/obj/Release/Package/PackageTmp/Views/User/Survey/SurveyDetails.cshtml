@@ -16,14 +16,14 @@
     <div class="row">
         <div class="col-xs-12 col-md-5">
             <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
-             <div class="rating rating2">
-                                <span>Avg. Rating :</span>
-                                <span class="star_rating_small">
-                                    <span class="star star-red star-xl">
-                                        @Html.Raw("<span style=\"width:" + Model.Rating / 5 * 100 + "%\"</span>")
-                                    </span>
-                                </span>
-                            </div>
+            <div class="rating rating2">
+                <span>Avg. Rating :</span>
+                <span class="star_rating_small">
+                    <span class="star star-red star-xl">
+                        @Html.Raw("<span style=\"width:" + Model.Rating / 5 * 100 + "%\"</span>")
+                    </span>
+                </span>
+            </div>
         </div>
         <div class="col-xs-12 col-md-7">
             @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })

@@ -16,5 +16,6 @@ namespace ID.DAL.Contract
         bool VoteOnSurvey(long surveyId, long OptionId);
         bool IsValidUser(string userName, string password);
         bool RatingOnSurvey(long surveyId, short rating);
+        bool SetSurveyActiveStatus(long surveyId, bool activeAtatus);
     }
 }

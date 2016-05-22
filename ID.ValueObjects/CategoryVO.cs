@@ -13,6 +13,7 @@ namespace ID.ValueObjects
         public String CategoryName { get; set; }
         public Int16 ParentCategory { get; set; }
         public String ParentCategoryName { get; set; }
+        public int CategoryOrder { get; set; }
        
     }
 

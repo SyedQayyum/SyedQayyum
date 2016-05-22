@@ -9,8 +9,14 @@
 
 <h2>Survey</h2>
 <hr />
-
-@Html.ActionLink("Add Survey","create","survey", new { @class="btn btn-info"})
+<div class="row">
+    <div class="col-lg-2">
+        @Html.ActionLink("Add Survey", "create", "survey", new { @class = "btn btn-info" })
+    </div>
+    <div class="col-lg-2">
+        @Html.ActionLink("Preview", "index", "preview","", new { @class = "btn btn-info" })
+    </div>
+</div>
 <br />
 <br />
 
@@ -25,6 +31,7 @@
             <th>Close Date</th>
             <th>Expire Date</th>
             <th>Action</th>
+            <th>Is Active</th>
         </tr>
     </thead>
     <tbody>
@@ -32,14 +39,17 @@
         {
             <tr class="info">
                 <td>@Html.DisplayFor(modelItem => model.SurveyId)</td>
-                <td >@Html.DisplayFor(modelItem => model.ShortSurveyQuestion, new { @title= @model.SurveyQuestion })</td>
+                <td>@Html.DisplayFor(modelItem => model.ShortSurveyQuestion, new { @title = @model.SurveyQuestion })</td>
                 <td>@Html.DisplayFor(modelItem => model.CategoryName)</td>
-                <td><input type="image" src = '@Url.Content(model.PicturePath)' height="50" width="50"/></td>
+                <td><input type="image" src='@Url.Content(model.PicturePath)' height="50" width="50" /></td>
                 <td>@Html.DisplayFor(modelItem => model.StartDate)</td>
                 <td>@Html.DisplayFor(modelItem => model.CloseDate)</td>
                 <td>@Html.DisplayFor(modelItem => model.ExpireDate)</td>
                 <td>
                     <a href="javascript:void(0);" class="EditSurvey">Edit</a> | <a href="javascript:void(0);" class="DeleteSurvey">Delete</a>
+                </td>
+                <td>
+                    @Html.CheckBoxFor(modelItem => model.IsActive, new { @class = "active-toggle SurveyActive" })
                 </td>
             </tr>
         }
@@ -54,6 +64,6 @@
 
 
 @section Scripts{
-   <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+    <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
 
 }

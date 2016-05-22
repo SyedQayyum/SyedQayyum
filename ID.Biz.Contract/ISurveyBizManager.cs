@@ -17,5 +17,6 @@ namespace ID.Biz.Contract
         Boolean VoteOnSurvey(long surveyId, long OptionId);
         Boolean RatingOnSurvey(long surveyId, Int16 Rating);
         bool IsValidUser(string userName, string password);
+        bool SetSurveyActiveStatus(long surveyId, bool activeStatus);
     }
 }

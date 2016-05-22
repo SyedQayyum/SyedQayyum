@@ -18,6 +18,7 @@ $(document).ready(function () {
             $('#CategoryName').val(category.CategoryName);
             $('#ParentCategory').val(category.ParentCategory == 0 ? "" : category.ParentCategory);
             $('#CategoryId').val(category.CategoryId);
+            $('#CategoryOrder').val(category.CategoryOrder);
 
         });
 

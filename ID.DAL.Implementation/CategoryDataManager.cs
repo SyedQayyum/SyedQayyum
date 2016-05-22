@@ -40,6 +40,7 @@ namespace ID.DAL.Implementation
                         CategoryId = Convert.ToInt16(rdCategories["categoryId"].ToString()),
                         CategoryName = rdCategories["categoryName"].ToString(),
                         ParentCategory = rdCategories["parentCategory"] != DBNull.Value ? Convert.ToInt16(rdCategories["parentCategory"].ToString()) : (short)0,
+                        CategoryOrder = Convert.ToInt16(rdCategories["order"].ToString()),
                         IsActive = Convert.ToBoolean(rdCategories["isActive"].ToString())
 
                     });
@@ -67,6 +68,7 @@ namespace ID.DAL.Implementation
                    new SqlParameter("@categoryId",category.CategoryId),
                    new SqlParameter("@categoryName",category.CategoryName),
                    new SqlParameter("@parentCategory",category.ParentCategory),
+                   new SqlParameter("@order",category.CategoryOrder),
                    new SqlParameter("@createdBy",category.CreatedBy),
                    new SqlParameter("@isActive",category.IsActive)
             };

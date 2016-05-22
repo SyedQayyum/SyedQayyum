@@ -35,6 +35,17 @@ $(document).ready(function () {
         })
     })
 
+    $('.SurveyActive').change(function () {
+
+        debugger;
+
+        var SurveyId = $($(this).parents('tr').find('td')[0]).text();
+        var activeStatus = $(this).prop('checked');
+        $.getJSON("../../../Survey/SetSurveyActiveStatus?SurveyId=" + SurveyId + "&ActiveStatus=" + activeStatus, function (isDone) {
+
+        });
+    });
+
 
 });
 
@@ -83,6 +94,8 @@ function viewSurveyDetials(surveyId, surveyQs) {
 
 
 function voteOnSurvey(button, surveyId, surveyQs) {
+
+    debugger;
 
     var OptionId = $(button).parent("div").find("input[type='radio']:checked").val();
     var OptionName = $(button).parent("div").find("input[type='radio']:checked").attr("id");

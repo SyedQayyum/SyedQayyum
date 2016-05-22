@@ -223,6 +223,36 @@ namespace ID.DAL.Implementation
             return IsRated;
         }
 
+        public bool SetSurveyActiveStatus(long SurveyId, bool ActiveStatus)
+        {
+            bool IsUpdated = false;
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Option> objOptionList = new List<Option>();
+            int ReturnValue = 1;
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@surveyId",SurveyId),
+                   new SqlParameter("@activeStatus",ActiveStatus)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            int RowAffected = SqlHelper.ExecuteNonQuery(con, CommandType.StoredProcedure, "USP_SetSurveyActiveStatus", Params);
+
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return false;
+            }
+            if (RowAffected > 0)
+            {
+                IsUpdated = true;
+            }
+
+            return IsUpdated;
+        }
+
         public bool VoteOnSurvey(long SurveyId, long SurveyOptionId)
         {
             bool IsVoted = false;
