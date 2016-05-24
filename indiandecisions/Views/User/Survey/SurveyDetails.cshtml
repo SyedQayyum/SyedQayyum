@@ -14,7 +14,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-md-5">
+        <div class="col-xs-12 col-md-6">
             <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
             <div class="rating rating2">
                 <span>Avg. Rating :</span>
@@ -25,18 +25,18 @@
                 </span>
             </div>
         </div>
-        <div class="col-xs-12 col-md-7">
+        <div class="col-xs-12 col-md-6">
             @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })
             @foreach (var option in Model.SurveyOptions)
             {
                 @Html.Hidden(option.OptionId.ToString())
             }
 
-            @if (Model.StartDate <= DateTime.Now && Model.CloseDate >= DateTime.Now)
+            @if (Model.StartDate <= DateTime.Now && Model.CloseDate >= DateTime.Now && !Model.IsVoted)
             {
                 <div class="voting" id="VoteSection1_@Model.SurveyId">
                     @foreach (var itemOption in Model.SurveyOptions)
-                {
+                    {
                         <label class="radio-inline Custom_Radio_Btn">
                             <input type="radio" name="UserVote" id="@itemOption.OptionName" value="@itemOption.Id"><i></i>
                             <span>@itemOption.OptionName</span>
@@ -46,12 +46,15 @@
                     <div id="ErrorMessage" class="voting"></div>
                 </div>
             }
+            else
+            {
 
-            <div Id="VoteSection2_@Model.SurveyId">
-                <div class="College-logo-desc">
-                    <div id="container" style="height: 200px; max-width: 350px; margin: 0 auto"></div>
+                <div Id="VoteSection2_@Model.SurveyId">
+                    <div class="College-logo-desc">
+                        <div id="container" style="height: 200px; max-width: 350px; margin: 0 auto"></div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
 
         <div class="fb-comments" id="FBComment" data-numposts="5" width="100%"></div>
@@ -104,12 +107,9 @@
                         allowPointSelect: true,
                         cursor: 'pointer',
                         dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
-                        }
+                            enabled: false
+                        },
+                        showInLegend: true
                     }
                 },
                 series: [{

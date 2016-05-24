@@ -166,7 +166,6 @@
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Scripts\loader.js" />
-    <Content Include="Scripts\local-cache.js" />
     <Content Include="Scripts\move-top.js" />
     <Content Include="Styles\admin-section.css" />
     <Content Include="Styles\bootstrap-toggle.min.css" />
@@ -187,6 +186,7 @@
     <Compile Include="Controllers\Admin\PreviewController.cs" />
     <Compile Include="Controllers\Admin\SurveyController.cs" />
     <Compile Include="Controllers\Admin\UserController.cs" />
+    <Compile Include="Controllers\Shared\BaseController.cs" />
     <Compile Include="Controllers\User\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,8 +236,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\Shared\" />
     <Folder Include="SurveyImages\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.Common\Core.Common.csproj">

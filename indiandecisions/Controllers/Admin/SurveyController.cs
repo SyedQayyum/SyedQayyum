@@ -14,7 +14,7 @@ using System.Web.Script.Serialization;
 
 namespace indiandecisions.Controllers
 {
-    public class SurveyController : Controller
+    public class SurveyController : BaseController
     {
         protected readonly ICategoryBizManager _categoryBizManager;
         protected readonly ISurveyBizManager _surveyBizManager;
@@ -39,6 +39,20 @@ namespace indiandecisions.Controllers
         public ActionResult SurveyByCategory(int? page, int CategoryId, String CategoryName)
         {
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, CategoryId, null, true);
+
+            foreach (SurveyVO ObjSurvey in objSurveyList)
+            {
+                if (CheckCookie("Voted_" + ObjSurvey.SurveyId))
+                {
+                    ObjSurvey.IsVoted = true;
+                    ObjSurvey.VoteValue = GetCookie("Voted_" + ObjSurvey.SurveyId);
+                }
+                if (CheckCookie("Rated_" + ObjSurvey.SurveyId))
+                {
+                    ObjSurvey.IsRated = true;
+                    ObjSurvey.RateValue = GetCookie("Rated_" + ObjSurvey.SurveyId);
+                }
+            }
 
             var pager = new Pager(objSurveyList.Count(), page);
 
@@ -136,7 +150,7 @@ namespace indiandecisions.Controllers
 
         private void SetCategoryDropDown()
         {
-            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null, null).OrderBy(x=>x.CategoryOrder).ToList();
+            List<CategoryVO> objCategoryList = _categoryBizManager.GetAllCategory(null, null).OrderBy(x => x.CategoryOrder).ToList();
             ViewBag.CategoryDll = objCategoryList.Select(x => new SelectListItem { Text = x.CategoryName, Value = x.CategoryId.ToString() }).ToList();
 
             List<OptionVO> objOptionList = _optionBizManager.GetAllOption(null, null);
@@ -172,13 +186,20 @@ namespace indiandecisions.Controllers
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(surveyId, null, null, null);
             JavaScriptSerializer jss = new JavaScriptSerializer();
             ViewBag.JsonResult = jss.Serialize(GetResultJson(objSurveyList.SingleOrDefault()));
-            return View("../user/survey/Surveydetails", objSurveyList.SingleOrDefault());
+            SurveyVO ObjSurvey = objSurveyList.SingleOrDefault();
+            ObjSurvey.IsVoted = CheckCookie("Voted_" + surveyId);
+            return View("../user/survey/Surveydetails", ObjSurvey);
         }
 
 
-        public ActionResult VoteOnSurvey(long SurveyId, long OptionId)
+        public ActionResult VoteOnSurvey(long SurveyId, long OptionId, String OptionValue)
         {
             Boolean IsVoted = _surveyBizManager.VoteOnSurvey(SurveyId, OptionId);
+            if (IsVoted)
+            {
+                SetCookie("Voted_" + SurveyId, OptionValue, 8);
+            }
+
             return Json(IsVoted, JsonRequestBehavior.AllowGet);
         }
 
@@ -209,6 +230,10 @@ namespace indiandecisions.Controllers
         public ActionResult RatingOnSurvey(long SurveyId, Int16 Rating)
         {
             Boolean IsRated = _surveyBizManager.RatingOnSurvey(SurveyId, Rating);
+            if (IsRated)
+            {
+                SetCookie("Rated_" + SurveyId, Rating.ToString(), 8);
+            }
             return Json(IsRated, JsonRequestBehavior.AllowGet);
         }
 

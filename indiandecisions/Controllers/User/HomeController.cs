@@ -14,7 +14,7 @@ using System.Web.Security;
 
 namespace indiandecisions.Controllers.User
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         protected readonly ISurveyBizManager _surveyBizManager;
         protected readonly IEmailBizManager _emailBizManager;
@@ -33,6 +33,19 @@ namespace indiandecisions.Controllers.User
             ViewBag.PageTitle = "Indian Decision | Home";
 
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, true);
+            foreach (SurveyVO ObjSurvey in objSurveyList)
+            {
+                if (CheckCookie("Voted_" + ObjSurvey.SurveyId))
+                {
+                    ObjSurvey.IsVoted = true;
+                    ObjSurvey.VoteValue = GetCookie("Voted_" + ObjSurvey.SurveyId);
+                }
+                if (CheckCookie("Rated_" + ObjSurvey.SurveyId))
+                {
+                    ObjSurvey.IsRated = true;
+                    ObjSurvey.RateValue= GetCookie("Rated_" + ObjSurvey.SurveyId);
+                }
+            }
 
             var pager = new Pager(objSurveyList.Count(), page);
 
@@ -234,6 +247,7 @@ namespace indiandecisions.Controllers.User
 
             return img;
         }
+
 
     }
 }

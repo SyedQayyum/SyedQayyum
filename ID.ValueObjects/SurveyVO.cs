@@ -26,7 +26,12 @@ namespace ID.ValueObjects
         public DateTime? CloseDate { get; set; }
         public DateTime? ExpireDate { get; set; }
         public Decimal Rating { get; set; }
+        public bool IsVoted { get; set; }
+        public String VoteValue{ get; set; }
+        public bool IsRated { get; set; }
+        public String RateValue { get; set; }
         public List<SurveyOptionVO> SurveyOptions { get; set; }
+    
 
     }
 
