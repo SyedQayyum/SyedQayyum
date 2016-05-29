@@ -2,12 +2,26 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+    Layout = "~/Views/Shared/_SurveyDetailsLayout.cshtml";
 }
 
-
+<style>
+    ._5lm5 _2pi3 _3-8y {
+        display: none;
+    }
+</style>
 
 <div id="surveyInfo">
+    <ul class="social-share">
+    <li>
+    <div class="fb-like" data-href="@Request.Url.AbsoluteUri" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        @*<div class="fb-like" data-href="@Request.Url/survey/@item.SurveyId/survey-details/@item.SurveyQuestion.Replace(' ','-')/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>*@
+   </li>
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="IndianDecision">Tweet</a>
+   </li>
+   </ul>
+    <hr />
 
     <div class="College-logo-desc serveyDetails">
         <h3>@Html.ActionLink(Model.SurveyQuestion + " ?", "", "")</h3>
@@ -23,6 +37,7 @@
                         @Html.Raw("<span style=\"width:" + Model.Rating / 5 * 100 + "%\"</span>")
                     </span>
                 </span>
+                <span>( from @Model.RatingCount ratings )</span>
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
@@ -51,7 +66,7 @@
 
                 <div Id="VoteSection2_@Model.SurveyId">
                     <div class="College-logo-desc">
-                        <div id="container" style="height: 200px; max-width: 350px; margin: 0 auto"></div>
+                        <div id="container" style="height: 350px; max-width: 500px; margin: 0 auto"></div>
                     </div>
                 </div>
             }
@@ -124,4 +139,25 @@
 
     <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
 
+    <script>
+        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
+    </script>
+
 }
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '248291355539446',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>

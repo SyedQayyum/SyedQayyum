@@ -30,7 +30,7 @@ namespace indiandecisions.Controllers.User
         // GET: Home
         public ActionResult Index(int? page)
         {
-            ViewBag.PageTitle = "Indian Decision | Home";
+            ViewBag.PageTitle = "Home | Indian Decision";
 
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, true);
             foreach (SurveyVO ObjSurvey in objSurveyList)
@@ -64,14 +64,14 @@ namespace indiandecisions.Controllers.User
         [ActionName("page-not-found")]
         public ActionResult PageNotFound()
         {
-            ViewBag.PageTitle = "Indian Decision | Page Not Found";
+            ViewBag.PageTitle = "Page Not Found | Indian Decision";
             return View("../user/home/PageNotFound");
         }
 
         [ActionName("contact-us")]
         public ActionResult ContactUs()
         {
-            ViewBag.PageTitle = "Indian Decision | Contact Us";
+            ViewBag.PageTitle = "Contact Us | Indian Decision";
             EmailVO ContactUs = new EmailVO();
             ContactUs.ContactFor = ID.Common.ContactForEnum.General;
             ViewBag.PageHeading = "Contact Us";
@@ -88,15 +88,15 @@ namespace indiandecisions.Controllers.User
                 {
                     case ContactForEnum.General:
 
-                        ViewBag.PageTitle = "Indian Decision | Contact Us";
+                        ViewBag.PageTitle = "Contact Us | Indian Decision";
                         ViewBag.PageHeading = "Contact Us";
                         break;
                     case ContactForEnum.Adverstisement:
-                        ViewBag.PageTitle = "Indian Decision | Advertise With Us";
+                        ViewBag.PageTitle = "Advertise With Us | Indian Decision";
                         ViewBag.PageHeading = "Advertise With Us";
                         break;
                     case ContactForEnum.SurveyRequest:
-                        ViewBag.PageTitle = "Indian Decision | Suggest Survey To Us";
+                        ViewBag.PageTitle = "Suggest Survey To Us | Indian Decision";
                         ViewBag.PageHeading = "Suggest Survey To Us";
                         break;
                 }
@@ -113,7 +113,7 @@ namespace indiandecisions.Controllers.User
         [ActionName("suggest-survey-to-us")]
         public ActionResult SuggestSurvey()
         {
-            ViewBag.PageTitle = "Indian Decision | Suggest Survey To Us";
+            ViewBag.PageTitle = "Suggest Survey To Us | Indian Decision";
             EmailVO SurveyReq = new EmailVO();
             SurveyReq.ContactFor = ID.Common.ContactForEnum.SurveyRequest;
             ViewBag.PageHeading = "Suggest Survey To Us";
@@ -123,7 +123,7 @@ namespace indiandecisions.Controllers.User
         [ActionName("advertise-with-us")]
         public ActionResult AdvertiseWithUs()
         {
-            ViewBag.PageTitle = "Indian Decision | Advertise With Us";
+            ViewBag.PageTitle = "Advertise With Us | Indian Decision";
             EmailVO AdvertiseReq = new EmailVO();
             AdvertiseReq.ContactFor = ID.Common.ContactForEnum.Adverstisement;
             ViewBag.PageHeading = "Advertise With Us";
@@ -134,21 +134,21 @@ namespace indiandecisions.Controllers.User
         [ActionName("about-us")]
         public ActionResult AboutUs()
         {
-            ViewBag.PageTitle = "Indian Decision | About Us";
+            ViewBag.PageTitle = "About Us | Indian Decision";
             return View("../user/home/AboutUs");
         }
 
         [ActionName("privacy-policy")]
         public ActionResult PrivacyPolicy()
         {
-            ViewBag.PageTitle = "Indian Decision | Privacy Policy";
+            ViewBag.PageTitle = "Privacy Policy | Indian Decision";
             return View("../user/home/PrivacyPolicy");
         }
 
         [ActionName("terms-of-use")]
         public ActionResult TermsOfUse()
         {
-            ViewBag.PageTitle = "Indian Decision | Terms Of Use";
+            ViewBag.PageTitle = "Terms Of Use | Indian Decision";
             return View("../user/home/TermsOfUse");
         }
 
@@ -156,14 +156,14 @@ namespace indiandecisions.Controllers.User
         [ActionName("send-successfully")]
         public ActionResult SendSuccess()
         {
-            ViewBag.PageTitle = "Indian Decision | Send Successfully";
+            ViewBag.PageTitle = "Send Successfully | Indian Decision";
             return View("../user/home/SendSuccess");
         }
 
         [ActionName("login")]
         public ActionResult Login()
         {
-            ViewBag.PageTitle = "Indian Decision | Login";
+            ViewBag.PageTitle = "Login | Indian Decision";
             return View("../admin/home/Login");
         }
 
@@ -190,7 +190,7 @@ namespace indiandecisions.Controllers.User
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("index", "home");
+            return View();
         }
 
 

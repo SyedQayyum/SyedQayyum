@@ -7,6 +7,8 @@ namespace ID.Model
 {
     public class Survey : Base
     {
+        
+
         public Int64 SurveyId { get; set; }
         public Int16 CategoryId { get; set; }
         public String CategoryName { get; set; }
@@ -16,6 +18,7 @@ namespace ID.Model
         public DateTime? CloseDate { get; set; }
         public DateTime? ExpireDate { get; set; }
         public Decimal Rating { get; set; }
+        public Int32 RatingCount { get; set; }
 
         public long PositiveCount { get; set; }
         public long NegativeCount { get; set; }

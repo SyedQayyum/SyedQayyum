@@ -10,7 +10,7 @@
     }
 </style>
 
-<div class="row row2">
+<div class="row row2 marginTop-35px">
     <div class="col-md-6">
 
         <div class="contact-form">
@@ -23,7 +23,7 @@
             @using (Html.BeginForm("ContactUs", "home", FormMethod.Post, new { @id = "contact" }))
             {
                 @Html.HiddenFor(model => model.ContactFor)
-                <div class="row row2">
+                <div class="row">
                     <div class="col-md-6">
                         <span>
                             @Html.TextBoxFor(model => model.UserName, new { @class = "textbox", @placeholder = "Name" })
@@ -44,7 +44,7 @@
                     </span>
                     @Html.ValidationMessageFor(model => model.Body)
                 </div>
-                <div class="row row2">
+                <div class="row">
                     <div class="col-md-3">
                         <span>
                             <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="height:40px" />

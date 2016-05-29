@@ -110,6 +110,7 @@ namespace ID.DAL.Implementation
                         SurveyQuestion = rdCategories["SurveyQuestion"].ToString(),
                         PicturePath = rdCategories["PicturePath"].ToString(),
                         Rating = Convert.ToDecimal(rdCategories["SurveyRating"].ToString()),
+                        RatingCount = Convert.ToInt32(rdCategories["SurveyRatingCount"].ToString()),
                         CreatedDate =  Convert.ToDateTime(rdCategories["SurveyCreatedDate"].ToString()) ,
                         CloseDate = rdCategories["SurveyCloseDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
                         ExpireDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,

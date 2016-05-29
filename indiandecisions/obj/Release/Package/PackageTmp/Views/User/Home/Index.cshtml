@@ -13,6 +13,7 @@
         <div class="search-colleges">
             @foreach (var item in Model.ListSurvey)
             {
+
                 @Html.Hidden("SurveyId", item.SurveyId, new { @class = "VotesResult" })
                 <div class="search-result-college">
                     <div class="row Vote_section">
@@ -25,11 +26,10 @@
                                         @Html.Raw("<span style=\"width:" + item.Rating / 5 * 100 + "%\"</span>")
                                     </span>
                                 </span>
+                                <span>( from @item.RatingCount ratings )</span>
                             </div>
                             <div class="DetailsBtn">
                                 <span>@Html.Raw("<a href=\"javascript:void(0)\" onclick=\"viewSurveyDetials(" + item.SurveyId + ",\'" + item.SurveyQuestion + "\')\">View Details and Comments</a>")</span>
-
-
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6 College-logo-desc">
@@ -62,7 +62,7 @@
                                         {
                                             Sum += itemOption.SurveyOptionCount;
                                         }
-                                        <p>Number of people responded : <span>@Sum</span></p>
+                                        <p>People Responded : <span>@Sum</span></p>
                                     }
 
                                     @foreach (var itemOption in item.SurveyOptions)
@@ -85,7 +85,7 @@
                             @if (item.StartDate <= DateTime.Now && item.CloseDate >= DateTime.Now && !item.IsRated)
                             {
                                 <div class="UserRatingInput" id="UserRating_@item.SurveyId">
-                                    <span class="span-txt">Your Rating</span>
+                                    <span class="span-txt">Give a Rating</span>
                                     <div class="rating rating3">
                                         <div class="stars">
                                             <form>
@@ -102,6 +102,7 @@
                                             </form>
                                         </div>
                                     </div>
+
                                 </div>
                             }
                             else
@@ -111,7 +112,7 @@
                                         <span>Your Rating :</span>
                                         <span class="star_rating_small">
                                             <span class="star star-red star-xl">
-                                                @Html.Raw("<span style=\"width:" + Convert.ToInt16(item.RateValue)*1.0 / 5 * 100 + "%\"</span>")
+                                                @Html.Raw("<span style=\"width:" + Convert.ToInt16(item.RateValue) * 1.0 / 5 * 100 + "%\"</span>")
                                             </span>
                                         </span>
                                     </div>
@@ -165,9 +166,9 @@
 
 
 
-
 @section Scripts{
 
-    <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
 
+    <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
 }
+
