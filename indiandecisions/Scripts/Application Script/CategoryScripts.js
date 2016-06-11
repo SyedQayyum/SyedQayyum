@@ -1,12 +1,4 @@
-﻿``
-$(document).ready(function () {
-
-
-    $.getJSON("../../../Category/GetAllCategories", function (categories) {
-        for (var i = 0; i < categories.length; i++) {
-            $("#Categories").append('<li><a href="/survey/' + categories[i].CategoryId + '/get-survey/' + categories[i].CategoryName + '">' + categories[i].CategoryName + '</a></li>');
-        }
-    });
+﻿$(document).ready(function () {
 
 
     $('.EditCategory').click(function () {
@@ -38,7 +30,7 @@ $(document).ready(function () {
         var categoryId = $($(this).parents('tr').find('td')[0]).text();
         var activeStatus = $(this).prop('checked');
         $.getJSON("../../../Category/SetCategoryActiveStatus?CategoryId=" + categoryId + "&ActiveStatus=" + activeStatus, function (isDone) {
-            
+
         });
     });
 

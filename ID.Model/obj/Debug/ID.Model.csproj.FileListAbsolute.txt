@@ -7,3 +7,4 @@ E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\bin\Debug\ID.Model.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\bin\Debug\ID.Model.pdb
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\obj\Debug\ID.Model.dll
 E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\obj\Debug\ID.Model.pdb
+E:\Personal Project\Syed Qayyum\SyedQayyum\ID.Model\obj\Debug\ID.Model.csprojResolveAssemblyReference.cache

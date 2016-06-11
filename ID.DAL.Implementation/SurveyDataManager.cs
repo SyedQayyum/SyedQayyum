@@ -111,7 +111,7 @@ namespace ID.DAL.Implementation
                         PicturePath = rdCategories["PicturePath"].ToString(),
                         Rating = Convert.ToDecimal(rdCategories["SurveyRating"].ToString()),
                         RatingCount = Convert.ToInt32(rdCategories["SurveyRatingCount"].ToString()),
-                        CreatedDate =  Convert.ToDateTime(rdCategories["SurveyCreatedDate"].ToString()) ,
+                        CreatedDate = Convert.ToDateTime(rdCategories["SurveyCreatedDate"].ToString()),
                         CloseDate = rdCategories["SurveyCloseDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
                         ExpireDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,
                         IsActive = Convert.ToBoolean(rdCategories["SurveyIsActive"].ToString()),
@@ -156,6 +156,55 @@ namespace ID.DAL.Implementation
             }
 
             return SurveyId;
+        }
+
+        public List<Survey> GetRealtedSurvey(long SurveyId, bool? IsSameCategory)
+        {
+            SqlConnection con = new IDDbContext().GetConnection();
+            List<Survey> objSurveyList = new List<Survey>();
+            int ReturnValue = 1;
+
+            SqlParameter[] Params =
+            {
+                   new SqlParameter("@opReturnValue", SqlDbType.Int),
+                   new SqlParameter("@SurveyId",SurveyId),
+                   IsSameCategory !=null ? new SqlParameter("@IsSameCategory",IsSameCategory):new SqlParameter("@IsSameCategory",null)
+            };
+
+            Params[0].Direction = ParameterDirection.Output;
+            SqlDataReader rdCategories = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetRelatedSurvey", Params);
+
+            while (rdCategories.Read())
+            {
+                objSurveyList.Add(
+
+                    new Survey()
+                    {
+
+                        SurveyId = Convert.ToInt16(rdCategories["SurveyId"].ToString()),
+                        //CategoryId = Convert.ToInt16(rdCategories["CategoryId"].ToString()),
+                        //CategoryName = rdCategories["CategoryName"].ToString(),
+                        SurveyQuestion = rdCategories["SurveyQuestion"].ToString(),
+                        PicturePath = rdCategories["PicturePath"].ToString(),
+                        //Rating = Convert.ToDecimal(rdCategories["SurveyRating"].ToString()),
+                        //RatingCount = Convert.ToInt32(rdCategories["SurveyRatingCount"].ToString()),
+                        //CreatedDate = Convert.ToDateTime(rdCategories["SurveyCreatedDate"].ToString()),
+                        //CloseDate = rdCategories["SurveyCloseDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyCloseDate"].ToString()) : null,
+                        //ExpireDate = rdCategories["SurveyExpireDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyExpireDate"].ToString()) : null,
+                        //IsActive = Convert.ToBoolean(rdCategories["SurveyIsActive"].ToString()),
+                        //StartDate = rdCategories["SurveyStartDate"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(rdCategories["SurveyStartDate"].ToString()) : null,
+                        //CreatedBy = rdCategories["SurveyCreatedBy"].ToString(),
+                    });
+            }
+            rdCategories.Close();
+            //ReturnValue = Convert.ToInt16(rdAdvertisement.Parameters["@EmpName"].Value.Value.ToString()); // Get Return value to check errors in DB
+            con.Close();
+            if (ReturnValue < 0)
+            {
+                return null;
+            }
+
+            return objSurveyList;
         }
 
         public bool IsValidUser(string UserName, string Password)

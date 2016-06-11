@@ -61,6 +61,12 @@ namespace ID.Biz.Implementation
             return _surveyDataManager.GetLastGeneratedSurveyId();
         }
 
+        public List<SurveyVO> GetRealtedSurvey(long SurveyId,bool? IsSameCategory)
+        {
+            List<SurveyVO> objServeyList = Mapper.Map<List<Survey>, List<SurveyVO>>(_surveyDataManager.GetRealtedSurvey(SurveyId, IsSameCategory));
+            return objServeyList;
+        }
+
         public bool IsValidUser(string userName, string password)
         {
             return _surveyDataManager.IsValidUser(userName, password);

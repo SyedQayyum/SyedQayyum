@@ -1,0 +1,9 @@
+﻿<div class="relativeSurvey">
+    <h2>Survey You May Like</h2>
+    <ul>
+        @foreach (var survey in ViewBag.RelatedSurvey)
+        {
+            <li><a href="#" onclick='viewSurveyDetials("@survey.SurveyId","@survey.SurveyQuestion")'> @survey.SurveyQuestion ?</a></li>
+        }
+    </ul>
+</div>

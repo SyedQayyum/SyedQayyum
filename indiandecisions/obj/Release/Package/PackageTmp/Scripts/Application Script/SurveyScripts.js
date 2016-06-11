@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
 
+
     $('.EditSurvey').click(function () {
         var SurveyId = $($(this).parents('tr').find('td')[0]).text();
         window.location.href = "../survey/create?Id=" + SurveyId;
@@ -39,6 +40,7 @@ $(document).ready(function () {
 
 
 function viewSurveyDetials(surveyId, surveyQs) {
+    debugger;
     var surveyQsString = surveyQs.split(' ').join('-');
     window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQsString;
     return false;

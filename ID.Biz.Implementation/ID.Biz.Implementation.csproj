@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CategoryBizManager.cs" />
     <Compile Include="EmailBizManager.cs" />
+    <Compile Include="ManagementBizManager.cs" />
     <Compile Include="OptionBizManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurveyBizManager.cs" />

@@ -2025,8 +2025,9 @@ label.star:before {
 .serveyDetails h3{
     margin-bottom:15px;
 }
-.serveyDetails h3 a{
+.serveyDetails h3 span{
     font-size: 21px;
+    color: #337AB7;
 }
  .Custom_Radio_Btn {
     cursor: pointer;
@@ -2163,13 +2164,14 @@ label.star:before {
 .relativeSurvey{
     background:#FFF;
     margin-bottom:10px;
+    min-width:300px;
 }
 .relativeSurvey h2{
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 5px;
     text-transform: capitalize;
-    background: #337AB7;
+    background: #2E8BAB;
     color:#fff;
     padding: 10px;
 }

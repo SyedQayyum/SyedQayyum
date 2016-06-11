@@ -17,11 +17,13 @@ namespace indiandecisions.Controllers.User
     public class HomeController : BaseController
     {
         protected readonly ISurveyBizManager _surveyBizManager;
+        protected readonly ICategoryBizManager _categoryBizManager;
         protected readonly IEmailBizManager _emailBizManager;
 
-        public HomeController(ISurveyBizManager surveyBizManager, IEmailBizManager emailBizManager)
+        public HomeController(ISurveyBizManager surveyBizManager, ICategoryBizManager categoryBizManager, IEmailBizManager emailBizManager)
         {
             _surveyBizManager = surveyBizManager;
+            _categoryBizManager = categoryBizManager;
             _emailBizManager = emailBizManager;
         }
 
@@ -31,8 +33,19 @@ namespace indiandecisions.Controllers.User
         public ActionResult Index(int? page)
         {
             ViewBag.PageTitle = "Home | Indian Decision";
+            List<CategoryVO> objCategoryList = new List<CategoryVO>();
 
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, null, null, true);
+            if (Session["Categories"] == null)
+            {
+                objCategoryList = _categoryBizManager.GetAllCategory(null, true);
+                Session["Categories"] = objCategoryList;
+            }
+            else
+            {
+                objCategoryList = Session["Categories"] as List<CategoryVO>;
+            }
+
             foreach (SurveyVO ObjSurvey in objSurveyList)
             {
                 if (CheckCookie("Voted_" + ObjSurvey.SurveyId))
@@ -43,7 +56,7 @@ namespace indiandecisions.Controllers.User
                 if (CheckCookie("Rated_" + ObjSurvey.SurveyId))
                 {
                     ObjSurvey.IsRated = true;
-                    ObjSurvey.RateValue= GetCookie("Rated_" + ObjSurvey.SurveyId);
+                    ObjSurvey.RateValue = GetCookie("Rated_" + ObjSurvey.SurveyId);
                 }
             }
 
@@ -57,6 +70,7 @@ namespace indiandecisions.Controllers.User
 
             ViewBag.Heading = "Latest Survey";
             ViewBag.Link = "home/index?page=";
+            ViewBag.SurveyCategory = objCategoryList;
             return View("../user/home/index", viewModel);
         }
 
@@ -190,7 +204,7 @@ namespace indiandecisions.Controllers.User
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return View();
+            return View("../user/home/logout");
         }
 
 

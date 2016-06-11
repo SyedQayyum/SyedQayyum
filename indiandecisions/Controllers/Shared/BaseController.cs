@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace indiandecisions.Controllers
 {
     public class BaseController : Controller
     {
+       
+
+
         protected bool SetCookie(String Name, String Value, int ExpiredAfterDays)
         {
             try
             {
                 HttpCookie StudentCookies = new HttpCookie(Name);
-                StudentCookies.Value = Value;
+                StudentCookies.Value = StringCipher.Encrypt(Value, "SQM");
                 StudentCookies.Expires = DateTime.Now.AddDays(ExpiredAfterDays);
                 Response.Cookies.Add(StudentCookies);
                 return true;
@@ -26,9 +32,8 @@ namespace indiandecisions.Controllers
 
         protected String GetCookie(String Name)
         {
-            return Request.Cookies[Name].Value;
+            return StringCipher.Decrypt(Request.Cookies[Name].Value, "SQM");
         }
-
 
         protected bool CheckCookie(String Name)
         {
@@ -37,5 +42,7 @@ namespace indiandecisions.Controllers
             else
                 return false;
         }
+
+        
     }
 }

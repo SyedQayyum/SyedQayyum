@@ -17,5 +17,6 @@ namespace ID.DAL.Contract
         bool IsValidUser(string userName, string password);
         bool RatingOnSurvey(long surveyId, short rating);
         bool SetSurveyActiveStatus(long surveyId, bool activeAtatus);
+        List<Survey> GetRealtedSurvey(long surveyId, bool? IsSameCategory);
     }
 }

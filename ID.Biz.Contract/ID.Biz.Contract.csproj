@@ -45,6 +45,7 @@
     <Compile Include="IOptionBizManager.cs" />
     <Compile Include="ISurveyBizManager.cs" />
     <Compile Include="IUserBizManager.cs" />
+    <Compile Include="IManagementBizManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

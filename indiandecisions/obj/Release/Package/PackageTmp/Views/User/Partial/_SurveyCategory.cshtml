@@ -1,0 +1,8 @@
+﻿
+                @foreach (var category in ViewBag.SurveyCategory)
+                {
+                    <li>
+                        <a href="/survey/@category.CategoryId/get-survey/@category.CategoryName">@category.CategoryName </a>
+                    </li>
+                }
+       

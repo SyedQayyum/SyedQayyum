@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryDataManager.cs" />
+    <Compile Include="ManagementDataManager.cs" />
     <Compile Include="OptionDataManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\IDDbContext.cs" />

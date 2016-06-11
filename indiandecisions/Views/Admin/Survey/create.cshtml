@@ -9,6 +9,7 @@
 @using (Html.BeginForm("create", "survey", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal well" }))
 {
     @Html.Hidden("SurveyId")
+    @Html.HiddenFor(model => model.IsActive)
 
     <fieldset>
         <div class="form-group">

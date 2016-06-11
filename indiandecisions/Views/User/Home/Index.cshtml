@@ -40,6 +40,7 @@
                             {
 
                                 <div class="votingBlock" Id="VoteSection1_@item.SurveyId">
+                                    <p>Survey: <span>@item.StartDate.Value.ToString("dd/MM/yyyy")</span> To<span>@item.CloseDate.Value.ToString("dd/MM/yyyy")</span></p>
                                     @foreach (var itemOption in item.SurveyOptions)
                                     {
                                         <label class="radio-inline Custom_Radio_Btn">
@@ -56,6 +57,8 @@
                             else
                             {
                                 <div class="votingBlock" Id="VoteSection2_@item.SurveyId">
+                                    <p>Survey:  <span>@item.StartDate.Value.ToString("dd/MM/yyyy")</span> To<span>@item.CloseDate.Value.ToString("dd/MM/yyyy")</span></p>
+
                                     @{
                                         long Sum = 0;
                                         foreach (var itemOption in item.SurveyOptions)
@@ -80,9 +83,10 @@
                                     }
 
                                 </div>
+
                                         }
 
-                            @if (item.StartDate <= DateTime.Now && item.CloseDate >= DateTime.Now && !item.IsRated)
+                            @if (!item.IsRated && item.StartDate <= DateTime.Now && item.CloseDate >= DateTime.Now)
                             {
                                 <div class="UserRatingInput" id="UserRating_@item.SurveyId">
                                     <span class="span-txt">Give a Rating</span>
@@ -105,7 +109,7 @@
 
                                 </div>
                             }
-                            else
+                            else if(item.IsRated || item.StartDate <= DateTime.Now && item.CloseDate >= DateTime.Now)
                             {
                                 <div class="UserRatingInput" id="UserRating_@item.SurveyId">
                                     <div class="rating rating2">
@@ -119,7 +123,7 @@
                                 </div>
                             }
 
-                            <label class="Vote_timeperiod">Survey: From <span>@item.StartDate.Value.ToString("dd-MMM-yyyy")</span> To <span>@item.CloseDate.Value.ToString("dd-MMM-yyyy")</span></label>
+                            @* <label class="Vote_timeperiod">Survey: From <span>@item.StartDate.Value.ToString("dd-MMM-yyyy")</span> To <span>@item.CloseDate.Value.ToString("dd-MMM-yyyy")</span></label>*@
 
                         </div>
                     </div>

@@ -38,6 +38,7 @@ namespace indiandecisions.Controllers
         [Route("survey/{CategoryId}/get-survey/{categoryName}")]
         public ActionResult SurveyByCategory(int? page, int CategoryId, String CategoryName)
         {
+            List<CategoryVO> objCategoryList = new List<CategoryVO>();
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(null, CategoryId, null, true);
 
             foreach (SurveyVO ObjSurvey in objSurveyList)
@@ -64,6 +65,20 @@ namespace indiandecisions.Controllers
             ViewBag.Heading = CategoryName;
             ViewBag.PageTitle = CategoryName;
             ViewBag.Link = "survey/" + CategoryId + "/get-survey/" + CategoryName + "?page=";
+
+            if (Session["Categories"] == null)
+            {
+                objCategoryList = _categoryBizManager.GetAllCategory(null, true);
+
+                Session["Categories"] = objCategoryList;
+            }
+            else
+            {
+                objCategoryList = Session["Categories"] as List<CategoryVO>;
+            }
+
+            ViewBag.SurveyCategory = objCategoryList;
+
             return View("../User/home/index", viewModel);
         }
 
@@ -183,11 +198,32 @@ namespace indiandecisions.Controllers
         public ActionResult SurveyDetails(long surveyId, string suveryQs)
         {
             ViewBag.PageTitle = suveryQs.Replace('-', ' ');
+            List<CategoryVO> objCategoryList = new List<CategoryVO>();
             List<SurveyVO> objSurveyList = _surveyBizManager.GetAllSurvey(surveyId, null, null, null);
             JavaScriptSerializer jss = new JavaScriptSerializer();
             ViewBag.JsonResult = jss.Serialize(GetResultJson(objSurveyList.SingleOrDefault()));
             SurveyVO ObjSurvey = objSurveyList.SingleOrDefault();
             ObjSurvey.IsVoted = CheckCookie("Voted_" + surveyId);
+            ViewBag.RelatedSurvey = GetRealtedSurvey(surveyId,true);
+            List<SurveyVO> ViewedSurveyList = GetRealtedSurvey(surveyId, null).ToList();
+
+            ViewBag.PeopleViewedSurvey1 = ViewedSurveyList.Take(3).ToList();
+            ViewBag.PeopleViewedSurvey2 = ViewedSurveyList.Skip(3).Take(3).ToList();
+            ViewBag.PeopleViewedSurvey3 = ViewedSurveyList.Skip(6).Take(3).ToList();
+
+            if (Session["Categories"] == null)
+            {
+                objCategoryList = _categoryBizManager.GetAllCategory(null, true);
+
+                Session["Categories"] = objCategoryList;
+            }
+            else
+            {
+                objCategoryList = Session["Categories"] as List<CategoryVO>;
+            }
+
+            ViewBag.SurveyCategory = objCategoryList;
+
             return View("../user/survey/Surveydetails", ObjSurvey);
         }
 
@@ -239,8 +275,8 @@ namespace indiandecisions.Controllers
 
         private Image Scale(Image imgPhoto)
         {
-            float Width = 325;
-            float Height = 240;
+            float Width = 445;
+            float Height = 310;
             float sourceWidth = imgPhoto.Width;
             float sourceHeight = imgPhoto.Height;
             float destHeight = 0;
@@ -285,7 +321,7 @@ namespace indiandecisions.Controllers
             return bmPhoto;
         }
 
-
+        [Authorize]
         public ActionResult SetSurveyActiveStatus(long SurveyId, bool ActiveStatus)
         {
             bool IsDone = _surveyBizManager.SetSurveyActiveStatus(SurveyId, ActiveStatus);
@@ -293,6 +329,10 @@ namespace indiandecisions.Controllers
         }
 
 
-
+        private List<SurveyVO> GetRealtedSurvey(long SurveyId, bool? IsSameCategory)
+        {
+            List<SurveyVO> RelatedSurvey = _surveyBizManager.GetRealtedSurvey(SurveyId, IsSameCategory);
+            return RelatedSurvey;
+        }
     }
 }
