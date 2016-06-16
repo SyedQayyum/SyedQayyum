@@ -12,6 +12,9 @@ namespace ID.ValueObjects
     {
         [Required(ErrorMessage ="Please enter Name")]
         public String UserName { get; set; }
+
+        [Display(Name = "Email address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [Required(ErrorMessage = "Please enter Email")]
         public String UserEmail { get; set; }
         public String FromName { get; set; }

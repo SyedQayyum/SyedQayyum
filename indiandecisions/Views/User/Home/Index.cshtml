@@ -18,7 +18,7 @@
                 <div class="search-result-college">
                     <div class="row Vote_section">
                         <div class="col-xs-12 col-md-6">
-                            <a href="#" onclick='viewSurveyDetials("@item.SurveyId","@item.SurveyQuestion")'><img src="../../@Url.Content(item.PicturePath)" class="img-responsive" title="@item.SurveyQuestion" alt="@item.SurveyQuestion" /></a>
+                            <a href="javascript:void(0);" onclick='viewSurveyDetials("@item.SurveyId","@item.SurveyQuestion")'><img src="../../@Url.Content(item.PicturePath)" class="img-responsive" title="@item.SurveyQuestion" alt="@item.SurveyQuestion" /></a>
                             <div class="rating rating2">
                                 <span>Avg. Rating :</span>
                                 <span class="star_rating_small">
@@ -74,7 +74,7 @@
                                     }
                                     @if (item.IsVoted)
                                     {
-                                        <label>Your Vote : @item.VoteValue</label>
+                                       <br /> <label>Your Vote : @item.VoteValue</label>
                                     }
                                     else
                                     {

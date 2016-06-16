@@ -6,7 +6,7 @@
 
 <style>
     .field-validation-error {
-        color:red !important;
+        color: red !important;
     }
 </style>
 
@@ -74,7 +74,7 @@
             <div class="social_media">
                 <ul>
                     <li>
-                        <a href="https://www.facebook.com/IndianDecision.in" class="btn btn-block btn-social btn-lg btn-facebook" target="_blank">
+                        <a href="https://www.facebook.com/IndianDecision" class="btn btn-block btn-social btn-lg btn-facebook" target="_blank">
                             <i class="fa fa-facebook"></i> Like us in Facebook
                         </a>
                     </li>
@@ -83,13 +83,24 @@
                             <i class="fa fa-twitter"></i> Follow us in Twitter
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="btn btn-block btn-social btn-lg btn-google" target="_blank">
-                            <i class="fa fa-google-plus"></i> Share in Google
-                        </a>
-                    </li>
+                    @*<li>
+                            <a href="#" class="btn btn-block btn-social btn-lg btn-google" target="_blank">
+                                <i class="fa fa-google-plus"></i> Share in Google
+                            </a>
+                        </li>*@
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#Captcha').val('');
+        })
+
+    </script>
+}

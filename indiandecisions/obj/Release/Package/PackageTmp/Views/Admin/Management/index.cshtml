@@ -1,0 +1,112 @@
+﻿@model  ID.ValueObjects.ManagementList
+@using ID.Common
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Management</h2>
+<hr />
+
+@using (Html.BeginForm("create", "management", FormMethod.Post, new { @class = "form-horizontal well" }))
+{
+    @Html.Hidden("ManagementId")
+
+
+    <fieldset>
+        <div class="form-group">
+            <div class="col-lg-4">
+                @Html.DropDownList("ManagementCategoryId", EnumHelper.GetSelectList(typeof(ManagementCategoryEnum)), "-- Select Parent Category --", new { @class = "form-control" })
+            </div>
+            <div class="col-lg-4">
+                @Html.TextBox("RupeeOrMinute", "", new { @class = "form-control", @placeholder = "Rupees Or Minutes" })
+            </div>
+            <div class="col-lg-4">
+                @Html.TextBox("Comment", "", new { @class = "form-control", @placeholder = "Comment" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-2">
+                <input type="submit" class="btn btn-info" id="AddManagement" value="Add Record">
+            </div>
+        </div>
+    </fieldset>
+}
+<br />
+<br />
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr class="warning">
+            <th>Id</th>
+            <th>Category</th>
+            <th>Rupees Or Minutes</th>
+            <th>Comments</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var model in Model.Management)
+        {
+            <tr class="info">
+                <td>@Html.DisplayFor(modelItem => model.ManagementId)</td>
+                <td>@Html.DisplayFor(modelItem => model.MCategory)</td>
+                <td>@Html.DisplayFor(modelItem => model.RupeeOrMinute)</td>
+                <td>@Html.DisplayFor(modelItem => model.Comment)</td>
+                <td>
+                    <a href="javascript:void(0);" class="EditManagement">Edit</a> | <a href="javascript:void(0);" class="DeleteManagement">Delete</a>
+                </td>
+               
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<!-- pager -->
+@if (Model.Pager.EndPage > 1)
+{
+    <ul class="pagination">
+        @if (Model.Pager.CurrentPage > 1)
+        {
+            <li>
+                <a href="~/category/index">First</a>
+            </li>
+            <li>
+                <a href="~/category/index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+            </li>
+        }
+
+        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+        {
+            <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                <a href="~/category/index?page=@page">@page</a>
+            </li>    }
+
+        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+        {
+            <li>
+                <a href="~/category/index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+            </li>
+            <li>
+                <a href="~/category/index?page=@(Model.Pager.TotalPages)">Last</a>
+            </li>
+        }
+    </ul>
+}
+
+
+@{
+    Html.RenderPartial("~/Views/Shared/_DeletePartial.cshtml", "Management");
+}
+
+@section Scripts{
+    <script src="~/Scripts/Application Script/ManagementScripts.js"></script>
+}
+
+
+
+

@@ -238,6 +238,7 @@
     <Content Include="Views\User\Partial\_RelatedSurvey.cshtml" />
     <Content Include="Views\User\Partial\_SurveyCategory.cshtml" />
     <Content Include="Views\Admin\Management\index.cshtml" />
+    <Content Include="Views\User\Home\InternalServerError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

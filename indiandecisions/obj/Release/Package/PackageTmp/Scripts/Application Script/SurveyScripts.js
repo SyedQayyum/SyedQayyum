@@ -51,7 +51,7 @@ function voteOnSurvey(button, surveyId, surveyQs) {
 
     var OptionId = $(button).parent("div").find("input[type='radio']:checked").val();
     var OptionValue = $(button).parent("div").find("input[type='radio']:checked").attr("id");
-
+    debugger;
     if (OptionId != undefined) {
         $.getJSON('../../../survey/VoteOnSurvey?SurveyId=' + surveyId + '&OptionId=' + OptionId + '&OptionValue=' + OptionValue, function (isvoted) {
             if (isvoted == true) {

@@ -82,6 +82,13 @@ namespace indiandecisions.Controllers.User
             return View("../user/home/PageNotFound");
         }
 
+        [ActionName("internal-server-error")]
+        public ActionResult InternalServerError()
+        {
+            ViewBag.PageTitle = "Internal Server Error | Indian Decision";
+            return View("../user/home/InternalServerError");
+        }
+
         [ActionName("contact-us")]
         public ActionResult ContactUs()
         {
