@@ -114,6 +114,7 @@ namespace indiandecisions.Controllers
         }
 
         [Authorize]
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult create(SurveyVO Survey, String AddOption)
         {
@@ -203,7 +204,19 @@ namespace indiandecisions.Controllers
             JavaScriptSerializer jss = new JavaScriptSerializer();
             ViewBag.JsonResult = jss.Serialize(GetResultJson(objSurveyList.SingleOrDefault()));
             SurveyVO ObjSurvey = objSurveyList.SingleOrDefault();
-            ObjSurvey.IsVoted = CheckCookie("Voted_" + surveyId);
+
+            if (CheckCookie("Voted_" + surveyId))
+            {
+                ObjSurvey.IsVoted = true;
+                ObjSurvey.VoteValue = GetCookie("Voted_" + ObjSurvey.SurveyId);
+            }
+            if (CheckCookie("Rated_" + surveyId))
+            {
+                ObjSurvey.IsRated = true;
+                ObjSurvey.RateValue = GetCookie("Rated_" + ObjSurvey.SurveyId);
+            }
+
+
             ViewBag.RelatedSurvey = GetRealtedSurvey(surveyId,true);
             List<SurveyVO> ViewedSurveyList = GetRealtedSurvey(surveyId, null).ToList();
 
@@ -233,7 +246,7 @@ namespace indiandecisions.Controllers
             Boolean IsVoted = _surveyBizManager.VoteOnSurvey(SurveyId, OptionId);
             if (IsVoted)
             {
-                SetCookie("Voted_" + SurveyId, OptionValue, 8);
+                SetCookie("Voted_" + SurveyId, OptionValue, 15);
             }
 
             return Json(IsVoted, JsonRequestBehavior.AllowGet);
@@ -268,7 +281,7 @@ namespace indiandecisions.Controllers
             Boolean IsRated = _surveyBizManager.RatingOnSurvey(SurveyId, Rating);
             if (IsRated)
             {
-                SetCookie("Rated_" + SurveyId, Rating.ToString(), 8);
+                SetCookie("Rated_" + SurveyId, Rating.ToString(), 15);
             }
             return Json(IsRated, JsonRequestBehavior.AllowGet);
         }

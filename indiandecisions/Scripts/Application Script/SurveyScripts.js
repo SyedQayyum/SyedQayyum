@@ -56,7 +56,7 @@ function voteOnSurvey(button, surveyId, surveyQs) {
         $.getJSON('../../../survey/VoteOnSurvey?SurveyId=' + surveyId + '&OptionId=' + OptionId + '&OptionValue=' + OptionValue, function (isvoted) {
             if (isvoted == true) {
                 var surveyQsString = surveyQs.split(' ').join('-');
-                window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQsString;
+                window.location.href = "../../../survey/" + surveyId + "/survey-details/" + surveyQsString + '#vote-result';
                 return false;
             }
         })

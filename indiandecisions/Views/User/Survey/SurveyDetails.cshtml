@@ -5,8 +5,18 @@
     Layout = "~/Views/Shared/_SurveyDetailsLayout.cshtml";
 }
 
+<style>
+    .voting1 {
+        margin-left: 10px;
+        margin-top: 40px;
+    }
 
-<div id="surveyInfo">
+    .votingBlock p {
+        font-weight: bold;
+    }
+</style>
+
+<div id="surveyInfo survey-details">
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <div class="addthis_native_toolbox"></div>
@@ -17,7 +27,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-5">
             <a href="#"><img src='../../@Url.Content(Model.PicturePath)' class="img-responsive" alt="Survey Picture" /></a>
             <div class="rating rating2">
                 <span>Avg. Rating :</span>
@@ -29,6 +39,24 @@
                 <span>( from @Model.RatingCount ratings )</span>
             </div>
         </div>
+        <div class="col-xs-12 col-md-7">
+            <div class="voting" id="VoteSection1_@Model.SurveyId">
+
+                @Html.Raw(Model.SurveyDescription)
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row survey-qs" id="vote-result">
+
+
+        <label style="margin-top: 20px;" class="suggested-survey">Vote / Result</label>
+
+
         <div class="col-xs-12 col-md-6">
             @Html.Hidden("SurveyId", Model.SurveyId, new { @class = "VotesResult" })
             @foreach (var option in Model.SurveyOptions)
@@ -38,7 +66,7 @@
 
             @if (Model.StartDate <= DateTime.Now && Model.CloseDate >= DateTime.Now && !Model.IsVoted)
             {
-                <div class="voting" id="VoteSection1_@Model.SurveyId">
+                <div class="voting voting1" id="VoteSection1_@Model.SurveyId">
                     @foreach (var itemOption in Model.SurveyOptions)
                     {
                         <label class="radio-inline Custom_Radio_Btn">
@@ -60,7 +88,89 @@
                 </div>
             }
         </div>
+        <div class="col-xs-12 col-md-6" style="margin-top: 40px">
+            <div class="votingBlock College-logo-desc" Id="VoteSection2_@Model.SurveyId">
+                <p>Survey:  <span>@Model.StartDate.Value.ToString("dd/MM/yyyy")</span> To<span>@Model.CloseDate.Value.ToString("dd/MM/yyyy")</span></p>
 
+                @{
+                    long Sum = 0;
+                    foreach (var itemOption in Model.SurveyOptions)
+                    {
+                        Sum += itemOption.SurveyOptionCount;
+                    }
+                    <p>People Responded : <span>@Sum</span></p>
+                }
+
+                @foreach (var itemOption in Model.SurveyOptions)
+                {
+                    <p>@itemOption.OptionName:  <span>@itemOption.SurveyOptionCount.ToString()</span></p>
+                }
+                @if (Model.IsVoted)
+                {
+                    <br /> <span>Your Vote : @Model.VoteValue</span>
+                }
+
+
+
+                @if (!Model.IsRated && Model.StartDate <= DateTime.Now && Model.CloseDate >= DateTime.Now)
+                {
+                    <div class="UserRatingInput" id="UserRating_@Model.SurveyId">
+                        <span class="span-txt">Give a Rating</span>
+                        <div class="rating rating3">
+                            <div class="stars">
+                                <form>
+                                    <input class="star star-5" id="UserRating-5" type="radio" name="star" />
+                                    <label class="star star-5" for="UserRating-5" id="5"></label>
+                                    <input class="star star-4" id="UserRating-4" type="radio" name="star" />
+                                    <label class="star star-4" for="UserRating-4" id="4"></label>
+                                    <input class="star star-3" id="UserRating-3" type="radio" name="star" />
+                                    <label class="star star-3" for="UserRating-3" id="3"></label>
+                                    <input class="star star-2" id="UserRating-2" type="radio" name="star" />
+                                    <label class="star star-2" for="UserRating-2" id="2"></label>
+                                    <input class="star star-1" id="UserRating-1" type="radio" name="star" />
+                                    <label class="star star-1" for="UserRating-1" id="1"></label>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                else if (Model.IsRated || Model.StartDate <= DateTime.Now && Model.CloseDate >= DateTime.Now)
+                {
+                    <div class="UserRatingInput" id="UserRating_@Model.SurveyId">
+                        <div class="rating rating2">
+                            <span>Your Rating :</span>
+                            <span class="star_rating_small">
+                                <span class="star star-red star-xl">
+                                    @Html.Raw("<span style=\"width:" + Convert.ToInt16(Model.RateValue) * 1.0 / 5 * 100 + "%\"</span>")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        @*<div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () { this.page.url = window.location.href;
+                this.page.identifier = @Model.SurveyId;
+            };
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = '//indiandecisionin.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s); })();
+        </script>
+        <noscript>
+            Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+                comments powered by Disqus.
+            </a>
+        </noscript>*@
         <div class="fb-comments" id="FBComment" data-numposts="5" width="100%"></div>
 
         <br />
@@ -182,6 +292,7 @@
     </script>
 
     <script src="~/Scripts/Application Script/SurveyScripts.js"></script>
+    <script id="dsq-count-scr" src="//indiandecisionin.disqus.com/count.js" async></script>
 
 
 }
